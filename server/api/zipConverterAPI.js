@@ -15,4 +15,4 @@ export async function zipToGeo(zip) {
 }
 
 
-console.log(zipToGeo(79922));
+// console.log(zipToGeo(79922));
