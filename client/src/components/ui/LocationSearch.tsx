@@ -12,16 +12,19 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 
-export default function LocationSearch() {
+type Props = {
+  onSearch: (params: { zip: string; date: Date | undefined; time: string }) => void;
+};
+
+export default function LocationSearch({ onSearch }: Props) {
   const [zip, setZip] = React.useState("");
   const [date, setDate] = React.useState<Date | undefined>();
   const [open, setOpen] = React.useState(false);
   const [time, setTime] = React.useState("08:00");
 
   const handleSearch = () => {
-    console.log("ZIP:", zip);
-    console.log("Date:", date?.toLocaleDateString());
-    console.log("Time:", time);
+    if (!zip || !date || !time) return;
+    onSearch({ zip, date, time });
   };
 
   return (
@@ -79,7 +82,7 @@ export default function LocationSearch() {
             id="time-picker"
             value={time}
             onChange={(e) => setTime(e.target.value)}
-            step="1800" // 30 minute steps
+            step="1800"
             className="w-36 bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden"
           />
         </div>
