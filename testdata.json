@@ -1,0 +1,115 @@
+{
+  "cinema": {
+    "cinema_id": 48596,
+    "cinema_name": "Stuart Cinema & Cafe",
+    "address": "79 West Street",
+    "address2": "",
+    "city": "Brooklyn",
+    "country": "USA",
+    "state": "NY",
+    "postcode": 11222,
+    "returned_date": "2025-07-31",
+    "show_dates": [
+      {
+        "date": "2025-07-31",
+        "display_date": "Thu 31 Jul"
+      },
+      {
+        "date": "2025-08-01",
+        "display_date": "Fri 1 Aug"
+      },
+      {
+        "date": "2025-08-02",
+        "display_date": "Sat 2 Aug"
+      },
+      {
+        "date": "2025-08-03",
+        "display_date": "Sun 3 Aug"
+      }
+    ]
+  },
+  "films": [
+    {
+      "film_id": 338995,
+      "imdb_id": 10676052,
+      "imdb_title_id": "tt10676052",
+      "film_name": "The Fantastic Four: First Steps",
+      "other_titles": null,
+      "version_type": "Standard",
+      "synopsis_long": "<p>Set against the vibrant backdrop of a 1960s-inspired, retro-futuristic world, Marvel Studios' \"The Fantastic Four: First Steps\" introduces Marvel's First FamilyReed Richards/Mister Fantastic (Pedro Pascal), Sue Storm/Invisible Woman (Vanessa Kirby), Johnny Storm/Human Torch (Joseph Quinn) and Ben Grimm/The Thing (Ebon Moss-Bachrach) as they face their most daunting challenge yet. Forced to balance their roles as heroes with the strength of their family bond, they must defend Earth from a ravenous space god called Galactus (Ralph Ineson) and his enigmatic Herald, Silver Surfer (Julia Garner). And if Galactus' plan to devour the entire planet and everyone on it weren't bad enough, it suddenly gets very personal.</p>",
+      "duration_mins": 115,
+      "duration_hrs_mins": "1h 55m",
+      "genres": [
+        {
+          "genre_id": 32,
+          "genre_name": "Fantasy"
+        },
+        {
+          "genre_id": 5,
+          "genre_name": "Action/Adventure"
+        }
+      ],
+      "age_rating": [
+        {
+          "rating": "PG-13 ",
+          "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+          "age_advisory": "for action/violence and some language."
+        }
+      ],
+      "images": {
+        "poster": {
+          "1": {
+            "image_orientation": "portrait",
+            "region": "global",
+            "medium": {
+              "film_image": "https://image.movieglu.com/338995/338995h1.jpg",
+              "width": 200,
+              "height": 300
+            }
+          }
+        },
+        "still": {
+          "1": {
+            "image_orientation": "landscape",
+            "medium": {
+              "film_image": "https://image.movieglu.com/338995/338995h2.jpg",
+              "width": 300,
+              "height": 199
+            }
+          }
+        }
+      },
+      "showings": {
+        "Standard": {
+          "film_id": 338995,
+          "film_name": "The Fantastic Four: First Steps",
+          "times": [
+            {
+              "start_time": "11:45",
+              "display_start_time": "11:45 AM"
+            },
+            {
+              "start_time": "15:00",
+              "display_start_time": "3:00 PM"
+            },
+            {
+              "start_time": "18:15",
+              "display_start_time": "6:15 PM"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "status": {
+    "count": 1,
+    "state": "OK",
+    "method": "cinemaShowTimes",
+    "message": null,
+    "request_method": "GET",
+    "version": "PERS_243v201",
+    "territory": "US",
+    "device_datetime_sent": "2025-07-31T02:17:37.956Z",
+    "device_datetime_used": "2025-07-30 02:17:37"
+  }
+}
