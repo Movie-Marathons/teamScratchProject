@@ -1,15 +1,14 @@
 
 const headers = {
-  'client': 'PERS_243',
-  'x-api-key': 'WS5TTuUpZo2tEbmd9k5Y86O1BTPW29yI7EZoMFWe',
-  'Authorization': 'Basic UEVSU18yNDM6OVVjT0IxZ1BpbnNx',
-  'territory': 'US',
-  'api-version': 'v201',
-  'user-agent': 'MovieGluTestApp',
-  'Host': 'api-gate2.movieglu.com',
+'client': 'CODE_16', 
+'x-api-key': 'KidUK6LrNB2M2rptqwrlN1FPATBwSM0T1NFPFbqr', 
+'authorization': 'Basic Q09ERV8xNjpwc3VnMFdGdEdhR1Y=',
+'territory': 'US', 
+'api-version': 'v201',
+'user-agent': 'MovieGluTestApp',
+Host: 'api-gate2.movieglu.com',
 };
-
-export async function getShowings(cinemaId, filmId, date,geolocation) {
+async function getShowings(cinemaId, filmId, date,geolocation) {
   const fullHeaders = {
     ...headers,
     geolocation,
@@ -25,6 +24,7 @@ export async function getShowings(cinemaId, filmId, date,geolocation) {
   return data?.films || [];
 }
 
+module.exports = { getShowings };
 // (async() => { 
 //   try {const result = await getShowings('48596', '338995', '2025-08-20', '40.7440;-73.9489')
 //     console.log(result)

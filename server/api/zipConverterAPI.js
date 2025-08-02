@@ -1,5 +1,5 @@
 
-export async function zipToGeo(zip) {
+async function zipToGeo(zip) {
   try {
     const res = await fetch(`https://api.zippopotam.us/us/${zip}`);
     if (!res.ok) throw new Error(`Invalid ZIP: ${zip}`);
@@ -14,11 +14,12 @@ export async function zipToGeo(zip) {
   }
 }
 
-(async() => { 
-  try {const result = await zipToGeo('79922');
-    console.log(result)
-  } catch (error) {console.log('Error:', error.message)
-    }
-  }) ();
+// (async() => { 
+//   try {const result = await zipToGeo('79922');
+//     console.log(result)
+//   } catch (error) {console.log('Error:', error.message)
+//     }
+//   }) ();
 
+  module.exports = { zipToGeo };
 //console.log(zipToGeo(79922));

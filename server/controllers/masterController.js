@@ -87,7 +87,7 @@ async function getCinemasWithShowtimes(req, res) {
     res.json(results);
   } catch (err) {
     // basic catch return 500 error
-    console.error('Error in getCinemasWithShowtimes:', err.message);
+    console.error('Error in getCinemasWithShowtimes:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
 }
