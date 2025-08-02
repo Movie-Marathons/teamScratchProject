@@ -1,7 +1,7 @@
 const express = require('express');
-const { getDailyScheduleOptions } = require('../controllers/scheduleController');
+const { getCinemasWithShowtimes } = require('./controllers/masterController.js');
 const app = express();
-app.get('/schedule', getDailyScheduleOptions);
+app.get('/cinemas-with-showtimes', getCinemasWithShowtimes);
 const PORT = 3000;
 
 app.use(express.static('public'));

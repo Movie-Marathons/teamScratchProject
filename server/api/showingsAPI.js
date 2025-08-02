@@ -24,3 +24,10 @@ export async function getShowings(cinemaId, filmId, date,geolocation) {
   const data = await res.json();
   return data?.films || [];
 }
+
+(async() => { 
+  try {const result = await getShowings('48596', '338995', '2025-08-20', '40.7440;-73.9489')
+    console.log(result)
+  } catch (error) {console.log('Error:', error.message)
+    }
+  }) ();

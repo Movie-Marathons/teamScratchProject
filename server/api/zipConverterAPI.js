@@ -14,5 +14,11 @@ export async function zipToGeo(zip) {
   }
 }
 
+(async() => { 
+  try {const result = await zipToGeo('79922');
+    console.log(result)
+  } catch (error) {console.log('Error:', error.message)
+    }
+  }) ();
 
-// console.log(zipToGeo(79922));
+//console.log(zipToGeo(79922));
