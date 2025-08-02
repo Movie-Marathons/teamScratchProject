@@ -1,5 +1,6 @@
 // src/components/layout/AppShell.tsx
 import { ReactNode } from "react";
+import SidebarPosters from "./PosterAside";
 
 export default function AppShell({ children }: { children: ReactNode }) {
   return (
@@ -23,8 +24,8 @@ export default function AppShell({ children }: { children: ReactNode }) {
 
         {/* Right Sidebar */}
         <aside className="w-60 bg-slate-200 p-4 overflow-y-auto">
-          <h2 className="text-lg font-bold mb-2">Now Playing</h2>
-          <p className="text-sm text-slate-600">Posters, promos, etc.</p>
+         <h2 className="text-lg font-bold mb-2">Now Playing</h2>
+          <SidebarPosters />
         </aside>
       </div>
     </div>
