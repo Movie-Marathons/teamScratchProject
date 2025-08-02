@@ -1,14 +1,14 @@
 const headers = {
-'client': 'CODE_16', 
-'x-api-key': 'KidUK6LrNB2M2rptqwrlN1FPATBwSM0T1NFPFbqr', 
-'authorization': 'Basic Q09ERV8xNjpwc3VnMFdGdEdhR1Y=',
-'territory': 'US', 
-'api-version': 'v201',
-'user-agent': 'MovieGluTestApp',
-Host: 'api-gate2.movieglu.com',
+  client: 'PERS_243',
+  'x-api-key': 'HqgZrG0lYh4poyCrqsd7Y8GABWef7ybH2HdBE8vF',
+  Authorization: 'Basic UEVSU18yNDNfWFg6UmlKUHR3RWpVdjVU',
+  territory: 'XX',
+  'api-version': 'v201',
+  'user-agent': 'MovieGluTestApp',
+  Host: 'api-gate2.movieglu.com',
 };
 
-async function getFilms(cinemaId, geolocation) {
+export async function getFilms(cinemaId, geolocation = '-22.0;14.0') {
   const fullHeaders = {
     ...headers,
     geolocation,
@@ -16,18 +16,17 @@ async function getFilms(cinemaId, geolocation) {
   };
 
   const url = `https://api-gate2.movieglu.com/filmsNowShowing/?cinema_id=${cinemaId}`;
-
   const res = await fetch(url, { headers: fullHeaders });
-  if (!res.ok) throw new Error(`Film API error: ${res.statusText}`);
+  const text = await res.text();
 
-  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(`Film API error: ${res.status} - ${text}`);
+  }
+
+  if (!text) {
+    throw new Error('Film API error: Empty response body');
+  }
+
+  const data = JSON.parse(text);
   return data?.films || [];
 }
-
-module.exports = { getFilms };
-// (async() => { 
-//   try {const result = await getFilms('48596', '40.7440;-73.9489')
-//     console.log(result)
-//   } catch (error) {console.log(error.message)
-//     }
-//   }) ();
