@@ -26,4 +26,4 @@ export async function getCinemas(geolocation, count = 12) {
   return data?.cinemas || [];
 }
 
-console.log(getCinemas('40.7440;-73.9489'))
+// console.log(getCinemas('40.7440;-73.9489'))
