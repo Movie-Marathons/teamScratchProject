@@ -1,0 +1,527 @@
+[
+  {
+    "cinema": {
+      "cinema_id": 10000,
+      "cinema_name": "Starlight Cinema",
+      "address": "100 Main St",
+      "address2": "",
+      "city": "Brooklyn",
+      "country": "USA",
+      "state": "NY",
+      "postcode": "11200",
+      "returned_date": "2025-08-01",
+      "show_dates": [
+        {
+          "date": "2025-08-01",
+          "display_date": "Fri 01 Aug"
+        },
+        {
+          "date": "2025-08-02",
+          "display_date": "Sat 02 Aug"
+        },
+        {
+          "date": "2025-08-03",
+          "display_date": "Sun 03 Aug"
+        },
+        {
+          "date": "2025-08-04",
+          "display_date": "Mon 04 Aug"
+        }
+      ]
+    },
+    "films": [
+      {
+        "film_id": 4763838703694859369,
+        "imdb_id": 81366038,
+        "imdb_title_id": "tt29203139",
+        "film_name": "City of Secrets",
+        "other_titles": null,
+        "version_type": "Standard",
+        "synopsis_long": "<p>City of Secrets is a gripping Drama movie exploring deep themes with action and emotion.</p>",
+        "duration_mins": 101,
+        "duration_hrs_mins": "1h 41m",
+        "genres": [
+          {
+            "genre_id": 1,
+            "genre_name": "Romance"
+          },
+          {
+            "genre_id": 2,
+            "genre_name": "Action"
+          }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Some intense scenes and mild language."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_0_0.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_0_0.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 6783630001456235706,
+            "film_name": "City of Secrets",
+            "times": [
+              {
+                "start_time": "11:45",
+                "display_start_time": "11:45 AM"
+              },
+              {
+                "start_time": "15:00",
+                "display_start_time": "3:00 PM"
+              },
+              {
+                "start_time": "18:30",
+                "display_start_time": "6:30 PM"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 12265569821551840099,
+        "imdb_id": 62395431,
+        "imdb_title_id": "tt94671452",
+        "film_name": "Quantum Voyage",
+        "other_titles": null,
+        "version_type": "Standard",
+        "synopsis_long": "<p>Quantum Voyage is a gripping Thriller movie exploring deep themes with action and emotion.</p>",
+        "duration_mins": 104,
+        "duration_hrs_mins": "1h 44m",
+        "genres": [
+          {
+            "genre_id": 1,
+            "genre_name": "Romance"
+          },
+          {
+            "genre_id": 2,
+            "genre_name": "Action"
+          }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Some intense scenes and mild language."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_0_1.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_0_1.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 3435008452824221290,
+            "film_name": "Quantum Voyage",
+            "times": [
+              {
+                "start_time": "11:45",
+                "display_start_time": "11:45 AM"
+              },
+              {
+                "start_time": "15:00",
+                "display_start_time": "3:00 PM"
+              },
+              {
+                "start_time": "18:30",
+                "display_start_time": "6:30 PM"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "cinema": {
+      "cinema_id": 10001,
+      "cinema_name": "Grand Ave Theaters",
+      "address": "105 Main St",
+      "address2": "",
+      "city": "Queens",
+      "country": "USA",
+      "state": "NY",
+      "postcode": "11200",
+      "returned_date": "2025-08-01",
+      "show_dates": [
+        {
+          "date": "2025-08-01",
+          "display_date": "Fri 01 Aug"
+        },
+        {
+          "date": "2025-08-02",
+          "display_date": "Sat 02 Aug"
+        },
+        {
+          "date": "2025-08-03",
+          "display_date": "Sun 03 Aug"
+        },
+        {
+          "date": "2025-08-04",
+          "display_date": "Mon 04 Aug"
+        }
+      ]
+    },
+    "films": [
+      {
+        "film_id": 4559964374742551219,
+        "imdb_id": 29384671,
+        "imdb_title_id": "tt69530560",
+        "film_name": "Echoes Beyond",
+        "other_titles": null,
+        "version_type": "Standard",
+        "synopsis_long": "<p>Echoes Beyond is a gripping Romance movie exploring deep themes with action and emotion.</p>",
+        "duration_mins": 101,
+        "duration_hrs_mins": "1h 41m",
+        "genres": [
+          {
+            "genre_id": 1,
+            "genre_name": "Romance"
+          },
+          {
+            "genre_id": 2,
+            "genre_name": "Action"
+          }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Some intense scenes and mild language."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_1_0.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_1_0.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 3714496985098829870,
+            "film_name": "Echoes Beyond",
+            "times": [
+              {
+                "start_time": "11:45",
+                "display_start_time": "11:45 AM"
+              },
+              {
+                "start_time": "15:00",
+                "display_start_time": "3:00 PM"
+              },
+              {
+                "start_time": "18:30",
+                "display_start_time": "6:30 PM"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 808660967384433362,
+        "imdb_id": 75781365,
+        "imdb_title_id": "tt24326636",
+        "film_name": "Echoes Beyond",
+        "other_titles": null,
+        "version_type": "Standard",
+        "synopsis_long": "<p>Echoes Beyond is a gripping Romance movie exploring deep themes with action and emotion.</p>",
+        "duration_mins": 91,
+        "duration_hrs_mins": "1h 31m",
+        "genres": [
+          {
+            "genre_id": 1,
+            "genre_name": "Thriller"
+          },
+          {
+            "genre_id": 2,
+            "genre_name": "Action"
+          }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Some intense scenes and mild language."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_1_1.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_1_1.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 22293098536845697,
+            "film_name": "Echoes Beyond",
+            "times": [
+              {
+                "start_time": "11:45",
+                "display_start_time": "11:45 AM"
+              },
+              {
+                "start_time": "15:00",
+                "display_start_time": "3:00 PM"
+              },
+              {
+                "start_time": "18:30",
+                "display_start_time": "6:30 PM"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "cinema": {
+      "cinema_id": 10002,
+      "cinema_name": "Uptown Flicks",
+      "address": "110 Main St",
+      "address2": "",
+      "city": "Manhattan",
+      "country": "USA",
+      "state": "NY",
+      "postcode": "11200",
+      "returned_date": "2025-08-01",
+      "show_dates": [
+        {
+          "date": "2025-08-01",
+          "display_date": "Fri 01 Aug"
+        },
+        {
+          "date": "2025-08-02",
+          "display_date": "Sat 02 Aug"
+        },
+        {
+          "date": "2025-08-03",
+          "display_date": "Sun 03 Aug"
+        },
+        {
+          "date": "2025-08-04",
+          "display_date": "Mon 04 Aug"
+        }
+      ]
+    },
+    "films": [
+      {
+        "film_id": 10336250720629836101,
+        "imdb_id": 17007799,
+        "imdb_title_id": "tt98644021",
+        "film_name": "Battle for Earth",
+        "other_titles": null,
+        "version_type": "Standard",
+        "synopsis_long": "<p>Battle for Earth is a gripping Drama movie exploring deep themes with action and emotion.</p>",
+        "duration_mins": 91,
+        "duration_hrs_mins": "1h 31m",
+        "genres": [
+          {
+            "genre_id": 1,
+            "genre_name": "Thriller"
+          },
+          {
+            "genre_id": 2,
+            "genre_name": "Drama"
+          }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Some intense scenes and mild language."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_2_0.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_2_0.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 1783926191102512926,
+            "film_name": "Battle for Earth",
+            "times": [
+              {
+                "start_time": "11:45",
+                "display_start_time": "11:45 AM"
+              },
+              {
+                "start_time": "15:00",
+                "display_start_time": "3:00 PM"
+              },
+              {
+                "start_time": "18:30",
+                "display_start_time": "6:30 PM"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 4581289275512668985,
+        "imdb_id": 38969804,
+        "imdb_title_id": "tt42827321",
+        "film_name": "Quantum Voyage",
+        "other_titles": null,
+        "version_type": "Standard",
+        "synopsis_long": "<p>Quantum Voyage is a gripping Action movie exploring deep themes with action and emotion.</p>",
+        "duration_mins": 97,
+        "duration_hrs_mins": "1h 37m",
+        "genres": [
+          {
+            "genre_id": 1,
+            "genre_name": "Romance"
+          },
+          {
+            "genre_id": 2,
+            "genre_name": "Thriller"
+          }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Some intense scenes and mild language."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_2_1.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_2_1.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 2725618911225006538,
+            "film_name": "Quantum Voyage",
+            "times": [
+              {
+                "start_time": "11:45",
+                "display_start_time": "11:45 AM"
+              },
+              {
+                "start_time": "15:00",
+                "display_start_time": "3:00 PM"
+              },
+              {
+                "start_time": "18:30",
+                "display_start_time": "6:30 PM"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+]

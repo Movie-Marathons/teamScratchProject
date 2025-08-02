@@ -1,0 +1,3596 @@
+[
+    {
+        "cinema": {
+            "cinema_id": 10636,
+            "cinema_name": "Cinema 6",
+            "address": "Jetty",
+            "city": "city",
+            "state": "State",
+            "postcode": "11200",
+            "show_dates": [
+                {
+                    "date": "2025-08-02",
+                    "display_date": "Fri, Aug 1"
+                }
+            ]
+        },
+        "films": [
+            {
+                "film_id": 7772,
+                "title": "Raiders of the Lost Ark",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "22:40"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:00"
+                    }
+                ]
+            },
+            {
+                "film_id": 184126,
+                "title": "The Martian",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "22:40"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:00"
+                    }
+                ]
+            },
+            {
+                "film_id": 59906,
+                "title": "There Will Be Blood",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "22:40"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:00"
+                    }
+                ]
+            },
+            {
+                "film_id": 3427,
+                "title": "From Dusk Till Dawn",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "22:40"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:00"
+                    }
+                ]
+            },
+            {
+                "film_id": 1685,
+                "title": "The Adventures of Priscilla, Queen of the Desert",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "22:40"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:00"
+                    }
+                ]
+            },
+            {
+                "film_id": 25,
+                "title": "Stargate",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "22:40"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:00"
+                    }
+                ]
+            },
+            {
+                "film_id": 6650,
+                "title": "The English Patient",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "22:40"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:00"
+                    }
+                ]
+            },
+            {
+                "film_id": 4167,
+                "title": "Woman in the Dunes",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "22:40"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:00"
+                    }
+                ]
+            },
+            {
+                "film_id": 8675,
+                "title": "Lawrence Of Arabia - 70mm",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "22:40"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:00"
+                    }
+                ]
+            },
+            {
+                "film_id": 21448,
+                "title": "Three Kings",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "22:40"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:00"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "cinema": {
+            "cinema_id": 42963,
+            "cinema_name": "Cinema 7",
+            "address": "Welwitschia Plains",
+            "city": "city",
+            "state": "State",
+            "postcode": "11200",
+            "show_dates": [
+                {
+                    "date": "2025-08-02",
+                    "display_date": "Fri, Aug 1"
+                }
+            ]
+        },
+        "films": [
+            {
+                "film_id": 7772,
+                "title": "Raiders of the Lost Ark",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 184126,
+                "title": "The Martian",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 59906,
+                "title": "There Will Be Blood",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 3427,
+                "title": "From Dusk Till Dawn",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 1685,
+                "title": "The Adventures of Priscilla, Queen of the Desert",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 25,
+                "title": "Stargate",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 6650,
+                "title": "The English Patient",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 4167,
+                "title": "Woman in the Dunes",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 8675,
+                "title": "Lawrence Of Arabia - 70mm",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 21448,
+                "title": "Three Kings",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:30"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "cinema": {
+            "cinema_id": 45353,
+            "cinema_name": "Cinema 8",
+            "address": "Eduard Bohlen",
+            "city": "city",
+            "state": "State",
+            "postcode": "11200",
+            "show_dates": [
+                {
+                    "date": "2025-08-02",
+                    "display_date": "Fri, Aug 1"
+                }
+            ]
+        },
+        "films": [
+            {
+                "film_id": 7772,
+                "title": "Raiders of the Lost Ark",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:35"
+                    },
+                    {
+                        "start": "22:35"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "23:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:55"
+                    },
+                    {
+                        "start": "19:55"
+                    },
+                    {
+                        "start": "23:05"
+                    },
+                    {
+                        "start": "20:50"
+                    }
+                ]
+            },
+            {
+                "film_id": 184126,
+                "title": "The Martian",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:35"
+                    },
+                    {
+                        "start": "22:35"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "23:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:55"
+                    },
+                    {
+                        "start": "19:55"
+                    },
+                    {
+                        "start": "23:05"
+                    },
+                    {
+                        "start": "20:50"
+                    }
+                ]
+            },
+            {
+                "film_id": 59906,
+                "title": "There Will Be Blood",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:35"
+                    },
+                    {
+                        "start": "22:35"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "23:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:55"
+                    },
+                    {
+                        "start": "19:55"
+                    },
+                    {
+                        "start": "23:05"
+                    },
+                    {
+                        "start": "20:50"
+                    }
+                ]
+            },
+            {
+                "film_id": 3427,
+                "title": "From Dusk Till Dawn",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:35"
+                    },
+                    {
+                        "start": "22:35"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "23:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:55"
+                    },
+                    {
+                        "start": "19:55"
+                    },
+                    {
+                        "start": "23:05"
+                    },
+                    {
+                        "start": "20:50"
+                    }
+                ]
+            },
+            {
+                "film_id": 1685,
+                "title": "The Adventures of Priscilla, Queen of the Desert",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:35"
+                    },
+                    {
+                        "start": "22:35"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "23:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:55"
+                    },
+                    {
+                        "start": "19:55"
+                    },
+                    {
+                        "start": "23:05"
+                    },
+                    {
+                        "start": "20:50"
+                    }
+                ]
+            },
+            {
+                "film_id": 25,
+                "title": "Stargate",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:35"
+                    },
+                    {
+                        "start": "22:35"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "23:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:55"
+                    },
+                    {
+                        "start": "19:55"
+                    },
+                    {
+                        "start": "23:05"
+                    },
+                    {
+                        "start": "20:50"
+                    }
+                ]
+            },
+            {
+                "film_id": 6650,
+                "title": "The English Patient",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:35"
+                    },
+                    {
+                        "start": "22:35"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "23:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:55"
+                    },
+                    {
+                        "start": "19:55"
+                    },
+                    {
+                        "start": "23:05"
+                    },
+                    {
+                        "start": "20:50"
+                    }
+                ]
+            },
+            {
+                "film_id": 4167,
+                "title": "Woman in the Dunes",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:35"
+                    },
+                    {
+                        "start": "22:35"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "23:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:55"
+                    },
+                    {
+                        "start": "19:55"
+                    },
+                    {
+                        "start": "23:05"
+                    },
+                    {
+                        "start": "20:50"
+                    }
+                ]
+            },
+            {
+                "film_id": 8675,
+                "title": "Lawrence Of Arabia - 70mm",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:35"
+                    },
+                    {
+                        "start": "22:35"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "23:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:55"
+                    },
+                    {
+                        "start": "19:55"
+                    },
+                    {
+                        "start": "23:05"
+                    },
+                    {
+                        "start": "20:50"
+                    }
+                ]
+            },
+            {
+                "film_id": 21448,
+                "title": "Three Kings",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:35"
+                    },
+                    {
+                        "start": "22:35"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "23:10"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:55"
+                    },
+                    {
+                        "start": "19:55"
+                    },
+                    {
+                        "start": "23:05"
+                    },
+                    {
+                        "start": "20:50"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "cinema": {
+            "cinema_id": 8845,
+            "cinema_name": "Cinema 2",
+            "address": "Deadvlei",
+            "city": "city",
+            "state": "State",
+            "postcode": "11200",
+            "show_dates": [
+                {
+                    "date": "2025-08-02",
+                    "display_date": "Fri, Aug 1"
+                }
+            ]
+        },
+        "films": [
+            {
+                "film_id": 7772,
+                "title": "Raiders of the Lost Ark",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "21:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 184126,
+                "title": "The Martian",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "21:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 59906,
+                "title": "There Will Be Blood",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "21:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 3427,
+                "title": "From Dusk Till Dawn",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "21:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 1685,
+                "title": "The Adventures of Priscilla, Queen of the Desert",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "21:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 25,
+                "title": "Stargate",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "21:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 6650,
+                "title": "The English Patient",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "21:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 4167,
+                "title": "Woman in the Dunes",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "21:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 8675,
+                "title": "Lawrence Of Arabia - 70mm",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "21:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 21448,
+                "title": "Three Kings",
+                "showtimes": [
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "21:30"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "cinema": {
+            "cinema_id": 9435,
+            "cinema_name": "Cinema 5",
+            "address": "Sesriem Canyon",
+            "city": "city",
+            "state": "State",
+            "postcode": "11200",
+            "show_dates": [
+                {
+                    "date": "2025-08-02",
+                    "display_date": "Fri, Aug 1"
+                }
+            ]
+        },
+        "films": [
+            {
+                "film_id": 7772,
+                "title": "Raiders of the Lost Ark",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "20:10"
+                    }
+                ]
+            },
+            {
+                "film_id": 184126,
+                "title": "The Martian",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "20:10"
+                    }
+                ]
+            },
+            {
+                "film_id": 59906,
+                "title": "There Will Be Blood",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "20:10"
+                    }
+                ]
+            },
+            {
+                "film_id": 3427,
+                "title": "From Dusk Till Dawn",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "20:10"
+                    }
+                ]
+            },
+            {
+                "film_id": 1685,
+                "title": "The Adventures of Priscilla, Queen of the Desert",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "20:10"
+                    }
+                ]
+            },
+            {
+                "film_id": 25,
+                "title": "Stargate",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "20:10"
+                    }
+                ]
+            },
+            {
+                "film_id": 6650,
+                "title": "The English Patient",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "20:10"
+                    }
+                ]
+            },
+            {
+                "film_id": 4167,
+                "title": "Woman in the Dunes",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "20:10"
+                    }
+                ]
+            },
+            {
+                "film_id": 8675,
+                "title": "Lawrence Of Arabia - 70mm",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "20:10"
+                    }
+                ]
+            },
+            {
+                "film_id": 21448,
+                "title": "Three Kings",
+                "showtimes": [
+                    {
+                        "start": "19:50"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:50"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "20:50"
+                    },
+                    {
+                        "start": "20:10"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "cinema": {
+            "cinema_id": 8930,
+            "cinema_name": "Cinema 4",
+            "address": "Hiddenvlei",
+            "city": "city",
+            "state": "State",
+            "postcode": "11200",
+            "show_dates": [
+                {
+                    "date": "2025-08-02",
+                    "display_date": "Fri, Aug 1"
+                }
+            ]
+        },
+        "films": [
+            {
+                "film_id": 7772,
+                "title": "Raiders of the Lost Ark",
+                "showtimes": [
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "22:55"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "23:35"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:05"
+                    },
+                    {
+                        "start": "23:20"
+                    },
+                    {
+                        "start": "21:50"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:35"
+                    }
+                ]
+            },
+            {
+                "film_id": 184126,
+                "title": "The Martian",
+                "showtimes": [
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "22:55"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "23:35"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:05"
+                    },
+                    {
+                        "start": "23:20"
+                    },
+                    {
+                        "start": "21:50"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:35"
+                    }
+                ]
+            },
+            {
+                "film_id": 59906,
+                "title": "There Will Be Blood",
+                "showtimes": [
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "22:55"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "23:35"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:05"
+                    },
+                    {
+                        "start": "23:20"
+                    },
+                    {
+                        "start": "21:50"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:35"
+                    }
+                ]
+            },
+            {
+                "film_id": 3427,
+                "title": "From Dusk Till Dawn",
+                "showtimes": [
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "22:55"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "23:35"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:05"
+                    },
+                    {
+                        "start": "23:20"
+                    },
+                    {
+                        "start": "21:50"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:35"
+                    }
+                ]
+            },
+            {
+                "film_id": 1685,
+                "title": "The Adventures of Priscilla, Queen of the Desert",
+                "showtimes": [
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "22:55"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "23:35"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:05"
+                    },
+                    {
+                        "start": "23:20"
+                    },
+                    {
+                        "start": "21:50"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:35"
+                    }
+                ]
+            },
+            {
+                "film_id": 25,
+                "title": "Stargate",
+                "showtimes": [
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "22:55"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "23:35"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:05"
+                    },
+                    {
+                        "start": "23:20"
+                    },
+                    {
+                        "start": "21:50"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:35"
+                    }
+                ]
+            },
+            {
+                "film_id": 6650,
+                "title": "The English Patient",
+                "showtimes": [
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "22:55"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "23:35"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:05"
+                    },
+                    {
+                        "start": "23:20"
+                    },
+                    {
+                        "start": "21:50"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:35"
+                    }
+                ]
+            },
+            {
+                "film_id": 4167,
+                "title": "Woman in the Dunes",
+                "showtimes": [
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "22:55"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "23:35"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:05"
+                    },
+                    {
+                        "start": "23:20"
+                    },
+                    {
+                        "start": "21:50"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:35"
+                    }
+                ]
+            },
+            {
+                "film_id": 8675,
+                "title": "Lawrence Of Arabia - 70mm",
+                "showtimes": [
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "22:55"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "23:35"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:05"
+                    },
+                    {
+                        "start": "23:20"
+                    },
+                    {
+                        "start": "21:50"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:35"
+                    }
+                ]
+            },
+            {
+                "film_id": 21448,
+                "title": "Three Kings",
+                "showtimes": [
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:00"
+                    },
+                    {
+                        "start": "22:20"
+                    },
+                    {
+                        "start": "22:55"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "23:35"
+                    },
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "20:30"
+                    },
+                    {
+                        "start": "21:05"
+                    },
+                    {
+                        "start": "22:05"
+                    },
+                    {
+                        "start": "23:20"
+                    },
+                    {
+                        "start": "21:50"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:35"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "cinema": {
+            "cinema_id": 8842,
+            "cinema_name": "Cinema 1",
+            "address": "Big Daddy",
+            "city": "city",
+            "state": "State",
+            "postcode": "11200",
+            "show_dates": [
+                {
+                    "date": "2025-08-02",
+                    "display_date": "Fri, Aug 1"
+                }
+            ]
+        },
+        "films": [
+            {
+                "film_id": 7772,
+                "title": "Raiders of the Lost Ark",
+                "showtimes": [
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:15"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "22:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 184126,
+                "title": "The Martian",
+                "showtimes": [
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:15"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "22:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 59906,
+                "title": "There Will Be Blood",
+                "showtimes": [
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:15"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "22:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 3427,
+                "title": "From Dusk Till Dawn",
+                "showtimes": [
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:15"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "22:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 1685,
+                "title": "The Adventures of Priscilla, Queen of the Desert",
+                "showtimes": [
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:15"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "22:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 25,
+                "title": "Stargate",
+                "showtimes": [
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:15"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "22:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 6650,
+                "title": "The English Patient",
+                "showtimes": [
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:15"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "22:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 4167,
+                "title": "Woman in the Dunes",
+                "showtimes": [
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:15"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "22:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 8675,
+                "title": "Lawrence Of Arabia - 70mm",
+                "showtimes": [
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:15"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "22:30"
+                    }
+                ]
+            },
+            {
+                "film_id": 21448,
+                "title": "Three Kings",
+                "showtimes": [
+                    {
+                        "start": "20:45"
+                    },
+                    {
+                        "start": "21:15"
+                    },
+                    {
+                        "start": "21:45"
+                    },
+                    {
+                        "start": "22:15"
+                    },
+                    {
+                        "start": "20:15"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "22:30"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "cinema": {
+            "cinema_id": 8910,
+            "cinema_name": "Cinema 3",
+            "address": "Dune 45",
+            "city": "city",
+            "state": "State",
+            "postcode": "11200",
+            "show_dates": [
+                {
+                    "date": "2025-08-02",
+                    "display_date": "Fri, Aug 1"
+                }
+            ]
+        },
+        "films": [
+            {
+                "film_id": 7772,
+                "title": "Raiders of the Lost Ark",
+                "showtimes": [
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    }
+                ]
+            },
+            {
+                "film_id": 184126,
+                "title": "The Martian",
+                "showtimes": [
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    }
+                ]
+            },
+            {
+                "film_id": 59906,
+                "title": "There Will Be Blood",
+                "showtimes": [
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    }
+                ]
+            },
+            {
+                "film_id": 3427,
+                "title": "From Dusk Till Dawn",
+                "showtimes": [
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    }
+                ]
+            },
+            {
+                "film_id": 1685,
+                "title": "The Adventures of Priscilla, Queen of the Desert",
+                "showtimes": [
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    }
+                ]
+            },
+            {
+                "film_id": 25,
+                "title": "Stargate",
+                "showtimes": [
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    }
+                ]
+            },
+            {
+                "film_id": 6650,
+                "title": "The English Patient",
+                "showtimes": [
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    }
+                ]
+            },
+            {
+                "film_id": 4167,
+                "title": "Woman in the Dunes",
+                "showtimes": [
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    }
+                ]
+            },
+            {
+                "film_id": 8675,
+                "title": "Lawrence Of Arabia - 70mm",
+                "showtimes": [
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    }
+                ]
+            },
+            {
+                "film_id": 21448,
+                "title": "Three Kings",
+                "showtimes": [
+                    {
+                        "start": "20:00"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "21:30"
+                    },
+                    {
+                        "start": "22:30"
+                    },
+                    {
+                        "start": "23:00"
+                    },
+                    {
+                        "start": "20:20"
+                    },
+                    {
+                        "start": "20:10"
+                    },
+                    {
+                        "start": "21:10"
+                    },
+                    {
+                        "start": "20:40"
+                    },
+                    {
+                        "start": "21:20"
+                    },
+                    {
+                        "start": "21:40"
+                    },
+                    {
+                        "start": "21:00"
+                    },
+                    {
+                        "start": "20:40"
+                    }
+                ]
+            }
+        ]
+    }
+]

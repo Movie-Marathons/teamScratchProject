@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 type Film = {
   film_id: number;
@@ -47,12 +48,13 @@ const SelectedTheater: React.FC<SelectedTheaterProps> = ({ theaterName, films })
                 <p className="font-medium text-sm">Showtimes:</p>
                 <div className="flex flex-wrap gap-2 mt-1">
                   {film.showings.Standard.times.map((time, idx) => (
-                    <span
+                    <Link
+                      to={`/planner?movieId=${film.film_id}&showtime=${encodeURIComponent(time.display_start_time)}&theater=${encodeURIComponent(theaterName)}`}
                       key={idx}
-                      className="px-2 py-1 bg-slate-100 rounded text-xs"
+                      className="px-2 py-1 bg-slate-100 rounded text-xs hover:bg-slate-200 transition"
                     >
                       {time.display_start_time}
-                    </span>
+                    </Link>
                   ))}
                 </div>
               </div>
