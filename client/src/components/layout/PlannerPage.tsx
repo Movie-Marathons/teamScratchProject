@@ -8,6 +8,8 @@ theaters.forEach((t: any, idx: number) => {
 import { useSearchParams } from "react-router-dom";
 import { WatchQueueTable } from "../ui/WatchQueueTable";
 import type { WatchItem } from "../ui/WatchQueueTable";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
 const PlannerPage = () => {
   const [searchParams] = useSearchParams();
@@ -22,6 +24,17 @@ const PlannerPage = () => {
   );
 
   const [watchQueue, setWatchQueue] = useState<WatchItem[]>([]);
+
+  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+  const [selectedRatings, setSelectedRatings] = useState<string[]>([]);
+
+  const toggleSelection = (value: string, selected: string[], setSelected: (val: string[]) => void) => {
+    setSelected(
+      selected.includes(value)
+        ? selected.filter((v) => v !== value)
+        : [...selected, value]
+    );
+  };
 
   const durationMinutes = 101;
 
@@ -86,14 +99,58 @@ const PlannerPage = () => {
       {/* Right column */}
       <div className="flex-1 flex flex-col gap-4">
         <div className="bg-white shadow rounded p-4 min-h-[120px]">
-          <h3 className="text-md font-medium">🔍 Filters</h3>
+          <h3 className="text-md font-medium mb-2">🔍 Filters</h3>
+          <div className="space-y-4">
+            <div>
+              <Label className="font-semibold">Genre</Label>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {["Action", "Comedy", "Drama", "Horror", "Romance", "Sci-Fi"].map((genre) => (
+                  <div key={genre} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={`genre-${genre}`}
+                      checked={selectedGenres.includes(genre)}
+                      onCheckedChange={() =>
+                        toggleSelection(genre, selectedGenres, setSelectedGenres)
+                      }
+                    />
+                    <Label htmlFor={`genre-${genre}`}>{genre}</Label>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <Label className="font-semibold">Rating</Label>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {["G", "PG", "PG-13", "R", "NC-17"].map((rating) => (
+                  <div key={rating} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={`rating-${rating}`}
+                      checked={selectedRatings.includes(rating)}
+                      onCheckedChange={() =>
+                        toggleSelection(rating, selectedRatings, setSelectedRatings)
+                      }
+                    />
+                    <Label htmlFor={`rating-${rating}`}>{rating}</Label>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
 
         {selectedTheater?.films?.length ? (
           <div className="bg-white shadow rounded p-4">
             <h3 className="text-md font-medium mb-2">🍿 Available Movies</h3>
             <ul className="space-y-2">
-              {selectedTheater.films.map((film: any) => (
+              {selectedTheater.films
+                .filter((film: any) => {
+                  const matchesGenre =
+                    selectedGenres.length === 0 || selectedGenres.includes(film.genre);
+                  const matchesRating =
+                    selectedRatings.length === 0 || selectedRatings.includes(film.rating);
+                  return matchesGenre && matchesRating;
+                })
+                .map((film: any) => (
                 <li key={film.film_id} className="border rounded p-2">
                   <div className="font-semibold">{film.film_name}</div>
                   <div className="text-xs text-gray-500">

@@ -524,4 +524,157 @@
       }
     ]
   }
+  ,
+  {
+    "cinema": {
+      "cinema_id": 10003,
+      "cinema_name": "Riverside Screens",
+      "address": "200 River Rd",
+      "address2": "",
+      "city": "Bronx",
+      "country": "USA",
+      "state": "NY",
+      "postcode": "10453",
+      "returned_date": "2025-08-01",
+      "show_dates": [
+        { "date": "2025-08-01", "display_date": "Fri 01 Aug" },
+        { "date": "2025-08-02", "display_date": "Sat 02 Aug" },
+        { "date": "2025-08-03", "display_date": "Sun 03 Aug" },
+        { "date": "2025-08-04", "display_date": "Mon 04 Aug" }
+      ]
+    },
+    "films": [
+      {
+        "film_id": 9039483838293848292,
+        "imdb_id": 39849382,
+        "imdb_title_id": "tt90202020",
+        "film_name": "Neon Skies",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Neon Skies is a vibrant sci-fi story of love and rebellion in a digital city.</p>",
+        "duration_mins": 115,
+        "duration_hrs_mins": "1h 55m",
+        "genres": [
+          { "genre_id": 1, "genre_name": "Sci-Fi" },
+          { "genre_id": 2, "genre_name": "Romance" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Mild thematic elements and brief language."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_3_0.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_3_0.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 123456789,
+            "film_name": "Neon Skies",
+            "times": [
+              { "start_time": "12:00", "display_start_time": "12:00 PM" },
+              { "start_time": "15:30", "display_start_time": "3:30 PM" },
+              { "start_time": "19:00", "display_start_time": "7:00 PM" }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "cinema": {
+      "cinema_id": 10004,
+      "cinema_name": "Downtown View",
+      "address": "300 Center Blvd",
+      "address2": "",
+      "city": "Harlem",
+      "country": "USA",
+      "state": "NY",
+      "postcode": "10027",
+      "returned_date": "2025-08-01",
+      "show_dates": [
+        { "date": "2025-08-01", "display_date": "Fri 01 Aug" },
+        { "date": "2025-08-02", "display_date": "Sat 02 Aug" },
+        { "date": "2025-08-03", "display_date": "Sun 03 Aug" },
+        { "date": "2025-08-04", "display_date": "Mon 04 Aug" }
+      ]
+    },
+    "films": [
+      {
+        "film_id": 672882882812738282,
+        "imdb_id": 12388288,
+        "imdb_title_id": "tt77112233",
+        "film_name": "Twilight Protocol",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Twilight Protocol is a suspenseful thriller that unveils secrets in the shadow of cyber warfare.</p>",
+        "duration_mins": 102,
+        "duration_hrs_mins": "1h 42m",
+        "genres": [
+          { "genre_id": 1, "genre_name": "Thriller" },
+          { "genre_id": 2, "genre_name": "Drama" }
+        ],
+        "age_rating": [
+          {
+            "rating": "R",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/r.png",
+            "age_advisory": "Strong language and violence."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_4_0.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_4_0.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 99887766,
+            "film_name": "Twilight Protocol",
+            "times": [
+              { "start_time": "14:00", "display_start_time": "2:00 PM" },
+              { "start_time": "17:30", "display_start_time": "5:30 PM" },
+              { "start_time": "21:00", "display_start_time": "9:00 PM" }
+            ]
+          }
+        }
+      }
+    ]
+  }
 ]
