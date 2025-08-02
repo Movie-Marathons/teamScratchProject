@@ -34,7 +34,7 @@
         "film_id": 4763838703694859369,
         "imdb_id": 81366038,
         "imdb_title_id": "tt29203139",
-        "film_name": "City of Secrets",
+        "film_name": "The Fantastic Four",
         "other_titles": null,
         "version_type": "Standard",
         "synopsis_long": "<p>City of Secrets is a gripping Drama movie exploring deep themes with action and emotion.</p>",
@@ -63,7 +63,7 @@
               "image_orientation": "portrait",
               "region": "global",
               "medium": {
-                "film_image": "https://image.mocksite.com/poster_0_0.jpg",
+                "film_image": "/assets/posters/pic1.jpg",
                 "width": 200,
                 "height": 300
               }
@@ -73,7 +73,7 @@
             "1": {
               "image_orientation": "landscape",
               "medium": {
-                "film_image": "https://image.mocksite.com/still_0_0.jpg",
+                "film_image": "/assets/posters/pic1.jpg",
                 "width": 300,
                 "height": 199
               }
@@ -105,7 +105,7 @@
         "film_id": 12265569821551840099,
         "imdb_id": 62395431,
         "imdb_title_id": "tt94671452",
-        "film_name": "Quantum Voyage",
+        "film_name": "Superman",
         "other_titles": null,
         "version_type": "Standard",
         "synopsis_long": "<p>Quantum Voyage is a gripping Thriller movie exploring deep themes with action and emotion.</p>",
@@ -134,7 +134,7 @@
               "image_orientation": "portrait",
               "region": "global",
               "medium": {
-                "film_image": "https://image.mocksite.com/poster_0_1.jpg",
+                "film_image": "/assets/posters/pic2.jpg",
                 "width": 200,
                 "height": 300
               }
@@ -154,7 +154,7 @@
         "showings": {
           "Standard": {
             "film_id": 3435008452824221290,
-            "film_name": "Quantum Voyage",
+            "film_name": "The Fantastic Four",
             "times": [
               {
                 "start_time": "11:45",
@@ -238,7 +238,7 @@
               "image_orientation": "portrait",
               "region": "global",
               "medium": {
-                "film_image": "https://image.mocksite.com/poster_1_0.jpg",
+                "film_image": "/assets/posters/pic3.jpg",
                 "width": 200,
                 "height": 300
               }
@@ -309,7 +309,7 @@
               "image_orientation": "portrait",
               "region": "global",
               "medium": {
-                "film_image": "https://image.mocksite.com/poster_1_1.jpg",
+                "film_image": "/assets/posters/pic4.jpg",
                 "width": 200,
                 "height": 300
               }
@@ -413,7 +413,7 @@
               "image_orientation": "portrait",
               "region": "global",
               "medium": {
-                "film_image": "https://image.mocksite.com/poster_2_0.jpg",
+                "film_image": "/assets/posters/pic5.jpg",
                 "width": 200,
                 "height": 300
               }
