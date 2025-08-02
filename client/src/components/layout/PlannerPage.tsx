@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import theaters from "../../../data/mock_theaters.json";
 import { toast } from "sonner";
 console.log("All theater objects:", theaters);
@@ -50,6 +50,35 @@ const PlannerPage = () => {
   const selectedStart = showtime ? new Date(`${baseDate}${convertTo24Hour(showtime)}`) : null;
   const selectedMovieEnd = selectedStart ? new Date(selectedStart.getTime() + durationMinutes * 60000) : null;
 
+  // Auto-add selected movie from URL to the watch queue
+  useEffect(() => {
+    if (!movieId || !showtime || !selectedTheater) return;
+
+    const film = selectedTheater.films?.find((f: any) => f.film_id.toString() === movieId);
+    if (!film) return;
+
+    setWatchQueue((prev) => {
+      const isAlreadyInQueue = prev.some(
+        (item) => item.title === film.film_name && item.startTime === showtime
+      );
+      if (isAlreadyInQueue) return prev;
+
+      const start = new Date(`${baseDate}${convertTo24Hour(showtime)}`);
+      const end = new Date(start.getTime() + durationMinutes * 60000);
+      const endTime = end.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+
+      const newItem: WatchItem = {
+        id: `selected-${Date.now()}`, // Avoid same ID as other entries
+        title: film.film_name,
+        startTime: showtime,
+        endTime,
+        duration: "1h 41m",
+      };
+
+      return [newItem, ...prev];
+    });
+  }, [movieId, showtime, selectedTheater]);
+
   const addToQueue = (movieTitle: string, startTime: string) => {
     if (watchQueue.some((item) => item.title === movieTitle && item.startTime === startTime)) {
       toast.error("This movie and showtime is already in your queue.");
@@ -87,7 +116,7 @@ const PlannerPage = () => {
       <div className="w-1/3 bg-white shadow rounded p-4">
         <h2 className="text-lg font-semibold mb-4">🎬 Selected Movie</h2>
         <div className="space-y-2">
-          <p><span className="font-medium">Movie ID:</span> {movieId}</p>
+          <p><span className="font-medium">Title:</span> {selectedTheater?.films?.find(f => f.film_id.toString() === movieId)?.film_name || "Unknown"}</p>
           <p><span className="font-medium">Showtime:</span> {showtime}</p>
           <p><span className="font-medium">Theater:</span> {theater}</p>
           <div className="w-full h-40 bg-gray-200 mt-4 flex items-center justify-center text-gray-500">
@@ -145,9 +174,11 @@ const PlannerPage = () => {
               {selectedTheater.films
                 .filter((film: any) => {
                   const matchesGenre =
-                    selectedGenres.length === 0 || selectedGenres.includes(film.genre);
+                    selectedGenres.length === 0 ||
+                    film.genres?.some((g: any) => selectedGenres.includes(g.genre_name));
                   const matchesRating =
-                    selectedRatings.length === 0 || selectedRatings.includes(film.rating);
+                    selectedRatings.length === 0 ||
+                    (film.age_rating?.[0]?.rating && selectedRatings.includes(film.age_rating[0].rating));
                   return matchesGenre && matchesRating;
                 })
                 .map((film: any) => (
