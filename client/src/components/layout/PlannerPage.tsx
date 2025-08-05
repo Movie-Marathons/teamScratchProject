@@ -79,27 +79,38 @@ const PlannerPage = () => {
     });
   }, [movieId, showtime, selectedTheater]);
 
+
+
+
+
+
   const addToQueue = (movieTitle: string, startTime: string) => {
-    if (watchQueue.some((item) => item.title === movieTitle && item.startTime === startTime)) {
-      toast.error("This movie and showtime is already in your queue.");
+
+    const durationMinutes = 101;
+
+    const newStart = new Date(`${baseDate}${convertTo24Hour(startTime)}`);
+    const newEnd = new Date(newStart.getTime() + durationMinutes * 60000);
+
+    const hasOverlap = watchQueue.some((item) => {
+      const existingStart = new Date(`${baseDate}${convertTo24Hour(item.startTime)}`);
+      const existingEnd = new Date(`${baseDate}${convertTo24Hour(item.endTime)}`);
+      return newStart < existingEnd && newEnd > existingStart;
+    });
+    if (hasOverlap) {
+      toast.error("This showtime overlaps with another movie in your queue.");
       return;
     }
 
-    if (watchQueue.some((item) => item.startTime === startTime)) {
-      toast.error("A movie with the same start time already exists in your queue.");
+    const duplicate = watchQueue.some(
+      (item) => item.title === movieTitle && item.startTime ===startTime
+    );
+    if (duplicate) {
+      toast.error("This movie and showtime is already in youre queue.");
       return;
     }
 
-    const start = new Date(`${baseDate}${convertTo24Hour(startTime)}`);
-    if (selectedMovieEnd && start <= selectedMovieEnd) {
-      toast.error("This showtime overlaps with the current movie.");
-      return;
-    }
-
-    const end = new Date(start.getTime() + durationMinutes * 60000);
-    const endTime = end.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
-
-    const newItem: WatchItem = {
+    const endTime = newEnd.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+    const newItem : WatchItem = {
       id: Date.now().toString(),
       title: movieTitle,
       startTime,
@@ -109,6 +120,40 @@ const PlannerPage = () => {
 
     setWatchQueue((prev) => [...prev, newItem]);
   };
+ 
+
+
+
+
+  //   if (watchQueue.some((item) => item.title === movieTitle && item.startTime === startTime) {
+  //     toast.error("This movie and showtime is already in your queue.");
+  //     return;
+  //   }
+
+  //   if (watchQueue.some((item) => item.startTime === startTime)) {
+  //     toast.error("A movie with the same start time already exists in your queue.");
+  //     return;
+  //   }
+
+  //   const start = new Date(`${baseDate}${convertTo24Hour(startTime)}`);
+  //   if (selectedMovieEnd && start <= selectedMovieEnd) {
+  //     toast.error("This showtime overlaps with the current movie.");
+  //     return;
+  //   }
+
+  //   const end = new Date(start.getTime() + durationMinutes * 60000);
+  //   const endTime = end.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+
+  //   const newItem: WatchItem = {
+  //     id: Date.now().toString(),
+  //     title: movieTitle,
+  //     startTime,
+  //     endTime,
+  //     duration: "1h 41m",
+  //   };
+
+  //   setWatchQueue((prev) => [...prev, newItem]);
+  // };
 
   return (
     <div className="flex h-full p-6 gap-6">
