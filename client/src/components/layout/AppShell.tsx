@@ -6,9 +6,9 @@ export default function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="flex flex-col h-screen w-screen overflow-hidden max-w-full">
       {/* Top Navbar */}
-      <header className="bg-slate-900 text-white px-6 py-4 shadow">
-        <h1 className="text-xl font-semibold">🎬 Movie Marathon</h1>
-      </header>
+      <header className="bg-slate-900 text-white text-center">
+  <img src="/movie-marathon-logo.png" alt="Movie Marathon Logo" className="h-16 inline-block align-middle" />
+</header>
 
       <div className="flex flex-1 overflow-hidden">
         {/* Left Sidebar */}
