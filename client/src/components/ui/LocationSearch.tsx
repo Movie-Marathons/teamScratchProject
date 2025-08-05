@@ -36,10 +36,10 @@ export default function LocationSearch({ onSearch }: Props) {
       <div className="flex flex-wrap gap-6 justify-center items-end">
         {/* ZIP input */}
         <div className="flex flex-col gap-2">
-          <Label htmlFor="zip" className="px-1">ZIP or City</Label>
+          <Label htmlFor="zip" className="px-1">ZIP</Label>
           <Input
             id="zip"
-            placeholder="92879"
+            placeholder="Enter Zip"
             value={zip}
             onChange={(e) => setZip(e.target.value)}
             className="w-40"

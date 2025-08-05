@@ -28,7 +28,10 @@ function App() {
             <Toaster richColors position="top-right" />
             <div className="flex flex-col gap-8">
               <LocationSearch onSearch={handleSearch} />
-              <TheaterGrid searchParams={searchParams} />
+              <TheaterGrid
+                searchParams={searchParams}
+                filters={{ genres: [], timeOfDay: "", languages: [] }}
+              />
             </div>
           </AppShell>
         }

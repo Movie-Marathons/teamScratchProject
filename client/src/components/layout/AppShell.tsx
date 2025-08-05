@@ -1,5 +1,5 @@
 // src/components/layout/AppShell.tsx
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
 import SidebarPosters from "./PosterAside";
 
 export default function AppShell({ children }: { children: ReactNode }) {
@@ -7,7 +7,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
     <div className="flex flex-col h-screen w-screen overflow-hidden max-w-full">
       {/* Top Navbar */}
       <header className="bg-slate-900 text-white px-6 py-4 shadow">
-        <h1 className="text-xl font-semibold">🎬 Movie Browser</h1>
+        <h1 className="text-xl font-semibold">🎬 Movie Marathon</h1>
       </header>
 
       <div className="flex flex-1 overflow-hidden">

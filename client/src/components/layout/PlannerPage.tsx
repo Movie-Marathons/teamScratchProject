@@ -113,7 +113,7 @@ const PlannerPage = () => {
   return (
     <div className="flex h-full p-6 gap-6">
       {/* Left column - Selected Movie */}
-      <div className="w-1/3 bg-white shadow rounded p-4">
+      <div className="w-1/4 bg-white shadow rounded p-4 self-center">
         <h2 className="text-lg font-semibold mb-4">🎬 Selected Movie</h2>
         <div className="space-y-2">
           <p><span className="font-medium">Title:</span> {selectedTheater?.films?.find(f => f.film_id.toString() === movieId)?.film_name || "Unknown"}</p>
@@ -213,7 +213,7 @@ const PlannerPage = () => {
         )}
 
         <div className="bg-white shadow rounded p-4 flex-1">
-          <h3 className="text-md font-medium mb-2">🎞️ Your Watch Queue</h3>
+          <h3 className="text-md font-medium mb-2">🎞️ Your Queue</h3>
           <WatchQueueTable
             data={watchQueue}
             onRemove={(id) =>
@@ -224,7 +224,7 @@ const PlannerPage = () => {
 
         {/* Movie Posters from Watch Queue */}
         <div className="bg-white shadow rounded p-4 w-full">
-          <h3 className="text-md font-medium mb-2">🖼️ Your Movie Posters</h3>
+          <h3 className="text-md font-medium mb-2"> Your Movie Maraton</h3>
           <div className="flex gap-4 overflow-x-auto">
             {watchQueue.map((movie) => (
               <div

@@ -677,4 +677,1774 @@
       }
     ]
   }
+,
+  {
+    "cinema": {
+      "cinema_id": 10005,
+      "cinema_name": "Sunset Plaza Cinema",
+      "address": "400 Sunset Dr",
+      "address2": "",
+      "city": "Jersey City",
+      "country": "USA",
+      "state": "NJ",
+      "postcode": "07302",
+      "returned_date": "2025-08-01",
+      "show_dates": [
+        { "date": "2025-08-01", "display_date": "Fri 01 Aug" },
+        { "date": "2025-08-02", "display_date": "Sat 02 Aug" },
+        { "date": "2025-08-03", "display_date": "Sun 03 Aug" },
+        { "date": "2025-08-04", "display_date": "Mon 04 Aug" }
+      ]
+    },
+    "films": [
+      {
+        "film_id": 5000500005000050001,
+        "imdb_id": 10050001,
+        "imdb_title_id": "tt50005001",
+        "film_name": "Shadow Circuit",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Shadow Circuit is a cyber-thriller about a hacker drawn into a global conspiracy.</p>",
+        "duration_mins": 108,
+        "duration_hrs_mins": "1h 48m",
+        "genres": [
+          { "genre_id": 1, "genre_name": "Thriller" },
+          { "genre_id": 3, "genre_name": "Sci-Fi" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Violence and brief strong language."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_5_0.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_5_0.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 50005001,
+            "film_name": "Shadow Circuit",
+            "times": [
+              { "start_time": "13:00", "display_start_time": "1:00 PM" },
+              { "start_time": "16:15", "display_start_time": "4:15 PM" },
+              { "start_time": "19:45", "display_start_time": "7:45 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 5000500005000050002,
+        "imdb_id": 10050002,
+        "imdb_title_id": "tt50005002",
+        "film_name": "The Green Divide",
+        "version_type": "Standard",
+        "synopsis_long": "<p>The Green Divide is a drama about two families on opposite sides of an environmental conflict.</p>",
+        "duration_mins": 112,
+        "duration_hrs_mins": "1h 52m",
+        "genres": [
+          { "genre_id": 2, "genre_name": "Drama" },
+          { "genre_id": 4, "genre_name": "Family" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg.png",
+            "age_advisory": "Mild thematic elements."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_5_1.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_5_1.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 50005002,
+            "film_name": "The Green Divide",
+            "times": [
+              { "start_time": "12:30", "display_start_time": "12:30 PM" },
+              { "start_time": "15:45", "display_start_time": "3:45 PM" },
+              { "start_time": "19:00", "display_start_time": "7:00 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 5000500005000050003,
+        "imdb_id": 10050003,
+        "imdb_title_id": "tt50005003",
+        "film_name": "Midnight Harvest",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Midnight Harvest is a horror film set in a haunted rural town during harvest season.</p>",
+        "duration_mins": 99,
+        "duration_hrs_mins": "1h 39m",
+        "genres": [
+          { "genre_id": 5, "genre_name": "Horror" },
+          { "genre_id": 2, "genre_name": "Drama" }
+        ],
+        "age_rating": [
+          {
+            "rating": "R",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/r.png",
+            "age_advisory": "Disturbing images and terror."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_5_2.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_5_2.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 50005003,
+            "film_name": "Midnight Harvest",
+            "times": [
+              { "start_time": "14:30", "display_start_time": "2:30 PM" },
+              { "start_time": "18:00", "display_start_time": "6:00 PM" },
+              { "start_time": "21:30", "display_start_time": "9:30 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 5000500005000050004,
+        "imdb_id": 10050004,
+        "imdb_title_id": "tt50005004",
+        "film_name": "Lost in Orbit",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Lost in Orbit is a sci-fi adventure following astronauts stranded in deep space.</p>",
+        "duration_mins": 124,
+        "duration_hrs_mins": "2h 04m",
+        "genres": [
+          { "genre_id": 3, "genre_name": "Sci-Fi" },
+          { "genre_id": 1, "genre_name": "Thriller" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Sequences of peril and some language."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_5_3.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_5_3.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 50005004,
+            "film_name": "Lost in Orbit",
+            "times": [
+              { "start_time": "11:50", "display_start_time": "11:50 AM" },
+              { "start_time": "17:10", "display_start_time": "5:10 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 5000500005000050005,
+        "imdb_id": 10050005,
+        "imdb_title_id": "tt50005005",
+        "film_name": "Hearts Unbound",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Hearts Unbound is a romantic comedy about two strangers who meet on a train journey.</p>",
+        "duration_mins": 110,
+        "duration_hrs_mins": "1h 50m",
+        "genres": [
+          { "genre_id": 1, "genre_name": "Romance" },
+          { "genre_id": 4, "genre_name": "Comedy" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg.png",
+            "age_advisory": "Some suggestive material."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_5_4.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_5_4.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 50005005,
+            "film_name": "Hearts Unbound",
+            "times": [
+              { "start_time": "10:30", "display_start_time": "10:30 AM" },
+              { "start_time": "13:45", "display_start_time": "1:45 PM" },
+              { "start_time": "17:00", "display_start_time": "5:00 PM" }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "cinema": {
+      "cinema_id": 10006,
+      "cinema_name": "Lakeside Moviehouse",
+      "address": "600 Lakeview Ave",
+      "address2": "",
+      "city": "White Plains",
+      "country": "USA",
+      "state": "NY",
+      "postcode": "10601",
+      "returned_date": "2025-08-01",
+      "show_dates": [
+        { "date": "2025-08-01", "display_date": "Fri 01 Aug" },
+        { "date": "2025-08-02", "display_date": "Sat 02 Aug" },
+        { "date": "2025-08-03", "display_date": "Sun 03 Aug" },
+        { "date": "2025-08-04", "display_date": "Mon 04 Aug" }
+      ]
+    },
+    "films": [
+      {
+        "film_id": 6000600006000060001,
+        "imdb_id": 10060001,
+        "imdb_title_id": "tt60006001",
+        "film_name": "The Last Outpost",
+        "version_type": "Standard",
+        "synopsis_long": "<p>The Last Outpost is a war drama set at a remote military base under siege.</p>",
+        "duration_mins": 121,
+        "duration_hrs_mins": "2h 01m",
+        "genres": [
+          { "genre_id": 2, "genre_name": "Drama" },
+          { "genre_id": 6, "genre_name": "War" }
+        ],
+        "age_rating": [
+          {
+            "rating": "R",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/r.png",
+            "age_advisory": "Strong war violence and language."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_6_0.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_6_0.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 60006001,
+            "film_name": "The Last Outpost",
+            "times": [
+              { "start_time": "13:30", "display_start_time": "1:30 PM" },
+              { "start_time": "17:00", "display_start_time": "5:00 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 6000600006000060002,
+        "imdb_id": 10060002,
+        "imdb_title_id": "tt60006002",
+        "film_name": "Frosted Hearts",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Frosted Hearts is a romantic comedy set in a snowy mountain resort.</p>",
+        "duration_mins": 98,
+        "duration_hrs_mins": "1h 38m",
+        "genres": [
+          { "genre_id": 1, "genre_name": "Romance" },
+          { "genre_id": 4, "genre_name": "Comedy" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg.png",
+            "age_advisory": "Mild language and brief suggestive content."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_6_1.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_6_1.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 60006002,
+            "film_name": "Frosted Hearts",
+            "times": [
+              { "start_time": "11:00", "display_start_time": "11:00 AM" },
+              { "start_time": "14:15", "display_start_time": "2:15 PM" },
+              { "start_time": "18:00", "display_start_time": "6:00 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 6000600006000060003,
+        "imdb_id": 10060003,
+        "imdb_title_id": "tt60006003",
+        "film_name": "Iron Skies",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Iron Skies is a sci-fi epic about Earth's defense against an alien invasion.</p>",
+        "duration_mins": 130,
+        "duration_hrs_mins": "2h 10m",
+        "genres": [
+          { "genre_id": 3, "genre_name": "Sci-Fi" },
+          { "genre_id": 2, "genre_name": "Drama" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Intense action and sci-fi violence."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_6_2.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_6_2.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 60006003,
+            "film_name": "Iron Skies",
+            "times": [
+              { "start_time": "12:00", "display_start_time": "12:00 PM" },
+              { "start_time": "16:00", "display_start_time": "4:00 PM" },
+              { "start_time": "20:00", "display_start_time": "8:00 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 6000600006000060004,
+        "imdb_id": 10060004,
+        "imdb_title_id": "tt60006004",
+        "film_name": "The Forgotten Path",
+        "version_type": "Standard",
+        "synopsis_long": "<p>The Forgotten Path is a mystery thriller about a detective uncovering secrets in a small town.</p>",
+        "duration_mins": 106,
+        "duration_hrs_mins": "1h 46m",
+        "genres": [
+          { "genre_id": 1, "genre_name": "Thriller" },
+          { "genre_id": 2, "genre_name": "Drama" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Some violent content and thematic elements."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_6_3.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_6_3.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 60006004,
+            "film_name": "The Forgotten Path",
+            "times": [
+              { "start_time": "11:45", "display_start_time": "11:45 AM" },
+              { "start_time": "15:30", "display_start_time": "3:30 PM" },
+              { "start_time": "19:15", "display_start_time": "7:15 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 6000600006000060005,
+        "imdb_id": 10060005,
+        "imdb_title_id": "tt60006005",
+        "film_name": "Starlit Roads",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Starlit Roads is a coming-of-age drama about friends on a summer road trip.</p>",
+        "duration_mins": 104,
+        "duration_hrs_mins": "1h 44m",
+        "genres": [
+          { "genre_id": 2, "genre_name": "Drama" },
+          { "genre_id": 4, "genre_name": "Comedy" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg.png",
+            "age_advisory": "Some language and thematic elements."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_6_4.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_6_4.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 60006005,
+            "film_name": "Starlit Roads",
+            "times": [
+              { "start_time": "10:00", "display_start_time": "10:00 AM" },
+              { "start_time": "13:00", "display_start_time": "1:00 PM" },
+              { "start_time": "16:45", "display_start_time": "4:45 PM" }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "cinema": {
+      "cinema_id": 10007,
+      "cinema_name": "Parkside Film Center",
+      "address": "70 Parkside Ave",
+      "address2": "",
+      "city": "Yonkers",
+      "country": "USA",
+      "state": "NY",
+      "postcode": "10701",
+      "returned_date": "2025-08-01",
+      "show_dates": [
+        { "date": "2025-08-01", "display_date": "Fri 01 Aug" },
+        { "date": "2025-08-02", "display_date": "Sat 02 Aug" },
+        { "date": "2025-08-03", "display_date": "Sun 03 Aug" },
+        { "date": "2025-08-04", "display_date": "Mon 04 Aug" }
+      ]
+    },
+    "films": [
+      {
+        "film_id": 7000700007000070001,
+        "imdb_id": 10070001,
+        "imdb_title_id": "tt70007001",
+        "film_name": "Silent Tides",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Silent Tides is a drama about a fisherman struggling to keep his family together.</p>",
+        "duration_mins": 116,
+        "duration_hrs_mins": "1h 56m",
+        "genres": [
+          { "genre_id": 2, "genre_name": "Drama" },
+          { "genre_id": 7, "genre_name": "Adventure" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Some thematic elements and brief language."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_7_0.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_7_0.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 70007001,
+            "film_name": "Silent Tides",
+            "times": [
+              { "start_time": "14:00", "display_start_time": "2:00 PM" },
+              { "start_time": "17:30", "display_start_time": "5:30 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 7000700007000070002,
+        "imdb_id": 10070002,
+        "imdb_title_id": "tt70007002",
+        "film_name": "Clockwork Alley",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Clockwork Alley is a mystery set in Victorian London with a steampunk twist.</p>",
+        "duration_mins": 109,
+        "duration_hrs_mins": "1h 49m",
+        "genres": [
+          { "genre_id": 1, "genre_name": "Thriller" },
+          { "genre_id": 3, "genre_name": "Sci-Fi" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Some violence and thematic elements."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_7_1.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_7_1.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 70007002,
+            "film_name": "Clockwork Alley",
+            "times": [
+              { "start_time": "12:30", "display_start_time": "12:30 PM" },
+              { "start_time": "16:00", "display_start_time": "4:00 PM" },
+              { "start_time": "20:00", "display_start_time": "8:00 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 7000700007000070003,
+        "imdb_id": 10070003,
+        "imdb_title_id": "tt70007003",
+        "film_name": "Paper Lanterns",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Paper Lanterns is a heartfelt family film about tradition and reconciliation.</p>",
+        "duration_mins": 102,
+        "duration_hrs_mins": "1h 42m",
+        "genres": [
+          { "genre_id": 4, "genre_name": "Family" },
+          { "genre_id": 2, "genre_name": "Drama" }
+        ],
+        "age_rating": [
+          {
+            "rating": "G",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/g.png",
+            "age_advisory": "Suitable for all audiences."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_7_2.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_7_2.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 70007003,
+            "film_name": "Paper Lanterns",
+            "times": [
+              { "start_time": "10:15", "display_start_time": "10:15 AM" },
+              { "start_time": "13:30", "display_start_time": "1:30 PM" },
+              { "start_time": "17:00", "display_start_time": "5:00 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 7000700007000070004,
+        "imdb_id": 10070004,
+        "imdb_title_id": "tt70007004",
+        "film_name": "Echo Chamber",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Echo Chamber is a psychological thriller exploring the effects of isolation.</p>",
+        "duration_mins": 96,
+        "duration_hrs_mins": "1h 36m",
+        "genres": [
+          { "genre_id": 1, "genre_name": "Thriller" },
+          { "genre_id": 2, "genre_name": "Drama" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Psychological themes and some language."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_7_3.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_7_3.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 70007004,
+            "film_name": "Echo Chamber",
+            "times": [
+              { "start_time": "11:45", "display_start_time": "11:45 AM" },
+              { "start_time": "15:00", "display_start_time": "3:00 PM" },
+              { "start_time": "18:30", "display_start_time": "6:30 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 7000700007000070005,
+        "imdb_id": 10070005,
+        "imdb_title_id": "tt70007005",
+        "film_name": "The Golden Key",
+        "version_type": "Standard",
+        "synopsis_long": "<p>The Golden Key is a fantasy adventure about a quest to unlock a magical realm.</p>",
+        "duration_mins": 120,
+        "duration_hrs_mins": "2h 00m",
+        "genres": [
+          { "genre_id": 7, "genre_name": "Adventure" },
+          { "genre_id": 4, "genre_name": "Family" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg.png",
+            "age_advisory": "Some scary moments."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_7_4.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_7_4.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 70007005,
+            "film_name": "The Golden Key",
+            "times": [
+              { "start_time": "13:00", "display_start_time": "1:00 PM" },
+              { "start_time": "16:30", "display_start_time": "4:30 PM" }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "cinema": {
+      "cinema_id": 10008,
+      "cinema_name": "Broadway Palace",
+      "address": "800 Broadway",
+      "address2": "",
+      "city": "New Rochelle",
+      "country": "USA",
+      "state": "NY",
+      "postcode": "10801",
+      "returned_date": "2025-08-01",
+      "show_dates": [
+        { "date": "2025-08-01", "display_date": "Fri 01 Aug" },
+        { "date": "2025-08-02", "display_date": "Sat 02 Aug" },
+        { "date": "2025-08-03", "display_date": "Sun 03 Aug" },
+        { "date": "2025-08-04", "display_date": "Mon 04 Aug" }
+      ]
+    },
+    "films": [
+      {
+        "film_id": 8000800008000080001,
+        "imdb_id": 10080001,
+        "imdb_title_id": "tt80008001",
+        "film_name": "Winter's Edge",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Winter's Edge is a survival thriller set in the frozen wilderness.</p>",
+        "duration_mins": 118,
+        "duration_hrs_mins": "1h 58m",
+        "genres": [
+          { "genre_id": 1, "genre_name": "Thriller" },
+          { "genre_id": 7, "genre_name": "Adventure" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Survival peril and violence."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_8_0.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_8_0.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 80008001,
+            "film_name": "Winter's Edge",
+            "times": [
+              { "start_time": "14:00", "display_start_time": "2:00 PM" },
+              { "start_time": "17:30", "display_start_time": "5:30 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 8000800008000080002,
+        "imdb_id": 10080002,
+        "imdb_title_id": "tt80008002",
+        "film_name": "Neptune's Call",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Neptune's Call is a fantasy adventure beneath the ocean's surface.</p>",
+        "duration_mins": 105,
+        "duration_hrs_mins": "1h 45m",
+        "genres": [
+          { "genre_id": 7, "genre_name": "Adventure" },
+          { "genre_id": 3, "genre_name": "Sci-Fi" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg.png",
+            "age_advisory": "Some peril and fantasy action."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_8_1.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_8_1.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 80008002,
+            "film_name": "Neptune's Call",
+            "times": [
+              { "start_time": "12:15", "display_start_time": "12:15 PM" },
+              { "start_time": "15:30", "display_start_time": "3:30 PM" },
+              { "start_time": "19:00", "display_start_time": "7:00 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 8000800008000080003,
+        "imdb_id": 10080003,
+        "imdb_title_id": "tt80008003",
+        "film_name": "Broken Strings",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Broken Strings is a musical drama about a violinist's comeback journey.</p>",
+        "duration_mins": 114,
+        "duration_hrs_mins": "1h 54m",
+        "genres": [
+          { "genre_id": 2, "genre_name": "Drama" },
+          { "genre_id": 8, "genre_name": "Music" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Some language and thematic material."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_8_2.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_8_2.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 80008003,
+            "film_name": "Broken Strings",
+            "times": [
+              { "start_time": "11:30", "display_start_time": "11:30 AM" },
+              { "start_time": "15:00", "display_start_time": "3:00 PM" },
+              { "start_time": "18:45", "display_start_time": "6:45 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 8000800008000080004,
+        "imdb_id": 10080004,
+        "imdb_title_id": "tt80008004",
+        "film_name": "The Painted Veil",
+        "version_type": "Standard",
+        "synopsis_long": "<p>The Painted Veil is a period romance set in 1920s China.</p>",
+        "duration_mins": 123,
+        "duration_hrs_mins": "2h 03m",
+        "genres": [
+          { "genre_id": 1, "genre_name": "Romance" },
+          { "genre_id": 2, "genre_name": "Drama" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Some sexuality and thematic elements."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_8_3.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_8_3.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 80008004,
+            "film_name": "The Painted Veil",
+            "times": [
+              { "start_time": "13:15", "display_start_time": "1:15 PM" },
+              { "start_time": "16:45", "display_start_time": "4:45 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 8000800008000080005,
+        "imdb_id": 10080005,
+        "imdb_title_id": "tt80008005",
+        "film_name": "The Clockmaker's Secret",
+        "version_type": "Standard",
+        "synopsis_long": "<p>The Clockmaker's Secret is a mystery about a town's oldest family and a hidden timepiece.</p>",
+        "duration_mins": 107,
+        "duration_hrs_mins": "1h 47m",
+        "genres": [
+          { "genre_id": 1, "genre_name": "Thriller" },
+          { "genre_id": 2, "genre_name": "Drama" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Some peril and thematic elements."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_8_4.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_8_4.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 80008005,
+            "film_name": "The Clockmaker's Secret",
+            "times": [
+              { "start_time": "10:45", "display_start_time": "10:45 AM" },
+              { "start_time": "14:00", "display_start_time": "2:00 PM" },
+              { "start_time": "18:00", "display_start_time": "6:00 PM" }
+            ]
+          }
+        }
+      }
+    ]
+  }
+  ,
+  {
+    "cinema": {
+      "cinema_id": 10009,
+      "cinema_name": "Metroplex 9",
+      "address": "900 Metro Center",
+      "address2": "",
+      "city": "Mount Vernon",
+      "country": "USA",
+      "state": "NY",
+      "postcode": "10550",
+      "returned_date": "2025-08-01",
+      "show_dates": [
+        { "date": "2025-08-01", "display_date": "Fri 01 Aug" },
+        { "date": "2025-08-02", "display_date": "Sat 02 Aug" },
+        { "date": "2025-08-03", "display_date": "Sun 03 Aug" },
+        { "date": "2025-08-04", "display_date": "Mon 04 Aug" }
+      ]
+    },
+    "films": [
+      {
+        "film_id": 9000900009000090001,
+        "imdb_id": 10090001,
+        "imdb_title_id": "tt90009001",
+        "film_name": "Red Horizon",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Red Horizon is an action-packed thriller about a rogue pilot in a distant future.</p>",
+        "duration_mins": 113,
+        "duration_hrs_mins": "1h 53m",
+        "genres": [
+          { "genre_id": 3, "genre_name": "Sci-Fi" },
+          { "genre_id": 1, "genre_name": "Thriller" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Intense action and sci-fi violence."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_9_0.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_9_0.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 90009001,
+            "film_name": "Red Horizon",
+            "times": [
+              { "start_time": "13:15", "display_start_time": "1:15 PM" },
+              { "start_time": "16:45", "display_start_time": "4:45 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 9000900009000090002,
+        "imdb_id": 10090002,
+        "imdb_title_id": "tt90009002",
+        "film_name": "The Silent Forest",
+        "version_type": "Standard",
+        "synopsis_long": "<p>The Silent Forest is a supernatural thriller set in the woods of Vermont.</p>",
+        "duration_mins": 101,
+        "duration_hrs_mins": "1h 41m",
+        "genres": [
+          { "genre_id": 5, "genre_name": "Horror" },
+          { "genre_id": 2, "genre_name": "Drama" }
+        ],
+        "age_rating": [
+          {
+            "rating": "R",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/r.png",
+            "age_advisory": "Scary images and violence."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_9_1.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_9_1.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 90009002,
+            "film_name": "The Silent Forest",
+            "times": [
+              { "start_time": "12:00", "display_start_time": "12:00 PM" },
+              { "start_time": "15:15", "display_start_time": "3:15 PM" },
+              { "start_time": "19:00", "display_start_time": "7:00 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 9000900009000090003,
+        "imdb_id": 10090003,
+        "imdb_title_id": "tt90009003",
+        "film_name": "The Last Melody",
+        "version_type": "Standard",
+        "synopsis_long": "<p>The Last Melody is a musical romance about two aspiring artists in the city.</p>",
+        "duration_mins": 111,
+        "duration_hrs_mins": "1h 51m",
+        "genres": [
+          { "genre_id": 1, "genre_name": "Romance" },
+          { "genre_id": 8, "genre_name": "Music" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg.png",
+            "age_advisory": "Some thematic material."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_9_2.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_9_2.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 90009003,
+            "film_name": "The Last Melody",
+            "times": [
+              { "start_time": "10:30", "display_start_time": "10:30 AM" },
+              { "start_time": "13:45", "display_start_time": "1:45 PM" },
+              { "start_time": "17:00", "display_start_time": "5:00 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 9000900009000090004,
+        "imdb_id": 10090004,
+        "imdb_title_id": "tt90009004",
+        "film_name": "Nightfall",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Nightfall is a horror thriller about a group of friends facing their fears in an abandoned mansion.</p>",
+        "duration_mins": 99,
+        "duration_hrs_mins": "1h 39m",
+        "genres": [
+          { "genre_id": 5, "genre_name": "Horror" },
+          { "genre_id": 1, "genre_name": "Thriller" }
+        ],
+        "age_rating": [
+          {
+            "rating": "R",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/r.png",
+            "age_advisory": "Strong horror violence and terror."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_9_3.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_9_3.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 90009004,
+            "film_name": "Nightfall",
+            "times": [
+              { "start_time": "11:50", "display_start_time": "11:50 AM" },
+              { "start_time": "15:10", "display_start_time": "3:10 PM" },
+              { "start_time": "18:30", "display_start_time": "6:30 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 9000900009000090005,
+        "imdb_id": 10090005,
+        "imdb_title_id": "tt90009005",
+        "film_name": "The Fire Within",
+        "version_type": "Standard",
+        "synopsis_long": "<p>The Fire Within is a sports drama about a young boxer rising through adversity.</p>",
+        "duration_mins": 124,
+        "duration_hrs_mins": "2h 04m",
+        "genres": [
+          { "genre_id": 2, "genre_name": "Drama" },
+          { "genre_id": 9, "genre_name": "Sport" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Sports violence and language."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_9_4.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_9_4.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 90009005,
+            "film_name": "The Fire Within",
+            "times": [
+              { "start_time": "10:00", "display_start_time": "10:00 AM" },
+              { "start_time": "13:00", "display_start_time": "1:00 PM" },
+              { "start_time": "16:45", "display_start_time": "4:45 PM" }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "cinema": {
+      "cinema_id": 10010,
+      "cinema_name": "Empire Filmworks",
+      "address": "1000 Empire Blvd",
+      "address2": "",
+      "city": "Peekskill",
+      "country": "USA",
+      "state": "NY",
+      "postcode": "10566",
+      "returned_date": "2025-08-01",
+      "show_dates": [
+        { "date": "2025-08-01", "display_date": "Fri 01 Aug" },
+        { "date": "2025-08-02", "display_date": "Sat 02 Aug" },
+        { "date": "2025-08-03", "display_date": "Sun 03 Aug" },
+        { "date": "2025-08-04", "display_date": "Mon 04 Aug" }
+      ]
+    },
+    "films": [
+      {
+        "film_id": 10001000010000100001,
+        "imdb_id": 10100001,
+        "imdb_title_id": "tt100010001",
+        "film_name": "Moonlit Shadows",
+        "version_type": "Standard",
+        "synopsis_long": "<p>Moonlit Shadows is a noir thriller set in the backstreets of a neon-lit city.</p>",
+        "duration_mins": 104,
+        "duration_hrs_mins": "1h 44m",
+        "genres": [
+          { "genre_id": 1, "genre_name": "Thriller" },
+          { "genre_id": 2, "genre_name": "Drama" }
+        ],
+        "age_rating": [
+          {
+            "rating": "R",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/r.png",
+            "age_advisory": "Violence, language, and some sexuality."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_10_0.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_10_0.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 100010001,
+            "film_name": "Moonlit Shadows",
+            "times": [
+              { "start_time": "13:30", "display_start_time": "1:30 PM" },
+              { "start_time": "17:00", "display_start_time": "5:00 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 10001000010000100002,
+        "imdb_id": 10100002,
+        "imdb_title_id": "tt100010002",
+        "film_name": "The Painted Mask",
+        "version_type": "Standard",
+        "synopsis_long": "<p>The Painted Mask is a psychological drama about identity and deception.</p>",
+        "duration_mins": 99,
+        "duration_hrs_mins": "1h 39m",
+        "genres": [
+          { "genre_id": 2, "genre_name": "Drama" },
+          { "genre_id": 1, "genre_name": "Thriller" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Some violence and thematic elements."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_10_1.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_10_1.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 100010002,
+            "film_name": "The Painted Mask",
+            "times": [
+              { "start_time": "11:00", "display_start_time": "11:00 AM" },
+              { "start_time": "14:15", "display_start_time": "2:15 PM" },
+              { "start_time": "18:00", "display_start_time": "6:00 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 10001000010000100003,
+        "imdb_id": 10100003,
+        "imdb_title_id": "tt100010003",
+        "film_name": "The Last Ember",
+        "version_type": "Standard",
+        "synopsis_long": "<p>The Last Ember is a fantasy adventure about the search for a legendary flame.</p>",
+        "duration_mins": 121,
+        "duration_hrs_mins": "2h 01m",
+        "genres": [
+          { "genre_id": 7, "genre_name": "Adventure" },
+          { "genre_id": 3, "genre_name": "Sci-Fi" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg.png",
+            "age_advisory": "Fantasy action and peril."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_10_2.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_10_2.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 100010003,
+            "film_name": "The Last Ember",
+            "times": [
+              { "start_time": "12:00", "display_start_time": "12:00 PM" },
+              { "start_time": "15:30", "display_start_time": "3:30 PM" },
+              { "start_time": "19:00", "display_start_time": "7:00 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 10001000010000100004,
+        "imdb_id": 10100004,
+        "imdb_title_id": "tt100010004",
+        "film_name": "After the Storm",
+        "version_type": "Standard",
+        "synopsis_long": "<p>After the Storm is a family drama about rebuilding and reconciliation after disaster.</p>",
+        "duration_mins": 108,
+        "duration_hrs_mins": "1h 48m",
+        "genres": [
+          { "genre_id": 2, "genre_name": "Drama" },
+          { "genre_id": 4, "genre_name": "Family" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg.png",
+            "age_advisory": "Some thematic elements."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_10_3.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_10_3.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 100010004,
+            "film_name": "After the Storm",
+            "times": [
+              { "start_time": "10:15", "display_start_time": "10:15 AM" },
+              { "start_time": "13:30", "display_start_time": "1:30 PM" },
+              { "start_time": "17:00", "display_start_time": "5:00 PM" }
+            ]
+          }
+        }
+      },
+      {
+        "film_id": 10001000010000100005,
+        "imdb_id": 10100005,
+        "imdb_title_id": "tt100010005",
+        "film_name": "The Glass Tower",
+        "version_type": "Standard",
+        "synopsis_long": "<p>The Glass Tower is a corporate thriller set in the high-stakes world of finance.</p>",
+        "duration_mins": 117,
+        "duration_hrs_mins": "1h 57m",
+        "genres": [
+          { "genre_id": 1, "genre_name": "Thriller" },
+          { "genre_id": 2, "genre_name": "Drama" }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Some language and thematic elements."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "https://image.mocksite.com/poster_10_4.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_10_4.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 100010005,
+            "film_name": "The Glass Tower",
+            "times": [
+              { "start_time": "11:45", "display_start_time": "11:45 AM" },
+              { "start_time": "15:00", "display_start_time": "3:00 PM" },
+              { "start_time": "18:30", "display_start_time": "6:30 PM" }
+            ]
+          }
+        }
+      }
+    ]
+  }
 ]
