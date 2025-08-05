@@ -164,9 +164,17 @@ const PlannerPage = () => {
           <p><span className="font-medium">Title:</span> {selectedTheater?.films?.find(f => f.film_id.toString() === movieId)?.film_name || "Unknown"}</p>
           <p><span className="font-medium">Showtime:</span> {showtime}</p>
           <p><span className="font-medium">Theater:</span> {theater}</p>
-          <div className="w-full h-40 bg-gray-200 mt-4 flex items-center justify-center text-gray-500">
-            Poster Placeholder
-          </div>
+          {selectedTheater?.films?.find(f => f.film_id.toString() === movieId)?.images?.poster?.["1"]?.medium?.film_image ? (
+            <img
+              src={selectedTheater.films.find(f => f.film_id.toString() === movieId)?.images?.poster?.["1"]?.medium?.film_image}
+              alt="Movie Poster"
+              className="w-full h-40 object-cover mt-4 rounded"
+            />
+          ) : (
+            <div className="w-full h-40 bg-gray-200 mt-4 flex items-center justify-center text-gray-500">
+              Poster Placeholder
+            </div>
+          )}
         </div>
       </div>
 
@@ -271,14 +279,19 @@ const PlannerPage = () => {
         <div className="bg-white shadow rounded p-4 w-full">
           <h3 className="text-md font-medium mb-2"> Your Movie Maraton</h3>
           <div className="flex gap-4 overflow-x-auto">
-            {watchQueue.map((movie) => (
-              <div
-                key={movie.id}
-                className="w-24 h-36 bg-gray-300 flex items-center justify-center text-xs text-gray-600 rounded"
-              >
-                {movie.title}
-              </div>
-            ))}
+            {watchQueue.map((movie) => {
+              const film = selectedTheater?.films?.find(f => f.film_name === movie.title);
+              const poster = film?.images?.poster?.["1"]?.medium?.film_image;
+              return (
+                <div key={movie.id} className="w-24 h-36 bg-gray-300 flex items-center justify-center text-xs text-gray-600 rounded overflow-hidden">
+                  {poster ? (
+                    <img src={poster} alt={movie.title} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="p-2 text-center">{movie.title}</span>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

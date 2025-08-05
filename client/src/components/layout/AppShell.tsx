@@ -13,8 +13,8 @@ export default function AppShell({ children }: { children: ReactNode }) {
       <div className="flex flex-1 overflow-hidden">
         {/* Left Sidebar */}
         <aside className="w-60 bg-slate-800 text-white p-4 overflow-y-auto">
-          <h2 className="text-lg font-bold mb-2">Filters</h2>
-          <p className="text-sm text-slate-300">Genre, date, etc.</p>
+          <h2 className="text-lg font-bold mb-2">Goblin-Sharks</h2>
+          <p className="text-sm text-slate-300">Paython, Cris, Victoria.</p>
         </aside>
 
         {/* Main Content */}
