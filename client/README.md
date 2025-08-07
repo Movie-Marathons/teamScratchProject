@@ -1,69 +1,106 @@
-# React + TypeScript + Vite
+# 🧠 Git Workflow Guide for Feature Development
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This guide outlines the standard steps for creating and merging a new feature branch into the `main` branch. It includes both direct merge and pull request workflows for individual or team-based development.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✅ Local Git Workflow (Direct Merge)
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Pull the latest code from the repository
+```bash
+git checkout main
+git pull
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 2. Create your feature branch
+```bash
+git checkout -b feature/your-feature-name
+```
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+### 3. Make your changes
+- Edit or add files
+- Test your changes locally
+
+---
+
+### 4. Stage and commit your changes
+```bash
+git add .
+git commit -m "Add feature: Email preview component"
+```
+
+---
+
+### 5. Switch back to the `main` branch
+```bash
+git checkout main
+```
+
+---
+
+### 6. Merge your feature branch into `main`
+```bash
+git merge feature/your-feature-name
+```
+
+---
+
+### 7. Push the updated `main` branch to the remote repository
+```bash
+git push origin main
+```
+
+---
+
+### 8. (Optional) Delete your feature branch
+```bash
+git branch -d feature/your-feature-name            # Delete locally
+git push origin --delete feature/your-feature-name # Delete remotely
+```
+
+---
+
+## 🔁 Pull Request Workflow (Team Collaboration)
+
+If your team requires pull requests (PRs) for code review:
+
+### 1. Follow steps 1–4 from the Local Git Workflow
+
+---
+
+### 2. Push your feature branch to the remote
+```bash
+git push origin feature/your-feature-name
+```
+
+---
+
+### 3. Create a Pull Request
+- Go to your repository on GitHub/GitLab/Bitbucket
+- Create a new Pull Request:
+  - **Base Branch**: `main`
+  - **Compare Branch**: `feature/your-feature-name`
+- Add a title and description
+- Request reviews from teammates (if applicable)
+
+---
+
+### 4. After PR approval:
+- Merge the PR into `main` via the web interface
+- Pull the latest `main` locally:
+```bash
+git checkout main
+git pull
+```
+
+---
+
+### 5. (Optional) Clean up your local/remote feature branch
+```bash
+git branch -d feature/your-feature-name
+git push origin --delete feature/your-feature-name
 ```
