@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import theaters from "../../../data/mock_theaters.json";
 import { toast } from "sonner";
-console.log("All theater objects:", theaters);
-theaters.forEach((t: any, idx: number) => {
-  console.log(`Theater ${idx}:`, t);
-});
+// console.log("All theater objects:", theaters);
+// theaters.forEach((t: any, idx: number) => {
+//   console.log(`Theater ${idx}:`, t);
+// });
 import { useSearchParams } from "react-router-dom";
 import { WatchQueueTable } from "../ui/WatchQueueTable";
 import type { WatchItem } from "../ui/WatchQueueTable";
@@ -36,8 +36,6 @@ const PlannerPage = () => {
     );
   };
 
-  const durationMinutes = 101;
-
   const convertTo24Hour = (time12h: string) => {
     const [time, modifier] = time12h.split(" ");
     let [hours, minutes] = time.split(":").map(Number);
@@ -48,7 +46,6 @@ const PlannerPage = () => {
 
   const baseDate = "1970-01-01T";
   const selectedStart = showtime ? new Date(`${baseDate}${convertTo24Hour(showtime)}`) : null;
-  const selectedMovieEnd = selectedStart ? new Date(selectedStart.getTime() + durationMinutes * 60000) : null;
 
   // Auto-add selected movie from URL to the watch queue
   useEffect(() => {
@@ -57,22 +54,26 @@ const PlannerPage = () => {
     const film = selectedTheater.films?.find((f: any) => f.film_id.toString() === movieId);
     if (!film) return;
 
+    const durationMinutes = film.duration_mins || 90;
+    const start = new Date(`${baseDate}${convertTo24Hour(showtime)}`);
+    const end = new Date(start.getTime() + durationMinutes * 60000);
+    const endTime = end.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+    const durationHours = Math.floor(durationMinutes / 60);
+    const durationMins = durationMinutes % 60;
+    const durationString = `${durationHours}h ${durationMins}m`;
+
     setWatchQueue((prev) => {
       const isAlreadyInQueue = prev.some(
         (item) => item.title === film.film_name && item.startTime === showtime
       );
       if (isAlreadyInQueue) return prev;
 
-      const start = new Date(`${baseDate}${convertTo24Hour(showtime)}`);
-      const end = new Date(start.getTime() + durationMinutes * 60000);
-      const endTime = end.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
-
       const newItem: WatchItem = {
         id: `selected-${Date.now()}`, // Avoid same ID as other entries
         title: film.film_name,
         startTime: showtime,
         endTime,
-        duration: "1h 41m",
+        duration: durationString,
       };
 
       return [newItem, ...prev];
@@ -86,10 +87,14 @@ const PlannerPage = () => {
 
   const addToQueue = (movieTitle: string, startTime: string) => {
 
-    const durationMinutes = 101;
+    const film = selectedTheater?.films?.find(f => f.film_name === movieTitle);
+    const durationMinutes = film?.duration_mins || 90;
 
     const newStart = new Date(`${baseDate}${convertTo24Hour(startTime)}`);
     const newEnd = new Date(newStart.getTime() + durationMinutes * 60000);
+    const durationHours = Math.floor(durationMinutes / 60);
+    const durationMins = durationMinutes % 60;
+    const durationString = `${durationHours}h ${durationMins}m`;
 
     const hasOverlap = watchQueue.some((item) => {
       const existingStart = new Date(`${baseDate}${convertTo24Hour(item.startTime)}`);
@@ -115,7 +120,7 @@ const PlannerPage = () => {
       title: movieTitle,
       startTime,
       endTime,
-      duration: "1h 41m",
+      duration: durationString,
     };
 
     setWatchQueue((prev) => [...prev, newItem]);
@@ -180,8 +185,8 @@ const PlannerPage = () => {
 
       {/* Right column */}
       <div className="flex-1 flex flex-col gap-4">
-        <div className="bg-white shadow rounded p-4 min-h-[120px]">
-          <h3 className="text-md font-medium mb-2">🔍 Filters</h3>
+        <div className="bg-white shadow rounded p-4 min-h-[120px] w-full max-w-full overflow-hidden">
+          <h3 className="text-md font-medium mb-2 text-center">🔍 Filters</h3>
           <div className="space-y-4">
             <div>
               <Label className="font-semibold">Genre</Label>
@@ -202,7 +207,7 @@ const PlannerPage = () => {
             </div>
             <div>
               <Label className="font-semibold">Rating</Label>
-              <div className="flex flex-wrap gap-2 mt-2">
+              <div className="flex flex-wrap gap-2 mt-2 max-w-full overflow-hidden break-words">
                 {["G", "PG", "PG-13", "R", "NC-17"].map((rating) => (
                   <div key={rating} className="flex items-center space-x-2">
                     <Checkbox
@@ -242,7 +247,7 @@ const PlannerPage = () => {
                     {film.showings?.Standard?.times
                       .filter((time: any) => {
                         const showStart = new Date(`${baseDate}${convertTo24Hour(time.display_start_time)}`);
-                        return !selectedMovieEnd || showStart > selectedMovieEnd;
+                        return !selectedStart || showStart > selectedStart;
                       })
                       .map((time: any, idx: number) => (
                         <button

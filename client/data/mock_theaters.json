@@ -171,45 +171,12 @@
             ]
           }
         }
-      }
-    ]
-  },
-  {
-    "cinema": {
-      "cinema_id": 10001,
-      "cinema_name": "Grand Ave Theaters",
-      "address": "105 Main St",
-      "address2": "",
-      "city": "Queens",
-      "country": "USA",
-      "state": "NY",
-      "postcode": "11200",
-      "returned_date": "2025-08-01",
-      "show_dates": [
-        {
-          "date": "2025-08-01",
-          "display_date": "Fri 01 Aug"
-        },
-        {
-          "date": "2025-08-02",
-          "display_date": "Sat 02 Aug"
-        },
-        {
-          "date": "2025-08-03",
-          "display_date": "Sun 03 Aug"
-        },
-        {
-          "date": "2025-08-04",
-          "display_date": "Mon 04 Aug"
-        }
-      ]
-    },
-    "films": [
+      },
       {
         "film_id": 4559964374742551219,
         "imdb_id": 29384671,
         "imdb_title_id": "tt69530560",
-        "film_name": "Echoes Beyond",
+        "film_name": "Eenie Meanie",
         "other_titles": null,
         "version_type": "Standard",
         "synopsis_long": "<p>Echoes Beyond is a gripping Romance movie exploring deep themes with action and emotion.</p>",
@@ -275,12 +242,116 @@
             ]
           }
         }
+      }
+    ]
+  },
+  {
+    "cinema": {
+      "cinema_id": 10001,
+      "cinema_name": "Grand Ave Theaters",
+      "address": "105 Main St",
+      "address2": "",
+      "city": "Queens",
+      "country": "USA",
+      "state": "NY",
+      "postcode": "11200",
+      "returned_date": "2025-08-01",
+      "show_dates": [
+        {
+          "date": "2025-08-01",
+          "display_date": "Fri 01 Aug"
+        },
+        {
+          "date": "2025-08-02",
+          "display_date": "Sat 02 Aug"
+        },
+        {
+          "date": "2025-08-03",
+          "display_date": "Sun 03 Aug"
+        },
+        {
+          "date": "2025-08-04",
+          "display_date": "Mon 04 Aug"
+        }
+      ]
+    },
+    "films": [
+      {
+        "film_id": 4559964374742551219,
+        "imdb_id": 29384671,
+        "imdb_title_id": "tt69530560",
+        "film_name": "Eenie Meanie",
+        "other_titles": null,
+        "version_type": "Standard",
+        "synopsis_long": "<p>Echoes Beyond is a gripping Romance movie exploring deep themes with action and emotion.</p>",
+        "duration_mins": 100,
+        "duration_hrs_mins": "1h 40m",
+        "genres": [
+          {
+            "genre_id": 1,
+            "genre_name": "Romance"
+          },
+          {
+            "genre_id": 2,
+            "genre_name": "Action"
+          }
+        ],
+        "age_rating": [
+          {
+            "rating": "PG-13",
+            "age_rating_image": "https://assets.movieglu.com/age_rating_logos/us/pg-13.png",
+            "age_advisory": "Some intense scenes and mild language."
+          }
+        ],
+        "images": {
+          "poster": {
+            "1": {
+              "image_orientation": "portrait",
+              "region": "global",
+              "medium": {
+                "film_image": "/assets/posters/pic3.jpg",
+                "width": 200,
+                "height": 300
+              }
+            }
+          },
+          "still": {
+            "1": {
+              "image_orientation": "landscape",
+              "medium": {
+                "film_image": "https://image.mocksite.com/still_1_0.jpg",
+                "width": 300,
+                "height": 199
+              }
+            }
+          }
+        },
+        "showings": {
+          "Standard": {
+            "film_id": 3714496985098829870,
+            "film_name": "Echoes Beyond",
+            "times": [
+              {
+                "start_time": "11:45",
+                "display_start_time": "11:45 AM"
+              },
+              {
+                "start_time": "15:00",
+                "display_start_time": "3:00 PM"
+              },
+              {
+                "start_time": "18:30",
+                "display_start_time": "6:30 PM"
+              }
+            ]
+          }
+        }
       },
       {
         "film_id": 808660967384433362,
         "imdb_id": 75781365,
         "imdb_title_id": "tt24326636",
-        "film_name": "Echoes Beyond",
+        "film_name": "Zootopia 2",
         "other_titles": null,
         "version_type": "Standard",
         "synopsis_long": "<p>Echoes Beyond is a gripping Romance movie exploring deep themes with action and emotion.</p>",
@@ -384,7 +455,7 @@
         "film_id": 10336250720629836101,
         "imdb_id": 17007799,
         "imdb_title_id": "tt98644021",
-        "film_name": "Battle for Earth",
+        "film_name": "Preparation for the Next Life",
         "other_titles": null,
         "version_type": "Standard",
         "synopsis_long": "<p>Battle for Earth is a gripping Drama movie exploring deep themes with action and emotion.</p>",
