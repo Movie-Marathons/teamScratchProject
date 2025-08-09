@@ -12,12 +12,12 @@
 
 // // Fetching historical landmarks from ArcGIS REST
 // // DC query
-// // const DC_API =
-// //   'https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/0/query?where=1%3D1&geometry=-77.12%2C38.79%2C-76.90%2C39.00&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=RESNAME%2CAddress%2CCity%2CState&returnGeometry=true&f=geojson';
+// const DC_API =
+//   'https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/0/query?where=1%3D1&geometry=-77.12%2C38.79%2C-76.90%2C39.00&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=RESNAME%2CAddress%2CCity%2CState&returnGeometry=true&f=geojson';
 
 // // NY query
-// const NY_API =
-//   'https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/0/query?where=1%3D1&geometry=-74.02%2C40.70%2C-73.92%2C40.88&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=RESNAME%2CAddress%2CCity%2CState&returnGeometry=true&f=geojson';
+// // const NY_API =
+// //   'https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/0/query?where=1%3D1&geometry=-74.02%2C40.70%2C-73.92%2C40.88&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=RESNAME%2CAddress%2CCity%2CState&returnGeometry=true&f=geojson';
 
 // export default function LandmarksPage() {
 //   const [features, setFeatures] = useState<LandmarkFeature[]>([]);
@@ -28,7 +28,7 @@
 //   useEffect(() => {
 //     (async () => {
 //       try {
-//         const res = await fetch(NY_API);
+//         const res = await fetch(DC_API);
 //         if (!res.ok)
 //           throw new Error(`Failed to fetch landmarks (${res.status})`);
 //         const data: FeatureCollection = await res.json();

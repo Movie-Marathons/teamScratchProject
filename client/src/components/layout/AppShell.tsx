@@ -1,7 +1,11 @@
 // src/components/layout/AppShell.tsx
 import { type ReactNode } from 'react';
 import SidebarPosters from './PosterAside';
+// import LandmarksPage from './LandmarksPage';
 
+// <div>
+//   <LandmarksPage />
+// </div>
 export default function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="flex flex-col h-screen w-screen overflow-hidden max-w-full">
