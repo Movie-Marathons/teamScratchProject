@@ -1,7 +1,7 @@
 // src/components/sidebar/SidebarPosters.tsx
 'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 interface Film {
   film_id: number;
@@ -21,7 +21,7 @@ export default function SidebarPosters() {
   const [films, setFilms] = useState<Film[]>([]);
 
   useEffect(() => {
-    fetch("/data/mock_theaters.json")
+    fetch('/data/mock_theaters.json')
       .then((res) => res.json())
       .then((data) => {
         const allFilms: Film[] = data.flatMap((entry: any) => entry.films);
@@ -31,8 +31,20 @@ export default function SidebarPosters() {
 
   return (
     <div className="space-y-4">
-      {films.map((film) => {
-        const posterUrl = film.images?.poster?.["1"]?.medium?.film_image;
+      {films.map((film, index) => {
+        const posterUrl = film.images?.poster?.['1']?.medium?.film_image;
+        return (
+          <div key={`${film.film_id}-${index}`} className="w-full">
+            <img
+              src={posterUrl}
+              alt={film.film_name}
+              className="w-full h-auto rounded shadow"
+            />
+          </div>
+        );
+      })}
+      {/* {films.map((film) => {
+        const posterUrl = film.images?.poster?.['1']?.medium?.film_image;
         return (
           <div key={film.film_id} className="w-full">
             <img
@@ -42,7 +54,7 @@ export default function SidebarPosters() {
             />
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 }
