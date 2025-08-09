@@ -9,9 +9,9 @@
 ### 1. 📝 Create API Documentation for All Endpoints (CRUD)
 
 **Entities to document:**
-- `/cinemas`
-- `/films`
-- `/show_dates`
+- `/cinemas` - zip
+- `/films` -cinemas
+- `/show_dates` -
 - `/showings`
 - `/genres`
 - `/film_genres`
@@ -30,7 +30,10 @@
 
 ---
 
-### 2. 🔍 Research Movie Data APIs
+### 2. 🔍 Research Movie Data APIs - 
+
+cache-first, API-second” pattern
+asynchronous background updates
 
 Look for:
 - ✅ Free access or developer trial

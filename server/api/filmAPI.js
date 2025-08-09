@@ -1,8 +1,18 @@
-const headers = {
-  client: 'PERS_243',
-  'x-api-key': 'HqgZrG0lYh4poyCrqsd7Y8GABWef7ybH2HdBE8vF',
-  Authorization: 'Basic UEVSU18yNDNfWFg6UmlKUHR3RWpVdjVU',
-  territory: 'XX',
+// const headers = {
+//   client: 'PERS_243',
+//   'x-api-key': 'HqgZrG0lYh4poyCrqsd7Y8GABWef7ybH2HdBE8vF',
+//   Authorization: 'Basic UEVSU18yNDNfWFg6UmlKUHR3RWpVdjVU',
+//   territory: 'XX',
+//   'api-version': 'v201',
+//   'user-agent': 'MovieGluTestApp',
+//   Host: 'api-gate2.movieglu.com',
+// };
+
+const baseHeaders = {
+  client: 'APPS_0',
+  'x-api-key': 'hRo2RN8OQa2HIkdNW5XnQ7s4qsfYcFn3ooJ6opdc', 
+  Authorization: 'Basic QVBQU18wOkZ1VE5zZktBY0t3UQ',      
+  territory: 'US',                                           
   'api-version': 'v201',
   'user-agent': 'MovieGluTestApp',
   Host: 'api-gate2.movieglu.com',
