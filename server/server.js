@@ -2,14 +2,22 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+require('dotenv').config();
 
 // Load environment variables early
-dotenv.config();
+// dotenv.config();
+
+const { MG_CLIENT, MG_API_KEY, MG_AUTH, MG_TERRITORY, MG_API_VERSION, MG_GEO } =
+  process.env;
+app.get('/health', (_req, res) => res.json({ ok: true }));
 
 // Local modules
 const db = require('./db');
 const { getCinemas } = require('./api/cinemaAPI.js');
-const { getLandmarks } = require('./api/landMarks.js');
+// const { getLandmarks } = require('./api/landMarks.js');
+const landmarksRouter = require('./routes/landmarks');
+const cinemasRouter = require('./routes/cinemas.js');
+const cinemaShowTimesRouter = require('./routes/cinemaShowTimes.js');
 
 // Initialize app
 const app = express();
@@ -23,8 +31,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 app.get('/sandbox', getCinemas);
 
-const landmarksRouter = require('./routes/landmarks');
 app.use('/api', landmarksRouter);
+app.use('/api/cinemas', cinemasRouter);
+app.use('/api/cinemashowtimes', cinemaShowTimesRouter);
 
 // Placeholder routes until controllers/routes are set up
 app.get('/api/cinemas', (_req, res) =>

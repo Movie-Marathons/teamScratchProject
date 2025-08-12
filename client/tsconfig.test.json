@@ -4,6 +4,9 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
+    "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
 
     // IMPORTANT: allow ESM-style imports in tests
     "verbatimModuleSyntax": false,
