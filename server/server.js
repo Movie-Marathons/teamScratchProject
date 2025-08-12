@@ -9,7 +9,10 @@ dotenv.config();
 // Local modules
 const db = require('./db');
 const { getCinemas } = require('./api/cinemaAPI.js');
-const { getLandmarks } = require('./api/landMarks.js');
+// const { getLandmarks } = require('./api/landMarks.js');
+const landmarksRouter = require('./routes/landmarks');
+const cinemasRouter = require('./routes/cinemas.js');
+const cinemaShowTimesRouter = require('./routes/cinemaShowTimes.js');
 
 // Initialize app
 const app = express();
@@ -23,12 +26,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 app.get('/sandbox', getCinemas);
 
-const landmarksRouter = require('./routes/landmarks');
 app.use('/api', landmarksRouter);
+app.use('/api/cinemas', cinemasRouter);
+app.use('/api/cinemashowtimes', cinemaShowTimesRouter);
 
 // Placeholder routes until controllers/routes are set up
-app.get('/api/cinemas', (_req, res) => res.status(501).json({ error: 'listCinemas not implemented' }));
-app.get('/api/cinemashowtimes', (_req, res) => res.status(501).json({ error: 'cinemaShowTimes not implemented' }));
+app.get('/api/moviePosters', (_req, res) => res.status(501).json({ error: 'Movie Posters not implemented' }));
 
 // Database connection test
 (async () => {
