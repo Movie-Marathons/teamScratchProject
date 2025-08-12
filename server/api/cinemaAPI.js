@@ -1,13 +1,23 @@
 
 //Good Headers
+// const baseHeaders = {
+//   client: 'APPS_0',
+//   'x-api-key': 'hRo2RN8OQa2HIkdNW5XnQ7s4qsfYcFn3ooJ6opdc', 
+//   Authorization: 'Basic QVBQU18wOkZ1VE5zZktBY0t3UQ',      
+//   territory: 'US',                                           
+//   'api-version': 'v201',
+//   'user-agent': 'MovieGluTestApp',
+//   Host: 'api-gate2.movieglu.com',
+// };
+// require('dotenv').config();
 const baseHeaders = {
-  client: 'APPS_0',
-  'x-api-key': 'hRo2RN8OQa2HIkdNW5XnQ7s4qsfYcFn3ooJ6opdc', 
-  Authorization: 'Basic QVBQU18wOkZ1VE5zZktBY0t3UQ',      
-  territory: 'US',                                           
-  'api-version': 'v201',
-  'user-agent': 'MovieGluTestApp',
-  Host: 'api-gate2.movieglu.com',
+  client: process.env.MG_CLIENT || '',
+  'x-api-key': process.env.MG_API_KEY || '',
+  Authorization: process.env.MG_AUTH || '',
+  territory: process.env.MG_TERRITORY || 'US',
+  'api-version': process.env.MG_API_VERSION || 'v201',
+  'user-agent': process.env.MG_USER_AGENT || 'MovieGluTestApp',
+  Accept: 'application/json',
 };
 
 //Sandobx Headers
@@ -21,7 +31,7 @@ const baseHeaders = {
 //   Host: 'api-gate2.movieglu.com',
 // };
 
-export async function getCinemas(geolocation = '-22.0;14.0', count = 8) {
+export async function getCinemas(geolocation = '-22.0;14.0', count = 5) {
   const geoString =
     typeof geolocation === 'string'
       ? geolocation
