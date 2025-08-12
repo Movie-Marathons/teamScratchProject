@@ -27,8 +27,12 @@ const landmarksRouter = require('./routes/landmarks');
 app.use('/api', landmarksRouter);
 
 // Placeholder routes until controllers/routes are set up
-app.get('/api/cinemas', (_req, res) => res.status(501).json({ error: 'listCinemas not implemented' }));
-app.get('/api/cinemashowtimes', (_req, res) => res.status(501).json({ error: 'cinemaShowTimes not implemented' }));
+app.get('/api/cinemas', (_req, res) =>
+  res.status(501).json({ error: 'listCinemas not implemented' })
+);
+app.get('/api/cinemashowtimes', (_req, res) =>
+  res.status(501).json({ error: 'cinemaShowTimes not implemented' })
+);
 
 // Database connection test
 (async () => {
@@ -48,7 +52,8 @@ app.use((_req, res) => {
 // Central error handler
 app.use((err, _req, res, _next) => {
   const status = err?.status || err?.response?.status || 500;
-  const message = err?.message || err?.response?.data || 'Internal Server Error';
+  const message =
+    err?.message || err?.response?.data || 'Internal Server Error';
   res.status(status).json({ error: message });
 });
 

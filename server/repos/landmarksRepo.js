@@ -6,10 +6,10 @@ const db = require('../db');
 function rowToDto(row) {
   return {
     id: row.id,
-    resname: row.resname,
-    address: row.address,
-    city: row.city,
-    state: row.state,
+    resname: row.resname ?? row.RESNAME,
+    address: row.address ?? row.Address,
+    city: row.city ?? row.City,
+    state: row.state ?? row.State,
     longitude: Number(row.longitude),
     latitude: Number(row.latitude),
     source: row.source,
@@ -24,33 +24,60 @@ function rowToDto(row) {
  * Find landmarks inside a bounding box (WGS84).
  * @param {{west:number,south:number,east:number,north:number,limit?:number}} params
  */
+// async function findWithinBBox({ west, south, east, north, limit = 500 }) {
+//   const sql = `
+//     select
+//       id,
+//       resname,
+//       address,
+//       city,
+//       state,
+//       st_x(geom) as longitude,
+//       st_y(geom) as latitude,
+//       source,
+//       source_id,
+//       properties,
+//       created_at,
+//       updated_at
+//     from nrhp_landmarks
+//     where
+//       geom && ST_MakeEnvelope($1, $2, $3, $4, 4326)
+//       and ST_Intersects(geom, ST_MakeEnvelope($1, $2, $3, $4, 4326))
+//     order by resname asc
+//     limit $5
+//   `;
+//   const params = [west, south, east, north, limit];
+//   const { rows } = await db.query(sql, params);
+//   return rows.map(rowToDto);
+// }
+
+// ADDED BY LORENC
 async function findWithinBBox({ west, south, east, north, limit = 500 }) {
   const sql = `
-    select
+    SELECT
       id,
-      resname,
-      address,
-      city,
-      state,
-      st_x(geom) as longitude,
-      st_y(geom) as latitude,
+      resname  AS "RESNAME",
+      address  AS "Address",
+      city     AS "City",
+      state    AS "State",
+      ST_X(geom) AS longitude,
+      ST_Y(geom) AS latitude,
       source,
       source_id,
       properties,
       created_at,
       updated_at
-    from nrhp_landmarks
-    where
+    FROM nrhp_landmarks
+    WHERE
       geom && ST_MakeEnvelope($1, $2, $3, $4, 4326)
-      and ST_Intersects(geom, ST_MakeEnvelope($1, $2, $3, $4, 4326))
-    order by resname asc
-    limit $5
+      AND ST_Intersects(geom, ST_MakeEnvelope($1, $2, $3, $4, 4326))
+    ORDER BY resname ASC
+    LIMIT $5
   `;
   const params = [west, south, east, north, limit];
   const { rows } = await db.query(sql, params);
   return rows.map(rowToDto);
 }
-
 async function upsertOne(clientQuery, r) {
   const sql = `
     insert into nrhp_landmarks (
@@ -75,7 +102,7 @@ async function upsertOne(clientQuery, r) {
               source, source_id, properties, created_at, updated_at
   `;
   const params = [
-    r.resname,
+    // r.resname,
     r.address || null,
     r.city || null,
     r.state || null,

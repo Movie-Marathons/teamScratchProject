@@ -9,7 +9,8 @@
     "verbatimModuleSyntax": false,
 
     // make Jest types available
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    "esModuleInterop": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

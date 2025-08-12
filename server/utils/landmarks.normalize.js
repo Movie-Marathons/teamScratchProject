@@ -21,7 +21,7 @@ function normalizeGeoJsonFeature(feature) {
     latitude: Number(lat),
     source: 'nps_nrhp',
     source_id: null, // NPS doesn't provide a stable ID in this feed
-    properties: props
+    properties: props,
   };
 }
 
@@ -31,15 +31,17 @@ function normalizeGeoJsonFeature(feature) {
  * @returns {Array<Object>} array of normalized objects
  */
 function normalizeGeoJsonCollection(collection) {
-  if (!collection || collection.type !== 'FeatureCollection' || !Array.isArray(collection.features)) {
+  if (
+    !collection ||
+    collection.type !== 'FeatureCollection' ||
+    !Array.isArray(collection.features)
+  ) {
     return [];
   }
-  return collection.features
-    .map(normalizeGeoJsonFeature)
-    .filter(Boolean);
+  return collection.features.map(normalizeGeoJsonFeature).filter(Boolean);
 }
 
 module.exports = {
   normalizeGeoJsonFeature,
-  normalizeGeoJsonCollection
+  normalizeGeoJsonCollection,
 };
