@@ -5,11 +5,11 @@ const dotenv = require('dotenv');
 require('dotenv').config();
 
 // Load environment variables early
-// dotenv.config();
+dotenv.config();
 
-const { MG_CLIENT, MG_API_KEY, MG_AUTH, MG_TERRITORY, MG_API_VERSION, MG_GEO } =
-  process.env;
-app.get('/health', (_req, res) => res.json({ ok: true }));
+// const { MG_CLIENT, MG_API_KEY, MG_AUTH, MG_TERRITORY, MG_API_VERSION, MG_GEO } =
+// process.env;
+// app.get('/health', (_req, res) => res.json({ ok: true }));
 
 // Local modules
 const db = require('./db');
