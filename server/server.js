@@ -8,12 +8,9 @@ const axios = require('axios');
 // Load environment variables early
 dotenv.config();
 
-<<<<<<< HEAD
 // const { MG_CLIENT, MG_API_KEY, MG_AUTH, MG_TERRITORY, MG_API_VERSION, MG_GEO } =
-// process.env;
+//   process.env;
 // app.get('/health', (_req, res) => res.json({ ok: true }));
-=======
->>>>>>> d130137250190312bdf28d247c44a039fec71ee9
 
 // Local modules
 const db = require('./db');
@@ -23,7 +20,6 @@ const landmarksRouter = require('./routes/landmarks');
 const cinemasRouter = require('./routes/cinemas.js');
 const cinemaShowTimesRouter = require('./routes/cinemaShowTimes.js');
 const MoviePosters = require('./routes/MoviePosters.js');
-
 
 // Initialize app
 const app = express();
@@ -49,10 +45,16 @@ app.get('/api/geo/postal', async (req, res, next) => {
     const country = req.query.country || 'US';
     const maxRows = req.query.limit || 10;
     if (!q) {
-      return res.status(400).json({ error: 'Missing q parameter (postal code prefix)' });
+      return res
+        .status(400)
+        .json({ error: 'Missing q parameter (postal code prefix)' });
     }
 
-    const url = `http://api.geonames.org/postalCodeSearchJSON?postalcode_startsWith=${encodeURIComponent(q)}&country=${encodeURIComponent(country)}&maxRows=${encodeURIComponent(maxRows)}&username=${encodeURIComponent(process.env.GEONAMES_USERNAME)}`;
+    const url = `http://api.geonames.org/postalCodeSearchJSON?postalcode_startsWith=${encodeURIComponent(
+      q
+    )}&country=${encodeURIComponent(country)}&maxRows=${encodeURIComponent(
+      maxRows
+    )}&username=${encodeURIComponent(process.env.GEONAMES_USERNAME)}`;
 
     const response = await axios.get(url, { timeout: 5000 });
     res.json(response.data);
