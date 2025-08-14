@@ -1,4 +1,3 @@
-
 // server/services/cinemaShowTimes.service.js
 // Service for fetching MovieGlu cinema showtimes and persisting into DB.
 
@@ -6,8 +5,10 @@ const {
   upsertFilmsFromShowtimesResponse,
   upsertShowingsFromShowtimesResponse,
   normalizeShowingsFromPayload,
-  getCinemaUuidByExternalId,
   countShowingsForCinemaDate,
+  // optional helpers; if your repo doesn't export them, they'll be undefined
+  ensureShowDateForCinemaDate,
+  getShowDateIdForCinemaDate,
 } = require('../repos/cinemaShowTimesRepo');
 
 const { getCinemaShowTimes } = require('../api/cinemaShowTimesApi'); // keep API layer consistent with getCinemas
@@ -18,19 +19,21 @@ const cinemaRepo = require('../repos/cinemaRepo'); // to ensure cinema exists if
  * Returns the local cinemas.id (uuid) or null if not found and cannot create.
  */
 async function ensureLocalCinemaByExternalId(externalCinemaId) {
-  // Try resolve by external id (cinemas.cinema_id)
-  const cinemaUuid = await getCinemaUuidByExternalId(externalCinemaId);
-  if (cinemaUuid) return cinemaUuid;
-
-  // If not in DB, attempt a minimal creation by pulling from MovieGlu cinemas list
-  // NOTE: We only try this if your cinemaRepo has an upsertCinemas path and you can provide enough fields.
-  // If you prefer to fail fast, remove this block and return null.
   try {
-    // Some environments may not have a direct single-cinema endpoint; skip auto-create.
-    return null;
-  } catch {
-    return null;
+    // Try resolve by external id (cinemas.cinema_id)
+    if (typeof cinemaRepo.getCinemaUuidByExternalId === 'function') {
+      const found = await cinemaRepo.getCinemaUuidByExternalId(externalCinemaId);
+      if (found) return found;
+    }
+    // Fallback: ensure a minimal row exists if helper is available
+    if (typeof cinemaRepo.ensureLocalCinemaByExternalId === 'function') {
+      const ensured = await cinemaRepo.ensureLocalCinemaByExternalId(externalCinemaId);
+      if (ensured) return ensured;
+    }
+  } catch (e) {
+    // swallow and return null; caller will handle null
   }
+  return null;
 }
 
 /**
@@ -45,17 +48,43 @@ async function ensureLocalCinemaByExternalId(externalCinemaId) {
 async function ingestForCinema(opts) {
   const cinemaExternalId = Number(opts?.cinemaExternalId);
   const dateISO = String(opts?.dateISO || '').slice(0, 10);
-  const showDateId = String(opts?.showDateId || '');
+  const incomingShowDateId = (opts?.showDateId ? String(opts.showDateId) : '');
 
-  if (!cinemaExternalId || !dateISO || !showDateId) {
-    throw new Error('ingestForCinema requires { cinemaExternalId, dateISO(YYYY-MM-DD), showDateId }');
+  if (!cinemaExternalId || !dateISO) {
+    throw new Error('ingestForCinema requires { cinemaExternalId, dateISO(YYYY-MM-DD) }');
   }
 
   // Resolve cinema UUID first (needed for cache check)
   let cinemaId = await ensureLocalCinemaByExternalId(cinemaExternalId);
 
+  // Resolve or create a show_date row for this cinema/date when not provided
+  let showDateId = incomingShowDateId || '';
+  if (!showDateId) {
+    // Try to resolve via repo helper if available
+    if (cinemaId && typeof getShowDateIdForCinemaDate === 'function') {
+      showDateId = await getShowDateIdForCinemaDate(cinemaId, dateISO);
+    }
+    // If still not found, try to ensure/create it
+    if (!showDateId && cinemaId && typeof ensureShowDateForCinemaDate === 'function') {
+      showDateId = await ensureShowDateForCinemaDate(cinemaId, dateISO);
+    }
+  }
+
+  // If we still do not have a showDateId, we cannot safely insert showings with FK
+  if (!showDateId) {
+    return {
+      ok: false,
+      reason: 'MISSING_SHOW_DATE_ID',
+      cinemaExternalId,
+      dateISO,
+      show_date_id: null,
+      counts: { films: 0, showingsPrepared: 0, showingsInserted: 0 },
+      sample: [],
+    };
+  }
+
   // Check cache: if we already have showings for this cinema/date, skip API call
-  if (cinemaId) {
+  if (cinemaId && showDateId) {
     const existingCount = await countShowingsForCinemaDate(cinemaId, showDateId);
     if (existingCount > 0) {
       return {
@@ -63,6 +92,7 @@ async function ingestForCinema(opts) {
         reason: 'CACHE_HIT',
         cinemaExternalId,
         dateISO,
+        show_date_id: showDateId,
         counts: { existingShowings: existingCount },
         sample: []
       };
@@ -101,6 +131,7 @@ async function ingestForCinema(opts) {
     ok: true,
     cinemaExternalId,
     dateISO,
+    show_date_id: showDateId,
     counts: {
       filmsInserted: filmResult.inserted,
       filmsUpdated: filmResult.updated,

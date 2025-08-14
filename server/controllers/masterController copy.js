@@ -1,92 +1,88 @@
-const { getCinemas } = require('../api/cinemaAPI copy');
-const { getFilms } = require('../api/filmAPI copy');
-const { getShowings } = require('../api/showingsAPI copy');
-const { zipToGeo } = require('../api/zipConverterAPI copy');
+// MoviePostersController (logging enhanced)
+// Controller -> delegates to service.
 
-async function getCinemasWithShowtimes(req, res) {
-  const { zip, date, time } = req.query;
+const service = require('../services/MoviePoster.service.js');
 
-  if (!zip || !date || !time) {
-    return res.status(400).json({ error: 'zip, date, and time are required' });
-  }
+const NS = 'MoviePostersController';
+const now = () => new Date().toISOString();
+const log = (...args) => console.log(`[${NS}]`, now(), ...args);
+const logErr = (...args) => console.error(`[${NS}]`, now(), ...args);
 
+// GET /api/moviePosters
+// Supports two flows:
+// 1) Temporary ingest via query (?mode=ingest or ?fetch=1)
+// 2) Listing via query (?filmId=<uuid>)
+exports.getMoviePosters = async (req, res, next) => {
+  const start = Date.now();
   try {
-    // Resolve real geolocation
-    const geo = await zipToGeo(zip);
-    if (!geo || !geo.latitude || !geo.longitude) {
-      return res.status(404).json({ error: 'Could not resolve ZIP to geolocation' });
+    const { filmId, movieGluFilmId, altText, mode, fetch, size_category, orientation, prefer, light } = req.query || {};
+    log('GET /api/moviePosters', { filmId, movieGluFilmId, mode, fetch, size_category, orientation, prefer, light });
+
+    // Ingest-on-GET convenience for early wiring
+    if (mode === 'ingest' || fetch === '1' || fetch === 'true') {
+      const data = await service.ingestForPoster({
+        filmId,
+        movieGluFilmId,
+        altText,
+        size_category,
+        orientation,
+        prefer,
+        light: light === '1' || light === 'true',
+      });
+      log('INGEST via GET complete', { filmId, cached: data?.cached, images: data?.images?.length });
+      return res.status(201).json({ success: true, data, meta: { ingested: true, via: 'GET (temporary)', ms: Date.now() - start } });
     }
 
-    const geolocation = `${geo.latitude};${geo.longitude}`;
-    
-    const cinemas = await getCinemas(geolocation);
-    if (!cinemas || cinemas.length === 0) {
-      return res.status(404).json({ error: 'No cinemas found near ZIP' });
+    // Normal listing path
+    if (filmId) {
+      const posters = await service.listByFilmId(filmId);
+      log('LIST posters', { filmId, count: posters?.length || 0, ms: Date.now() - start });
+      return res.status(200).json({ success: true, data: posters });
     }
 
-    const results = [];
-
-    for (const cinema of cinemas) {
-      const films = await getFilms(cinema.cinema_id, geolocation);
-      const filmData = [];
-
-      for (const film of films) {
-        const showingData = await getShowings(cinema.cinema_id, film.film_id, date, geolocation);
-
-        const allTimes = [];
-
-        // Real API may have multiple format groups under .showings
-        for (const group of showingData) {
-          const showingsObj = group?.showings || {};
-          for (const format in showingsObj) {
-            const times = showingsObj[format]?.times || [];
-            const filtered = times.filter(t => t.start_time >= time);
-            allTimes.push(...filtered);
-          }
-        }
-
-        if (allTimes.length > 0) {
-          filmData.push({
-            film_id: film.film_id,
-            title: film.film_name,
-            showtimes: allTimes.map(s => ({
-              start: s.start_time,
-              end: s.end_time
-            }))
-          });
-        }
-      }
-
-      if (filmData.length > 0) {
-        results.push({
-          cinema: {
-            cinema_id: cinema.cinema_id,
-            cinema_name: cinema.cinema_name,
-            address: cinema.address,
-            city: cinema.city,
-            state: cinema.state,
-            postcode: cinema.postcode,
-            show_dates: [
-              {
-                date,
-                display_date: new Date(date).toLocaleDateString('en-US', {
-                  weekday: 'short',
-                  month: 'short',
-                  day: 'numeric'
-                })
-              }
-            ]
-          },
-          films: filmData
-        });
-      }
-    }
-
-    res.json(results);
+    const err = new Error('Provide filmId to list posters, or POST /api/moviePosters/fetch to ingest.');
+    err.status = 501;
+    throw err;
   } catch (err) {
-    console.error('Error in getCinemasWithShowtimes:', err.message);
-    res.status(500).json({ error: 'Internal server error' });
+    logErr('GET error', { message: err?.message, status: err?.status });
+    next(err);
   }
-}
+};
 
-module.exports = { getCinemasWithShowtimes };
+// POST /api/moviePosters/fetch
+// Body: { filmId: uuid (required), movieGluFilmId: number (required), altText?, size_category?, orientation?, prefer?, light? }
+exports.fetchAndSavePoster = async (req, res, next) => {
+  const start = Date.now();
+  try {
+    const { filmId, movieGluFilmId, altText, size_category, orientation, prefer, light } = req.body || {};
+    log('POST /api/moviePosters/fetch', { filmId, movieGluFilmId, size_category, orientation, prefer, light });
+
+    if (!filmId || !movieGluFilmId) {
+      const e = new Error('filmId and movieGluFilmId are required');
+      e.status = 400;
+      throw e;
+    }
+
+    const data = await service.ingestForPoster({ filmId, movieGluFilmId, altText, size_category, orientation, prefer, light });
+    log('INGEST via POST complete', { filmId, cached: data?.cached, images: data?.images?.length, ms: Date.now() - start });
+    return res.status(201).json({ success: true, data });
+  } catch (err) {
+    logErr('POST error', { message: err?.message, status: err?.status });
+    next(err);
+  }
+};
+
+// GET /api/moviePosters/:filmId
+exports.listByFilmId = async (req, res, next) => {
+  const start = Date.now();
+  try {
+    const { filmId } = req.params;
+    log('GET /api/moviePosters/:filmId', { filmId });
+    const posters = await service.listByFilmId(filmId);
+    log('LIST posters by :filmId', { filmId, count: posters?.length || 0, ms: Date.now() - start });
+    res.status(200).json({ success: true, data: posters });
+  } catch (err) {
+    logErr('GET :filmId error', { message: err?.message, status: err?.status });
+    next(err);
+  }
+};

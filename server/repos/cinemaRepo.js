@@ -121,4 +121,45 @@ async function findByCoords(lat, lon, radiusKm = 25) {
   return rows;
 }
 
-module.exports = { upsertCinemas, findByZip, findByBBox, findByCoords };
+/**
+ * Return the internal UUID PK for a cinema row by its external numeric id (cinema_id).
+ * Returns null if not found.
+ */
+async function getCinemaUuidByExternalId(externalId) {
+  const eid = Number(externalId);
+  if (!eid || Number.isNaN(eid)) return null;
+
+  const sql = `
+    SELECT id
+    FROM cinemas
+    WHERE cinema_id = $1
+    LIMIT 1;
+  `;
+  const { rows } = await db.query(sql, [eid]);
+  return rows[0]?.id ?? null;
+}
+
+/**
+ * Ensure there is a local row for the given external id and return its UUID.
+ * Creates a minimal row when missing; updates timestamps when present.
+ */
+async function ensureLocalCinemaByExternalId(externalId) {
+  const eid = Number(externalId);
+  if (!eid || Number.isNaN(eid)) return null;
+
+  // Fast path
+  const existing = await getCinemaUuidByExternalId(eid);
+  if (existing) return existing;
+
+  const insertSql = `
+    INSERT INTO cinemas (cinema_id, last_seen_at, updated_at)
+    VALUES ($1, now(), now())
+    ON CONFLICT (cinema_id)
+    DO UPDATE SET last_seen_at = now(), updated_at = now()
+    RETURNING id;
+  `;
+  const { rows } = await db.query(insertSql, [eid]);
+  return rows[0]?.id ?? null;
+}
+
+module.exports = { upsertCinemas, findByZip, findByBBox, findByCoords, ensureLocalCinemaByExternalId, getCinemaUuidByExternalId };

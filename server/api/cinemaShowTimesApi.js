@@ -1,3 +1,5 @@
+const { MG_CLIENT, MG_API_KEY, MG_AUTH, MG_TERRITORY, MG_API_VERSION, MG_GEO } = process.env;
+
 // server/api/cinemaShowTimesApi.js
 // MovieGlu: cinemaShowTimes endpoint wrapper
 // NOTE: This returns the FULL payload (not just films)
