@@ -25,7 +25,7 @@ export default function SidebarPosters() {
       .then((res) => res.json())
       .then((data) => {
         const allFilms: Film[] = data.flatMap((entry: any) => entry.films);
-        setFilms(allFilms.slice(0, 6)); // Limit to first 6 posters
+        setFilms(allFilms.slice(0, 5)); // Limit to first 6 posters
       });
   }, []);
 

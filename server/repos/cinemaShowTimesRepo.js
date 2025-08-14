@@ -150,10 +150,13 @@ async function getFilmUuidByImdbTitleId(imdbTitleId) {
 function normalizeShowingsFromPayload(payload) {
   if (!payload || !Array.isArray(payload.films)) return [];
 
+  console.log(`normalizeShowingsFromPayload: payload.films length = ${payload.films.length}`);
+
   const out = [];
   for (const f of payload.films) {
     const imdbTitleId = f.imdb_title_id ?? null;
     const showings = f.showings ?? {};
+    console.log(`Film imdb_title_id: ${imdbTitleId}, showings keys: [${Object.keys(showings).join(', ')}]`);
     // MovieGlu nests by format key (e.g., "Standard", "3D", "IMAX"); iterate defensively
     for (const key of Object.keys(showings)) {
       const fmt = showings[key];
@@ -196,6 +199,8 @@ function normalizeShowingsFromPayload(payload) {
 async function upsertShowingsFromShowtimesResponse(payload, opts = {}) {
   const { showDateId, cinemaId: explicitCinemaId, cinemaExternalId } = opts;
 
+  console.log(`upsertShowingsFromShowtimesResponse called with showDateId=${showDateId}, explicitCinemaId=${explicitCinemaId}, cinemaExternalId=${cinemaExternalId}`);
+
   if (!showDateId) {
     throw new Error('upsertShowingsFromShowtimesResponse requires opts.showDateId (UUID of show_dates.id)');
   }
@@ -206,6 +211,8 @@ async function upsertShowingsFromShowtimesResponse(payload, opts = {}) {
   if (!cinemaId) {
     cinemaId = extId != null ? await getCinemaUuidByExternalId(extId) : null;
   }
+  console.log(`Resolved cinemaId: ${cinemaId}`);
+
   if (!cinemaId) {
     // Can't proceed usefully if we don't know which cinema row to attach to
     return { prepared: 0, inserted: 0, skipped_missing_film: 0, skipped_missing_cinema: 1 };
@@ -213,6 +220,7 @@ async function upsertShowingsFromShowtimesResponse(payload, opts = {}) {
 
   // Flatten showings from payload
   const flat = normalizeShowingsFromPayload(payload);
+  console.log(`Flattened showings count: ${flat.length}`);
 
   // Map each to our local film_id
   const rows = [];
@@ -239,6 +247,7 @@ async function upsertShowingsFromShowtimesResponse(payload, opts = {}) {
   }
 
   if (rows.length === 0) {
+    console.log(`No rows prepared for insertion. skippedMissingFilm=${skippedMissingFilm}`);
     return {
       prepared: 0,
       inserted: 0,
@@ -246,6 +255,8 @@ async function upsertShowingsFromShowtimesResponse(payload, opts = {}) {
       skipped_missing_cinema: 0,
     };
   }
+
+  console.log(`Prepared rows for insertion: ${rows.length}, skippedMissingFilm=${skippedMissingFilm}`);
 
   // Build VALUES tuples for CTE insert-dedup
   const cols = ['cinema_id', 'film_id', 'show_date_id', 'start_time', 'display_start_time'];
@@ -276,6 +287,8 @@ async function upsertShowingsFromShowtimesResponse(payload, opts = {}) {
   `;
 
   const { rows: insertedRows } = await db.query(sql, values);
+  console.log(`Inserted rows count: ${insertedRows.length}`);
+
   return {
     prepared: rows.length,
     inserted: insertedRows.length,
@@ -299,6 +312,46 @@ async function countShowingsForCinemaDate(cinemaId, showDateId) {
   return rows[0]?.cnt ?? 0;
 }
 
+/**
+ * Return the show_dates.id (UUID) for a given cinema UUID and date (YYYY-MM-DD), or null if missing.
+ */
+async function getShowDateIdForCinemaDate(cinemaId, dateISO) {
+  const sql = `
+    SELECT id
+    FROM show_dates
+    WHERE cinema_id = $1::uuid
+      AND date = $2::date
+    LIMIT 1;
+  `;
+  const { rows } = await db.query(sql, [cinemaId, dateISO]);
+  return rows[0]?.id ?? null;
+}
+
+/**
+ * Ensure a show_dates row exists for (cinemaId, dateISO) and return its UUID id.
+ * Tries SELECT first; if none, INSERT then return id. If INSERT races with another writer,
+ * a second SELECT will still fetch the existing row.
+ */
+async function ensureShowDateForCinemaDate(cinemaId, dateISO) {
+  // Fast path: already exists
+  const existing = await getShowDateIdForCinemaDate(cinemaId, dateISO);
+  if (existing) return existing;
+
+  const insertSql = `
+    INSERT INTO show_dates (cinema_id, date, created_at, updated_at)
+    VALUES ($1::uuid, $2::date, now(), now())
+    RETURNING id;
+  `;
+  try {
+    const { rows } = await db.query(insertSql, [cinemaId, dateISO]);
+    return rows[0]?.id ?? null;
+  } catch (e) {
+    // Fallback in case of race/constraint
+    const retry = await getShowDateIdForCinemaDate(cinemaId, dateISO);
+    return retry ?? null;
+  }
+}
+
 module.exports = {
   normalizeMovieGluFilms,
   upsertFilmsFromShowtimesResponse,
@@ -307,4 +360,6 @@ module.exports = {
   normalizeShowingsFromPayload,
   upsertShowingsFromShowtimesResponse,
   countShowingsForCinemaDate,
+  getShowDateIdForCinemaDate,
+  ensureShowDateForCinemaDate,
 };

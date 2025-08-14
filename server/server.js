@@ -2,22 +2,28 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-require('dotenv').config();
+const axios = require('axios');
+// require('dotenv').config();
 
 // Load environment variables early
 dotenv.config();
 
+<<<<<<< HEAD
 // const { MG_CLIENT, MG_API_KEY, MG_AUTH, MG_TERRITORY, MG_API_VERSION, MG_GEO } =
 // process.env;
 // app.get('/health', (_req, res) => res.json({ ok: true }));
+=======
+>>>>>>> d130137250190312bdf28d247c44a039fec71ee9
 
 // Local modules
 const db = require('./db');
-const { getCinemas } = require('./api/cinemaAPI.js');
+// const { getCinemas } = require('./api/cinemaAPI.js');
 // const { getLandmarks } = require('./api/landMarks.js');
 const landmarksRouter = require('./routes/landmarks');
 const cinemasRouter = require('./routes/cinemas.js');
 const cinemaShowTimesRouter = require('./routes/cinemaShowTimes.js');
+const MoviePosters = require('./routes/MoviePosters.js');
+
 
 // Initialize app
 const app = express();
@@ -29,19 +35,40 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.get('/sandbox', getCinemas);
-
+// app.get('/sandbox', getCinemas);
+app.get('/health', (_req, res) => res.json({ ok: true }));
 app.use('/api', landmarksRouter);
 app.use('/api/cinemas', cinemasRouter);
 app.use('/api/cinemashowtimes', cinemaShowTimesRouter);
+app.use('/api/moviePosters', MoviePosters);
+
+// GeoNames postal code search proxy
+app.get('/api/geo/postal', async (req, res, next) => {
+  try {
+    const q = req.query.q;
+    const country = req.query.country || 'US';
+    const maxRows = req.query.limit || 10;
+    if (!q) {
+      return res.status(400).json({ error: 'Missing q parameter (postal code prefix)' });
+    }
+
+    const url = `http://api.geonames.org/postalCodeSearchJSON?postalcode_startsWith=${encodeURIComponent(q)}&country=${encodeURIComponent(country)}&maxRows=${encodeURIComponent(maxRows)}&username=${encodeURIComponent(process.env.GEONAMES_USERNAME)}`;
+
+    const response = await axios.get(url, { timeout: 5000 });
+    res.json(response.data);
+  } catch (err) {
+    next(err);
+  }
+});
 
 // Placeholder routes until controllers/routes are set up
-app.get('/api/cinemas', (_req, res) =>
-  res.status(501).json({ error: 'listCinemas not implemented' })
-);
-app.get('/api/cinemashowtimes', (_req, res) =>
-  res.status(501).json({ error: 'cinemaShowTimes not implemented' })
-);
+// app.get('/api/cinemas', (_req, res) =>
+//   res.status(501).json({ error: 'listCinemas not implemented' })
+// );
+
+// app.get('/api/cinemashowtimes', (_req, res) =>
+//   res.status(501).json({ error: 'cinemaShowTimes not implemented' })
+// );
 
 // Database connection test
 (async () => {

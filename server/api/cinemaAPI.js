@@ -1,4 +1,6 @@
 
+const { MG_CLIENT, MG_API_KEY, MG_AUTH, MG_TERRITORY, MG_API_VERSION, MG_GEO } = process.env;
+
 //Good Headers
 // const baseHeaders = {
 //   client: 'APPS_0',
