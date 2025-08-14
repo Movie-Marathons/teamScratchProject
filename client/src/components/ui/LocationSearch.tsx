@@ -11,6 +11,8 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from "@/components/ui/popover";
+//inject zustand
+import { useSearchStore } from "@/store/zustand/useSearchStore";
 
 type ZipSuggestion = { zip: string; city?: string; state?: string; distance?: number };
 
@@ -19,10 +21,20 @@ type Props = {
 };
 
 export default function LocationSearch({ onSearch }: Props) {
-  const [zip, setZip] = React.useState("");
-  const [date, setDate] = React.useState<Date | undefined>(new Date());
+  // const [zip, setZip] = React.useState("");
+  // const [date, setDate] = React.useState<Date | undefined>(new Date());
+  const { zip, date, time, setZip, setDate, setTime } = useSearchStore();
+
+//ensure date passed is real or undefined
+const uiDate = 
+date instanceof Date
+? date
+: typeof date === "string"
+? new Date(date)
+: undefined;
+
   const [open, setOpen] = React.useState(false);
-  const [time, setTime] = React.useState("08:00");
+  // const [time, setTime] = React.useState("08:00");
 
   const [suggestions, setSuggestions] = React.useState<ZipSuggestion[]>([]);
   const [showSuggestions, setShowSuggestions] = React.useState(false);
@@ -95,6 +107,7 @@ export default function LocationSearch({ onSearch }: Props) {
 
   const selectSuggestion = (s: ZipSuggestion | null) => {
     if (!s) return;
+    //write zip into store
     setZip(s.zip);
     setShowSuggestions(false);
     setHighlightedIndex(-1);
@@ -123,8 +136,8 @@ export default function LocationSearch({ onSearch }: Props) {
   };
 
   const handleSearch = () => {
-    if (!zip || !date || !time) return;
-    onSearch({ zip, date, time });
+    if (!zip || !uiDate || !time) return;
+    onSearch({ zip, uiDate, time });
   };
 
   return (
@@ -200,17 +213,18 @@ export default function LocationSearch({ onSearch }: Props) {
                 id="date-picker"
                 className="w-40 justify-between font-normal"
               >
-                {date ? date.toLocaleDateString() : "Select date"}
+                {uiDate ? uiDate.toLocaleDateString() : "Select date"}
                 <ChevronDownIcon />
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto overflow-hidden p-0" align="start">
               <Calendar
                 mode="single"
-                selected={date}
+                selected={uiDate}
                 captionLayout="dropdown"
-                onSelect={(date) => {
-                  setDate(date);
+                onSelect={(uiDate) => {
+                  //write date into store
+                  setDate(uiDate);
                   setOpen(false);
                 }}
               />
@@ -225,6 +239,7 @@ export default function LocationSearch({ onSearch }: Props) {
             type="time"
             id="time-picker"
             value={time}
+            //write time into store
             onChange={(e) => setTime(e.target.value)}
             step="1800"
             className="w-36 bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden"
