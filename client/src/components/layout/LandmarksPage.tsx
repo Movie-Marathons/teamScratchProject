@@ -11,9 +11,14 @@ type LandmarkProps = {
 type LandmarkFeature = Feature<Point | any, LandmarkProps>;
 
 // Optional: configure a base for API calls (defaults to '/api')
-const API_BASE = (import.meta as any)?.env?.VITE_API_BASE || '/api';
+const API_BASE = '/api';
 
 export default function LandmarksPage() {
+  // set state for how many pages to show per click
+  const INITIAL_PAGE_SIZE = 10;
+  const [pageSize, setPageSize] = useState(INITIAL_PAGE_SIZE);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_PAGE_SIZE);
+
   const [features, setFeatures] = useState<LandmarkFeature[]>([]);
   const [q, setQ] = useState('');
   const [zip, setZip] = useState('10001'); // starting ZIP
@@ -82,6 +87,10 @@ export default function LandmarksPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    setVisibleCount(pageSize);
+  }, [features, q, pageSize]);
+
   const filtered = useMemo(() => {
     const term = q.trim().toLowerCase();
     if (!term) return features;
@@ -97,6 +106,11 @@ export default function LandmarksPage() {
     });
   }, [q, features]);
 
+  const displayed = useMemo(
+    () => filtered.slice(0, visibleCount),
+    [filtered, visibleCount]
+  );
+
   if (loading) return <div className="p-6">Loading landmarks…</div>;
   if (err) return <div className="p-6 text-red-600">Error: {err}</div>;
 
@@ -105,7 +119,7 @@ export default function LandmarksPage() {
       <div className="flex items-end justify-between">
         <h2 className="text-2xl font-semibold">Historic Landmarks</h2>
         <small className="text-gray-500">
-          Showing {filtered.length} of {features.length}
+          Showing {displayed.length} of {features.length}
         </small>
       </div>
 
@@ -132,7 +146,7 @@ export default function LandmarksPage() {
       </div>
 
       <ul className="divide-y border rounded">
-        {filtered.map((f, i) => {
+        {displayed.map((f, i) => {
           const p = f.properties ?? {};
           const name = p.RESNAME ?? 'Unknown';
           const addr =
@@ -146,6 +160,34 @@ export default function LandmarksPage() {
           );
         })}
       </ul>
+      <div className="flex items-center gap-3 pt-2">
+        <label className="text-sm text-gray-600">
+          Page size:{' '}
+          <select
+            className="border rounded px-2 py1"
+            value={pageSize}
+            onChange={(e) => {
+              const next = Number(e.target.value);
+              setPageSize(next);
+              setVisibleCount(next);
+            }}
+          >
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={50}>50</option>
+          </select>
+        </label>
+        {displayed.length < filtered.length && (
+          <button
+            className="px-3 py-2 rounded bg-gray-900 text-white"
+            onClick={() => {
+              setVisibleCount((c) => Math.min(c + pageSize, filtered.length));
+            }}
+          >
+            Load {Math.min(pageSize, filtered.length - displayed.length)} more
+          </button>
+        )}
+      </div>
     </div>
   );
 }
