@@ -8,7 +8,12 @@ const headers = {
   Host: 'api-gate2.movieglu.com',
 };
 
-export async function getShowings(cinemaId, filmId, date, geolocation = '-22.0;14.0') {
+export async function getShowings(
+  cinemaId,
+  filmId,
+  date,
+  geolocation = '-22.0;14.0'
+) {
   const fullHeaders = {
     ...headers,
     geolocation,

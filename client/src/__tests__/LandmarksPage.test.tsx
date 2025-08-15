@@ -300,7 +300,7 @@ describe('LandmarksPage', () => {
     expect(fetchSpy).toHaveBeenCalledTimes(2);
   });
 
-  test('Pagin A1: shows only the first 10 items and reveals Load more', async () => {
+  test('Stage 9: shows only the first 10 items and reveals Load more', async () => {
     // Create 25 features to exceed default INITIAL_PAGE_SIZE (10)
     const fc = {
       type: 'FeatureCollection',
@@ -330,7 +330,7 @@ describe('LandmarksPage', () => {
     expect(loadMoreBtn).toBeInTheDocument();
   });
 
-  test('Pagin A2: clicking Load more reveals the next page and updates the counter', async () => {
+  test('Stage 10: clicking Load more reveals the next page and updates the counter', async () => {
     const fc = {
       type: 'FeatureCollection',
       features: Array.from({ length: 25 }, (_, i) =>
@@ -366,7 +366,7 @@ describe('LandmarksPage', () => {
     ).not.toBeInTheDocument();
   });
 
-  test('Paging A3: changing page size resets visibleCount and text', async () => {
+  test('Stage 11: changing page size resets visibleCount and text', async () => {
     const fc = {
       type: 'FeatureCollection',
       features: Array.from({ length: 30 }, (_, i) =>

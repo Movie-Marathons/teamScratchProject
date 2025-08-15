@@ -10,29 +10,29 @@ type LandmarkProps = {
 
 type LandmarkFeature = Feature<Point | any, LandmarkProps>;
 
-// Optional: configure a base for API calls (defaults to '/api')
 const API_BASE = '/api';
 
+type SimpleLandmark = {
+  id: string;
+  name: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  lat?: number;
+  lon?: number;
+};
+
 export default function LandmarksPage() {
-  // set state for how many pages to show per click
   const INITIAL_PAGE_SIZE = 10;
   const [pageSize, setPageSize] = useState(INITIAL_PAGE_SIZE);
   const [visibleCount, setVisibleCount] = useState(INITIAL_PAGE_SIZE);
-
   const [features, setFeatures] = useState<LandmarkFeature[]>([]);
   const [q, setQ] = useState('');
-  const [zip, setZip] = useState('10001'); // starting ZIP
+  const [zip, setZip] = useState('10001');
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState<Set<string>>(new Set());
 
-  // DEBUGGING
-  //   useEffect(() => {
-  //     if (features.length) {
-  //       console.log('feature[0].properties =', features[0]?.properties);
-  //     }
-  //   }, [features]);
-
-  // Backend call: /api/landmarks/by-zip
   const loadByZip = async () => {
     try {
       setErr(null);
@@ -42,17 +42,11 @@ export default function LandmarksPage() {
         throw new Error('Enter a valid US ZIP');
       }
 
-      const params = new URLSearchParams({
-        zip,
-        // radiusMi: '3',   // optional to pass through
-        // limit: '50',     // optional
-      });
-
+      const params = new URLSearchParams({ zip });
       const res = await fetch(
         `${API_BASE}/landmarks/by-zip?${params.toString()}`
       );
 
-      // Helpful: clearer error if HTML is returned instead of JSON
       const ct = res.headers.get('content-type') || '';
       if (!ct.includes('application/json')) {
         const text = await res.text();
@@ -68,12 +62,13 @@ export default function LandmarksPage() {
       if (!res.ok)
         throw new Error(data?.error || `Request failed (${res.status})`);
 
-      // Accept FeatureCollection or an array
       const next: LandmarkFeature[] = Array.isArray(data)
         ? (data as LandmarkFeature[])
         : (((data as FeatureCollection).features ?? []) as LandmarkFeature[]);
 
       setFeatures(next);
+      setVisibleCount(INITIAL_PAGE_SIZE);
+      setExpanded(new Set());
     } catch (e: any) {
       setErr(e?.message || 'Unknown error');
       setFeatures([]);
@@ -84,32 +79,66 @@ export default function LandmarksPage() {
 
   useEffect(() => {
     loadByZip();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     setVisibleCount(pageSize);
   }, [features, q, pageSize]);
 
+  const simplified = useMemo<SimpleLandmark[]>(() => {
+    return features.map((f, idx) => {
+      const p = f.properties ?? {};
+      const name = p.RESNAME ?? 'Unknown';
+      const address = p.Address;
+      const city = p.City;
+      const state = p.State;
+
+      let lat: number | undefined;
+      let lon: number | undefined;
+      const coords = (f.geometry as Point | undefined)?.coordinates;
+      if (
+        Array.isArray(coords) &&
+        typeof coords[0] === 'number' &&
+        typeof coords[1] === 'number'
+      ) {
+        lon = coords[0];
+        lat = coords[1];
+      }
+
+      const id =
+        (f.id != null ? String(f.id) : undefined) ??
+        `${name}-${address ?? ''}-${lat ?? ''}-${lon ?? ''}-${idx}`;
+
+      return { id, name, address, city, state, lat, lon };
+    });
+  }, [features]);
+
   const filtered = useMemo(() => {
     const term = q.trim().toLowerCase();
-    if (!term) return features;
+    if (!term) return simplified;
 
-    return features.filter((f) => {
-      const p = f.properties ?? {};
-      const name = (p.RESNAME ?? '').toLowerCase();
-      const addr = [p.Address ?? '', p.City ?? '', p.State ?? '']
+    return simplified.filter((item) => {
+      const name = (item.name ?? '').toLowerCase();
+      const addr = [item.address ?? '', item.city ?? '', item.state ?? '']
         .filter(Boolean)
         .join(', ')
         .toLowerCase();
       return name.includes(term) || addr.includes(term);
     });
-  }, [q, features]);
+  }, [q, simplified]);
 
   const displayed = useMemo(
     () => filtered.slice(0, visibleCount),
     [filtered, visibleCount]
   );
+
+  const toggleExpanded = (id: string) => {
+    setExpanded((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  };
 
   if (loading) return <div className="p-6">Loading landmarks…</div>;
   if (err) return <div className="p-6 text-red-600">Error: {err}</div>;
@@ -146,20 +175,66 @@ export default function LandmarksPage() {
       </div>
 
       <ul className="divide-y border rounded">
-        {displayed.map((f, i) => {
-          const p = f.properties ?? {};
-          const name = p.RESNAME ?? 'Unknown';
-          const addr =
-            [p.Address, p.City, p.State].filter(Boolean).join(', ') || '—';
+        {displayed.map((item) => {
+          const isOpen = expanded.has(item.id);
+          const addrLine =
+            [item.address, item.city, item.state].filter(Boolean).join(', ') ||
+            '—';
+
+          const mapUrl =
+            typeof item.lat === 'number' && typeof item.lon === 'number'
+              ? `https://www.google.com/maps/search/?api=1&query=${item.lat},${item.lon}`
+              : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                  `${item.name} ${addrLine}`.trim()
+                )}`;
 
           return (
-            <li key={f.id?.toString() ?? i} className="p-3">
-              <div className="font-medium">{name}</div>
-              <div className="text-sm text-gray-600">{addr}</div>
+            <li key={item.id} className="p-3">
+              <div className="flex items-center justify-between gap-3">
+                <div className="font-medium">{item.name}</div>
+                <button
+                  onClick={() => toggleExpanded(item.id)}
+                  className="text-sm px-3 py-1 rounded-lg border hover:shadow"
+                  aria-expanded={isOpen}
+                  aria-controls={`details-${item.id}`}
+                >
+                  {isOpen ? 'Hide details' : 'Show more details'}
+                </button>
+              </div>
+
+              {isOpen && (
+                <div
+                  id={`details-${item.id}`}
+                  className="mt-2 text-sm space-y-2 bg-gray-50 rounded-lg p-3"
+                >
+                  <div className="text-gray-700">
+                    <span className="font-medium">Address: </span>
+                    <span>{addrLine}</span>
+                  </div>
+
+                  <div className="flex gap-2">
+                    <a
+                      href={mapUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-block text-xs px-3 py-1 border rounded hover:shadow"
+                    >
+                      View on map
+                    </a>
+                    {typeof item.lat === 'number' &&
+                      typeof item.lon === 'number' && (
+                        <span className="text-xs text-gray-500 self-center">
+                          ({item.lat.toFixed(5)}, {item.lon.toFixed(5)})
+                        </span>
+                      )}
+                  </div>
+                </div>
+              )}
             </li>
           );
         })}
       </ul>
+
       <div className="flex items-center gap-3 pt-2">
         <label className="text-sm text-gray-600">
           Page size:{' '}
@@ -177,6 +252,7 @@ export default function LandmarksPage() {
             <option value={50}>50</option>
           </select>
         </label>
+
         {displayed.length < filtered.length && (
           <button
             className="px-3 py-2 rounded bg-gray-900 text-white"
