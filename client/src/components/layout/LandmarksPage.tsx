@@ -22,6 +22,15 @@ type SimpleLandmark = {
   lon?: number;
 };
 
+function normalizeZip(input: string): string | null {
+  if (!input) return null;
+  const digits = input.replace(/\D/g, ""); // keep only numbers
+  console.log("[normalizeZip] input:", input, "digits:", digits);
+  if (digits.length === 5) return digits; // 5-digit ZIP
+  if (digits.length === 9) return `${digits.slice(0, 5)}-${digits.slice(5)}`; // 9-digit ZIP -> 5-4
+  return null;
+}
+
 export default function LandmarksPage({ zip: initialZip, city }: { zip?: string; city?: string }) {
   const INITIAL_PAGE_SIZE = 10;
   const [pageSize, setPageSize] = useState(INITIAL_PAGE_SIZE);
@@ -38,8 +47,9 @@ export default function LandmarksPage({ zip: initialZip, city }: { zip?: string;
       setErr(null);
       setLoading(true);
 
-      const activeZip = (z ?? zip)?.trim();
-      if (!/^\d{5}(-\d{4})?$/.test(activeZip)) {
+      const activeZip = normalizeZip((z ?? zip) ?? "");
+      console.log("[loadByZip] raw z:", z, "state zip:", zip, "normalized activeZip:", activeZip);
+      if (!activeZip) {
         throw new Error('Enter a valid US ZIP');
       }
 
@@ -71,6 +81,7 @@ export default function LandmarksPage({ zip: initialZip, city }: { zip?: string;
       setVisibleCount(INITIAL_PAGE_SIZE);
       setExpanded(new Set());
     } catch (e: any) {
+      console.error("[loadByZip] error:", e);
       setErr(e?.message || 'Unknown error');
       setFeatures([]);
     } finally {
@@ -85,10 +96,15 @@ export default function LandmarksPage({ zip: initialZip, city }: { zip?: string;
     }
   }, [initialZip]);
 
-  // Whenever local ZIP changes (including after sync), (re)load
+  // Only auto-load when ZIP parses as valid (avoid error while the user is typing)
   useEffect(() => {
-    if (zip) {
-      loadByZip(zip);
+    const normalized = normalizeZip(zip || "");
+    if (normalized) {
+      // only load when 5 or 9 digits present
+      loadByZip(normalized);
+    } else {
+      // do not set error here; let explicit submit handle validation
+      // console.debug('[zip effect] waiting for full ZIP');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [zip]);
@@ -174,14 +190,26 @@ export default function LandmarksPage({ zip: initialZip, city }: { zip?: string;
           className="border rounded px-3 py-2 w-32 text-white"
           placeholder="ZIP (e.g. 10001)"
           value={zip}
+          inputMode="numeric"
+          maxLength={10}
           onChange={(e) => setZip(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === 'Enter') loadByZip(zip);
+            console.log("[ZIP input] key pressed:", e.key, "value:", e.currentTarget.value);
+            if (e.key === 'Enter') {
+              const v = (e.currentTarget.value || '').trim();
+              const normalized = normalizeZip(v);
+              console.log("[ZIP input] normalized:", normalized);
+              if (normalized) setZip(normalized);
+              loadByZip(normalized ?? v);
+            }
           }}
         />
         <button
           className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-gray-900 text-white hover:bg-gray-800 shadow transition"
-          onClick={() => loadByZip(zip)}
+          onClick={() => {
+            const normalized = normalizeZip(zip || "");
+            loadByZip(normalized ?? zip);
+          }}
         >
           Search by ZIP
         </button>
