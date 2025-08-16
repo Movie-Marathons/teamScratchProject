@@ -351,6 +351,60 @@ async function ensureShowDateForCinemaDate(cinemaId, dateISO) {
     return retry ?? null;
   }
 }
+/**
+ * List cached showings (movie title + times) for a given show_date_id (UUID).
+ * Returns: Array<{ title: string, imdb_title_id: string | null, start_time: string, display_start_time: string | null }>
+ */
+async function listShowingsWithTitles(showDateId) {
+  const sql = `
+    SELECT
+      f.name AS title,
+      f.imdb_title_id,
+      to_char(s.start_time, 'HH24:MI') AS start_time,
+      s.display_start_time
+    FROM showings s
+    JOIN films f ON f.id = s.film_id
+    WHERE s.show_date_id = $1::uuid
+    ORDER BY f.name ASC, s.start_time ASC;
+  `;
+  const { rows } = await db.query(sql, [showDateId]);
+  return rows.map((r) => ({
+    title: r.title ?? null,
+    imdb_title_id: r.imdb_title_id ?? null,
+    start_time: r.start_time,
+    display_start_time: r.display_start_time ?? null,
+  }));
+}
+
+/**
+ * Group cached showings by film for a given show_date_id (UUID).
+ * Returns: Array<{ title: string, imdb_title_id: string | null, times: { start_time: string, display_start_time: string | null }[] }>
+ */
+async function listShowingsGrouped(showDateId) {
+  const sql = `
+    SELECT
+      f.name AS title,
+      f.imdb_title_id,
+      json_agg(
+        json_build_object(
+          'start_time', to_char(s.start_time, 'HH24:MI'),
+          'display_start_time', s.display_start_time
+        )
+        ORDER BY s.start_time
+      ) AS times
+    FROM showings s
+    JOIN films f ON f.id = s.film_id
+    WHERE s.show_date_id = $1::uuid
+    GROUP BY f.name, f.imdb_title_id
+    ORDER BY f.name ASC;
+  `;
+  const { rows } = await db.query(sql, [showDateId]);
+  return rows.map((r) => ({
+    title: r.title ?? null,
+    imdb_title_id: r.imdb_title_id ?? null,
+    times: Array.isArray(r.times) ? r.times : [],
+  }));
+}
 
 module.exports = {
   normalizeMovieGluFilms,
@@ -362,4 +416,6 @@ module.exports = {
   countShowingsForCinemaDate,
   getShowDateIdForCinemaDate,
   ensureShowDateForCinemaDate,
+  listShowingsWithTitles,
+  listShowingsGrouped,
 };

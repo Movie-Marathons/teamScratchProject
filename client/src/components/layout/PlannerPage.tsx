@@ -31,26 +31,34 @@ const PlannerPage: React.FC = () => {
 
   // Query params
   const movieId = searchParams.get("movieId");
-  const showtime = searchParams.get("showtime");
   const theaterName = searchParams.get("theater");
+  const cinemaId = searchParams.get("cinemaId") || undefined;
   const zip = searchParams.get("zip") ?? "11201";
   const date = searchParams.get("date") ?? new Date().toISOString().slice(0, 10);
-  const time = searchParams.get("time") ?? "18:00";
+  // Prefer `showtime`, but fall back to `time` if present; if neither, null
+  const chosenShowtime = searchParams.get("showtime") ?? searchParams.get("time");
+  // For fetching, use the chosen value if any; else a sane default
+  const time = chosenShowtime ?? "18:00";
   const baseDate = `${date}T`;
   // Optional: allow ?autofill=0 to disable auto-adding on first load
   const hasAutofill = searchParams.get("autofill") !== "0";
+  const showDateId = searchParams.get("showDateId") || undefined;
 
   // Stores
   const { data: theaters, loading, error, fetchShowtimes } = useShowtimesStore();
-  const watchQueue = useScheduleStore((s) => s.watchQueue);
+  const watchQueue = useScheduleStore((s) => s.watchQueue ?? []);
   const removeFromQueue = useScheduleStore((s) => s.removeFromQueue);
 
   // Fetch showtimes (mock for now)
   useEffect(() => {
     const ctrl = new AbortController();
-    fetchShowtimes({ zip, date, time }, ctrl.signal);
+    const payload: any = { date };
+    if (cinemaId) payload.cinemaId = cinemaId; else payload.zip = zip;
+    if (time) payload.time = time;
+    if (showDateId) payload.showDateId = showDateId;
+    fetchShowtimes(payload, ctrl.signal);
     return () => ctrl.abort();
-  }, [zip, date, time, fetchShowtimes]);
+  }, [cinemaId, zip, date, time, showDateId, fetchShowtimes]);
 
   useEffect(() => {
     if (error) toast.error(error);
@@ -58,17 +66,39 @@ const PlannerPage: React.FC = () => {
 
   // Theater chosen by query param
   const selectedTheater = useMemo(() => {
-    if (!theaters || !theaterName) return null;
-    return (
-      theaters.find(
-        (t: any) =>
-          t?.cinema?.cinema_name?.trim().toLowerCase() === theaterName.trim().toLowerCase()
-      ) ?? null
-    );
+    if (!theaters || (Array.isArray(theaters) && theaters.length === 0)) return null;
+    // If a theater name was provided, try a few common fields
+    if (theaterName) {
+      const lower = theaterName.trim().toLowerCase();
+      const match = (theaters as any[]).find((t: any) => {
+        const n1 = t?.cinema?.cinema_name?.trim()?.toLowerCase?.();
+        const n2 = t?.name?.trim()?.toLowerCase?.();
+        const n3 = t?.cinema_name?.trim()?.toLowerCase?.();
+        return n1 === lower || n2 === lower || n3 === lower;
+      });
+      if (match) return match;
+    }
+    // Fallback: first theater in the list
+    return (theaters as any[])?.[0] ?? null;
   }, [theaters, theaterName]);
 
+  // Normalize films to support both legacy and grouped shapes
+  const normalizedFilms = useMemo(() => {
+    const films: any[] = (selectedTheater as any)?.films ?? [];
+    return films.map((f: any) => {
+      const isGrouped = Array.isArray(f?.times);
+      const title = isGrouped ? (f?.title ?? 'Untitled') : (f?.film_name ?? f?.title ?? 'Untitled');
+      const id = (isGrouped ? f?.imdb_title_id : f?.imdb_title_id) ?? (f?.film_id != null ? String(f.film_id) : title);
+      const times: string[] = isGrouped
+        ? (f?.times ?? []).map((t: any) => (t?.display_start_time ?? t?.start_time)).filter(Boolean)
+        : (f?.showings?.Standard?.times ?? []).map((t: any) => (t?.display_start_time ?? t?.time)).filter(Boolean);
+      const duration_mins = f?.duration_min ?? f?.duration_mins ?? null;
+      return { id: String(id), title, times, duration_mins };
+    });
+  }, [selectedTheater]);
+
   const getDurationMins = (title: string) => {
-    const film = selectedTheater?.films?.find((f: any) => f.film_name === title);
+    const film = normalizedFilms.find((f: any) => f.title === title);
     return film?.duration_mins ?? 90;
   };
 
@@ -76,13 +106,13 @@ const PlannerPage: React.FC = () => {
   const lastAutoAddKey = useRef<string | null>(null);
   useEffect(() => {
     if (!hasAutofill) return;
-    if (!movieId || !showtime || !selectedTheater) return;
+    if (!movieId || !chosenShowtime || !normalizedFilms) return;
     if (watchQueue.length > 0) return;
 
-    const film = selectedTheater.films?.find((f: any) => f.film_id?.toString() === movieId);
+    const film = normalizedFilms.find((f: any) => f.id === String(movieId));
     if (!film) return;
 
-    const hhmm = convertTo24HourLabel(showtime);
+    const hhmm = convertTo24HourLabel(chosenShowtime);
     if (!hhmm) return;
 
     const key = `${movieId}|${hhmm}|${date}`;
@@ -90,13 +120,13 @@ const PlannerPage: React.FC = () => {
     lastAutoAddKey.current = key;
 
     // call action at use-time to avoid stale refs
-    useScheduleStore.getState().addToQueue(film.film_name, showtime, {
+    useScheduleStore.getState().addToQueue(film.title, chosenShowtime, {
       baseDate,
       convertTo24Hour: convertTo24HourLabel,
       getDurationMins,
       toast,
     });
-  }, [hasAutofill, movieId, showtime, selectedTheater, date, baseDate, watchQueue.length]);
+  }, [hasAutofill, movieId, chosenShowtime, normalizedFilms, date, baseDate, watchQueue.length]);
 
   const handleAddToQueue = (title: string, startLabel: string) => {
     useScheduleStore.getState().addToQueue(title, startLabel, {
@@ -111,7 +141,7 @@ const PlannerPage: React.FC = () => {
 
   // Minimal UI to verify initial add + remove work
   if (loading) return <div className="p-4">Loading showtimes…</div>;
-  if (!loading && !theaters) return <div className="p-4">No data yet.</div>;
+  if (!loading && (!theaters || (Array.isArray(theaters) && theaters.length === 0))) return <div className="p-4">No data yet.</div>;
 
   return (
     <div className="flex h-full p-6 gap-6">
@@ -121,7 +151,7 @@ const PlannerPage: React.FC = () => {
         <div className="space-y-2">
           <p><span className="font-medium">Theater:</span> {theaterName || "—"}</p>
           <p><span className="font-medium">Movie ID:</span> {movieId || "—"}</p>
-          <p><span className="font-medium">Showtime:</span> {showtime || "—"}</p>
+          <p><span className="font-medium">Showtime:</span> {chosenShowtime || "—"}</p>
           <p><span className="font-medium">Date:</span> {date}</p>
         </div>
       </div>
@@ -129,31 +159,37 @@ const PlannerPage: React.FC = () => {
       {/* Right: Movies + Queue */}
       <div className="flex-1 flex flex-col gap-4">
         {/* Available Movies */}
-        {selectedTheater?.films?.length ? (
-  <div className="bg-white shadow rounded p-4">
-    <h3 className="text-md font-medium mb-2">🍿 Available Movies</h3>
-    <ul className="space-y-2">
-      {(selectedTheater?.films ?? []).map((film: any) => (
-        <li key={film.__key} className="border rounded p-2">
-          <div className="font-semibold">{film.film_name}</div>
-          <div className="text-xs text-gray-500">
-            Showtimes:{" "}
-            {film.showings?.Standard?.times?.map((t: any, idx: number) => (
-              <button
-                key={`${film.__key}-${t.display_start_time}-${idx}`}
-                className="inline-block px-2 py-1 m-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200"
-                onClick={() => handleAddToQueue(film.film_name, t.display_start_time)}
-              >
-                {t.display_start_time}
-              </button>
-            ))}
+        {normalizedFilms?.length ? (
+          <div className="bg-white shadow rounded p-4 mx-auto w-full max-w-3xl">
+            <h3 className="text-md font-medium mb-2 text-center">🍿 Available Movies</h3>
+            <div className="max-h-[60vh] overflow-y-auto pr-2">
+              <ul className="space-y-2">
+                {normalizedFilms.map((film: any) => (
+                  <li key={film.id} className="border rounded p-2">
+                    <div className="font-semibold">{film.title}</div>
+                    <div className="text-xs text-gray-500">
+                      Showtimes:{' '}
+                      {film.times.length > 0 ? (
+                        film.times.map((label: string, idx: number) => (
+                          <button
+                            key={`${film.id}-${label}-${idx}`}
+                            className="inline-block px-2 py-1 m-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200"
+                            onClick={() => handleAddToQueue(film.title, label)}
+                          >
+                            {label}
+                          </button>
+                        ))
+                      ) : (
+                        <span className="italic text-gray-400">No times</span>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </li>
-      ))}
-    </ul>
-  </div>
         ) : (
-          <div className="bg-white shadow rounded p-4">
+          <div className="bg-white shadow rounded p-4 mx-auto w-full max-w-3xl text-center">
             <h3 className="text-md font-medium mb-2">🍿 Available Movies</h3>
             <p className="text-sm text-gray-400 italic">No movie data found for this theater.</p>
           </div>

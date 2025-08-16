@@ -36,21 +36,43 @@ async function getCinemaShowTimes(cinemaId, dateISO) {
   const res = await fetch(url, { headers: fullHeaders });
   const text = await res.text();
 
+  // If the status is an error, surface the response text but keep the original behavior
   if (!res.ok) {
     throw new Error(
       `Showtime API error: ${res.status} - ${text ? text.substring(0, 200) : 'No response text'}`
     );
   }
 
-  if (!text) {
-    throw new Error('Showtime API error: Empty response body');
+  // MovieGlu may return 204 No Content or an empty body for some cinemas/dates.
+  // Instead of throwing, return a safe minimal payload so upper layers can decide.
+  if (!text || !text.trim()) {
+    return {
+      films: [],
+      cinema: { cinema_id: Number(cinemaId) },
+      _meta: { empty: true, dateISO },
+    };
   }
 
   let data;
   try {
     data = JSON.parse(text);
   } catch (e) {
-    throw new Error(`Showtime API error: Invalid JSON - ${e.message}`);
+    // Invalid JSON — return a safe structure rather than fail hard
+    return {
+      films: [],
+      cinema: { cinema_id: Number(cinemaId) },
+      _meta: { invalid_json: true, dateISO, rawLength: text.length },
+    };
+  }
+
+  // Ensure films array exists for callers
+  if (!data || !Array.isArray(data.films)) {
+    return {
+      ...data,
+      films: [],
+      cinema: data?.cinema ?? { cinema_id: Number(cinemaId) },
+      _meta: { normalized: true, dateISO },
+    };
   }
 
   return data;

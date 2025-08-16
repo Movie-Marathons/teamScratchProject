@@ -9,6 +9,7 @@ import {
   DialogClose,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { useSearchStore } from '@/store/zustand/useSearchStore';
 
 interface Props {
   searchParams: {
@@ -31,7 +32,7 @@ interface TheaterEntry {
     city: string;
     state: string;
     postcode: string;
-    show_dates: { date: string; display_date: string }[];
+    show_dates: { date: string; display_date: string; id?: string | number; show_date_id?: string | number }[];
     search_zip?: string;
     distance?: number;
   };
@@ -47,6 +48,7 @@ export default function TheaterGrid({ searchParams }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [dialogLoading, setDialogLoading] = useState(false);
   const [dialogError, setDialogError] = useState<string | null>(null);
+  const { date: storeDate } = useSearchStore();
 
   const handleViewMovies = (entry: TheaterEntry) => {
     if (!entry?.cinema?.cinema_id || entry.cinema.cinema_id === 0) {
@@ -59,9 +61,10 @@ export default function TheaterGrid({ searchParams }: Props) {
 
     const cinemaId = String(entry?.cinema?.cinema_id ?? '');
 
-    // Choose a date: selected date from search params or first available show_date
-    const chosenDate = searchParams?.date
-      ? new Date(searchParams.date).toISOString().split('T')[0]
+    // Choose a date: prefer Zustand store date, then prop date, then first available show_date
+    const selected = storeDate || searchParams?.date;
+    const chosenDate = selected
+      ? new Date(selected).toISOString().split('T')[0]
       : entry?.cinema?.show_dates?.[0]?.date ?? '';
 
     // Try to find a show_date_id for that date if present
@@ -69,6 +72,11 @@ export default function TheaterGrid({ searchParams }: Props) {
       ? entry.cinema.show_dates.find((d: any) => d?.date === chosenDate)
       : undefined;
     const showDateId = (sd as any)?.id || (sd as any)?.show_date_id || '';
+
+    if (!chosenDate && !showDateId) {
+      setDialogError('Missing date for showtimes — pick a date and try again.');
+      return;
+    }
 
     const params = new URLSearchParams();
     if (cinemaId) params.set('cinema_id', cinemaId);
@@ -85,18 +93,28 @@ export default function TheaterGrid({ searchParams }: Props) {
       })
       .then((data) => {
         console.log('Raw showtimes API response:', data);
-        const films = Array.isArray(data)
+        let items = Array.isArray(data)
           ? data
-          : data?.films ??
-            data?.results ??
-            data?.showings ??
-            data?.sample ??
-            [];
-        setSelectedTheater((prev) => (prev ? { ...prev, films } : prev));
-        console.log(
-          'Loaded showtimes:',
-          Array.isArray(films) ? films.length : films
-        );
+          : data?.films ?? data?.results ?? data?.showings ?? data?.sample ?? [];
+
+        // If the payload is flat showings (title + start_time per row), group into films with times[]
+        if (Array.isArray(items) && items.length > 0 && 'start_time' in (items[0] as any)) {
+          const map = new Map<string, { title: string; imdb_title_id?: string | null; times: { start_time: string; display_start_time?: string | null }[] }>();
+          for (const s of items as any[]) {
+            const key = String(s.imdb_title_id || s.title || 'unknown');
+            const title = s.title || 'Untitled';
+            const slot = { start_time: s.start_time, display_start_time: s.display_start_time ?? null };
+            if (!map.has(key)) {
+              map.set(key, { title, imdb_title_id: s.imdb_title_id ?? null, times: [slot] });
+            } else {
+              map.get(key)!.times.push(slot);
+            }
+          }
+          items = Array.from(map.values());
+        }
+
+        setSelectedTheater((prev) => (prev ? { ...prev, films: items } : prev));
+        console.log('Loaded showtimes (grouped films):', Array.isArray(items) ? items.length : items);
       })
       .catch((err) => {
         console.error('Failed to load showtimes:', err);
@@ -149,7 +167,15 @@ export default function TheaterGrid({ searchParams }: Props) {
           // Flattened shape from backend -> wrap into { cinema, films }
           const postcode =
             item?.postcode ?? item?.zip ?? item?.postal_code ?? '';
-          const show_dates = item?.show_dates ?? [];
+          const rawShowDates = item?.show_dates ?? [];
+          const show_dates = Array.isArray(rawShowDates)
+            ? rawShowDates.map((d: any) => ({
+                date: d?.date ?? '',
+                display_date: d?.display_date ?? d?.displayDate ?? '',
+                id: d?.id,
+                show_date_id: d?.show_date_id ?? d?.showDateId,
+              }))
+            : [];
           return {
             cinema: {
               cinema_id: item?.cinema_id ?? item?.id ?? item?.external_id ?? 0,
@@ -158,7 +184,7 @@ export default function TheaterGrid({ searchParams }: Props) {
               city: item?.city ?? '',
               state: item?.state ?? '',
               postcode: String(postcode),
-              show_dates: Array.isArray(show_dates) ? show_dates : [],
+              show_dates,
               search_zip: item?.zip ? String(item.zip) : undefined,
               distance:
                 typeof item?.distance === 'number' ? item.distance : undefined,
@@ -297,6 +323,14 @@ export default function TheaterGrid({ searchParams }: Props) {
             <SelectedTheater
               theaterName={selectedTheater.cinema.cinema_name}
               films={selectedTheater.films}
+              cinemaId={selectedTheater.cinema.cinema_id}
+              dateISO={
+                (storeDate
+                  ? new Date(storeDate).toISOString().split('T')[0]
+                  : (searchParams?.date
+                      ? new Date(searchParams.date).toISOString().split('T')[0]
+                      : undefined))
+              }
             />
           )}
         </DialogContent>
