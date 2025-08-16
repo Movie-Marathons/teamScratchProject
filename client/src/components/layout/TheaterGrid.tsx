@@ -264,37 +264,37 @@ export default function TheaterGrid({ searchParams }: Props) {
                 theater.cinema_id ||
                 `${theater.cinema_name}-${theater.postcode}`
               }
-              className="w-full shadow-sm border border-slate-200"
+              className="w-full shadow-md border border-red-900 bg-gradient-to-b from-red-950 to-red-800 text-red-50"
             >
               <CardHeader>
-                <CardTitle className="text-lg">{theater.cinema_name}</CardTitle>
-                <p className="text-sm text-muted-foreground">
+                <CardTitle className="text-lg text-red-200 font-bold">{theater.cinema_name}</CardTitle>
+                <p className="text-sm text-red-300">
                   {theater.address}, {theater.city}, {theater.state}{' '}
                   {theater.postcode}
                 </p>
                 {typeof theater.distance === 'number' && (
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-red-400">
                     {theater.distance.toFixed(1)} miles away
                   </p>
                 )}
               </CardHeader>
-              <CardContent className="text-sm text-slate-700 pb-4">
-                <p>🎟️ Show Dates:</p>
+              <CardContent className="text-sm text-red-100 pb-4">
+                <p className="font-semibold text-red-200"></p>
                 <ul className="list-disc list-inside">
                   {theater.show_dates.map((d) => (
-                    <li key={d.date}>{d.display_date}</li>
+                    <li key={d.date} className="text-red-100">{d.display_date}</li>
                   ))}
                 </ul>
                 <div className="mt-4">
                   {theater.cinema_id && theater.cinema_id !== 0 ? (
                     <Button
-                      variant="outline"
+                      className="bg-red-700 hover:bg-red-600 text-white border-red-600"
                       onClick={() => handleViewMovies(entry)}
                     >
                       View Movies
                     </Button>
                   ) : (
-                    <Button variant="outline" disabled>
+                    <Button className="bg-red-900 text-red-400 border-red-800" disabled>
                       No Movies Available
                     </Button>
                   )}

@@ -152,18 +152,18 @@ export default function LandmarksPage({ zip: initialZip, city }: { zip?: string;
     });
   };
 
-  if (loading) return <div className="p-6">Loading landmarks…</div>;
+  if (loading) return <div className="p-6 text-white">Loading landmarks…</div>;
   if (err) return <div className="p-6 text-red-600">Error: {err}</div>;
 
   return (
     <div className="p-6 space-y-4">
       <div className="flex items-end justify-between">
-        <h2 className="text-2xl font-semibold">Historic Landmarks</h2>
+        <h2 className="text-white font-bold">Historic Landmarks</h2>
         <div className="flex flex-col items-end">
           {city && (
-            <small className="text-gray-500">City: {city}</small>
+            <small className="text-white">City: {city}</small>
           )}
-          <small className="text-gray-500">
+          <small className="text-white">
             Showing {displayed.length} of {features.length}
           </small>
         </div>
@@ -171,7 +171,7 @@ export default function LandmarksPage({ zip: initialZip, city }: { zip?: string;
 
       <div className="flex flex-wrap gap-2 items-center">
         <input
-          className="border rounded px-3 py-2 w-32"
+          className="border rounded px-3 py-2 w-32 text-white"
           placeholder="ZIP (e.g. 10001)"
           value={zip}
           onChange={(e) => setZip(e.target.value)}
@@ -180,21 +180,21 @@ export default function LandmarksPage({ zip: initialZip, city }: { zip?: string;
           }}
         />
         <button
-          className="px-3 py-2 rounded bg-black text-white"
+          className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-gray-900 text-white hover:bg-gray-800 shadow transition"
           onClick={() => loadByZip(zip)}
         >
           Search by ZIP
         </button>
 
         <input
-          className="border rounded px-3 py-2 w-full max-w-md ml-auto"
+          className="border rounded px-3 py-2 w-full max-w-md ml-auto text-white"
           placeholder="Filter by name or address…"
           value={q}
           onChange={(e) => setQ(e.target.value)}
         />
       </div>
 
-      <ul className="divide-y border rounded">
+      <ul className="divide-y border-2 border-black rounded">
         {displayed.map((item) => {
           const isOpen = expanded.has(item.id);
           const addrLine =
@@ -209,12 +209,12 @@ export default function LandmarksPage({ zip: initialZip, city }: { zip?: string;
                 )}`;
 
           return (
-            <li key={item.id} className="p-3">
+            <li key={item.id} className="p-3 border-2 border-black text-white">
               <div className="flex items-center justify-between gap-3">
-                <div className="font-medium">{item.name}</div>
+                <div className="font-medium text-white">{item.name}</div>
                 <button
                   onClick={() => toggleExpanded(item.id)}
-                  className="text-sm px-3 py-1 rounded-lg border hover:shadow"
+                  className="text-sm px-3 py-1 rounded-lg border-2 border-black hover:shadow text-white"
                   aria-expanded={isOpen}
                   aria-controls={`details-${item.id}`}
                 >
@@ -225,9 +225,9 @@ export default function LandmarksPage({ zip: initialZip, city }: { zip?: string;
               {isOpen && (
                 <div
                   id={`details-${item.id}`}
-                  className="mt-2 text-sm space-y-2 bg-gray-50 rounded-lg p-3"
+                  className="mt-2 text-sm space-y-2 bg-transparent rounded-lg p-3 border-2 border-black text-white"
                 >
-                  <div className="text-gray-700">
+                  <div className="text-white">
                     <span className="font-medium">Address: </span>
                     <span>{addrLine}</span>
                   </div>
@@ -237,13 +237,13 @@ export default function LandmarksPage({ zip: initialZip, city }: { zip?: string;
                       href={mapUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-block text-xs px-3 py-1 border rounded hover:shadow"
+                      className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-gray-900 text-white hover:bg-gray-800 shadow transition"
                     >
                       View on map
                     </a>
                     {typeof item.lat === 'number' &&
                       typeof item.lon === 'number' && (
-                        <span className="text-xs text-gray-500 self-center">
+                        <span className="text-xs text-white self-center">
                           ({item.lat.toFixed(5)}, {item.lon.toFixed(5)})
                         </span>
                       )}
@@ -256,7 +256,7 @@ export default function LandmarksPage({ zip: initialZip, city }: { zip?: string;
       </ul>
 
       <div className="flex items-center gap-3 pt-2">
-        <label className="text-sm text-gray-600">
+        <label className="text-sm text-white">
           Page size:{' '}
           <select
             className="border rounded px-2 py1"

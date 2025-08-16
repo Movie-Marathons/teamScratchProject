@@ -2,11 +2,16 @@ const landmarksRepo = require('../repos/landmarksRepo');
 const landMarksApi = require('../api/landMarks');
 const normalize = require('../utils/landmarks.normalize');
 const zipConverterAPI = require('../api/zipConverterAPI');
+const { buildCacheKey, getCached, setCached } = require("../utils/cache");
 
 const DB_HIT_THRESHOLD = process.env.DB_HIT_THRESHOLD
   ? parseInt(process.env.DB_HIT_THRESHOLD, 10)
   : 1;
 
+
+
+
+  
 // function rowsToFeatureCollection(rows) {
 //   return {
 //     type: 'FeatureCollection',

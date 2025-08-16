@@ -6,6 +6,11 @@
 const axios = require('axios');
 const moviePosterRepo = require('../repos/moviePosterRepo');
 const { getImages: mgGetImages } = require('../api/moviePosterAPI');
+const { buildCacheKey, getCached, setCached } = require("../utils/cache");
+
+
+
+
 
 // Helper: create HTTP-friendly error
 function httpError(message, status = 500) {

@@ -2,6 +2,11 @@
 
 const { getByBBox, getByZip } = require('../services/landmarks.service');
 
+
+// cache helpers
+const { buildCacheKey, getCached, setCached, invalidateByPattern } = require("../utils/cache");
+
+
 async function listLandmarks(req, res, next) {
   try {
     const { west, south, east, north, limit: limitRaw } = req.query;
@@ -45,6 +50,17 @@ async function listLandmarks(req, res, next) {
       }
     }
 
+    // Cache: attempt read-through by normalized bbox + limit
+    const keyBBox = buildCacheKey(
+      "landmarks:bbox",
+      req.path,
+      { west: nums[0], south: nums[1], east: nums[2], north: nums[3], limit }
+    );
+    const cachedBBox = await getCached(keyBBox);
+    if (cachedBBox) {
+      return res.json(cachedBBox);
+    }
+
     console.log(
       `listLandmarks called with bbox: west=${nums[0]}, south=${nums[1]}, east=${nums[2]}, north=${nums[3]}, limit=${limit}`
     );
@@ -56,6 +72,12 @@ async function listLandmarks(req, res, next) {
       north: nums[3],
       limit,
     });
+
+    // Invalidate other cached bbox variants for this path
+    await invalidateByPattern(`landmarks:bbox:${req.path}:*`);
+
+    // Store in cache for 10 minutes
+    await setCached(keyBBox, data, 600);
 
     console.log(
       `getByBBox returned ${
@@ -105,11 +127,28 @@ async function listLandmarksByZip(req, res, next) {
       }
     }
 
+    // Cache: attempt read-through by zip + radius + limit
+    const keyZip = buildCacheKey(
+      "landmarks:zip",
+      req.path,
+      { zip, radiusMi: r, limit }
+    );
+    const cachedZip = await getCached(keyZip);
+    if (cachedZip) {
+      return res.json(cachedZip);
+    }
+
     console.log(
       `listLandmarksByZip called with zip: ${zip}, radiusMi: ${r}, limit: ${limit}`
     );
 
     const data = await getByZip({ zip, radiusMi: r, limit });
+
+    // Invalidate other cached zip variants for this path
+    await invalidateByPattern(`landmarks:zip:${req.path}:*`);
+
+    // Store in cache for 10 minutes
+    await setCached(keyZip, data, 600);
 
     console.log(
       `getByZip returned ${

@@ -149,7 +149,7 @@ date instanceof Date
       <div className="flex flex-wrap gap-6 justify-center items-end">
         {/* ZIP input */}
         <div className="flex flex-col gap-2">
-          <Label htmlFor="zip" className="px-1">ZIP</Label>
+          <Label htmlFor="zip" className="px-1 text-white">ZIP</Label>
           <div className="relative w-40">
             <Input
               id="zip"
@@ -159,7 +159,7 @@ date instanceof Date
               onKeyDown={onZipKeyDown}
               onFocus={() => zip.length >= 2 && suggestions.length > 0 && setShowSuggestions(true)}
               onBlur={closeSuggestionsSoon}
-              className="w-40"
+              className="w-40 bg-white text-black"
               inputMode="numeric"
               autoComplete="postal-code"
               aria-autocomplete="list"
@@ -205,7 +205,7 @@ date instanceof Date
 
         {/* Date picker */}
         <div className="flex flex-col gap-2">
-          <Label htmlFor="date-picker" className="px-1">Date</Label>
+          <Label htmlFor="date-picker" className="px-1 text-white">Date</Label>
           <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
               <Button
@@ -234,7 +234,7 @@ date instanceof Date
 
         {/* Time input */}
         <div className="flex flex-col gap-2">
-          <Label htmlFor="time-picker" className="px-1">Time</Label>
+          <Label htmlFor="time-picker" className="px-1 text-white">Time</Label>
           <Input
             type="time"
             id="time-picker"
@@ -242,7 +242,7 @@ date instanceof Date
             //write time into store
             onChange={(e) => setTime(e.target.value)}
             step="1800"
-            className="w-36 bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden"
+            className="w-36 bg-white text-black appearance-none [&::-webkit-calendar-picker-indicator]:hidden"
           />
         </div>
 

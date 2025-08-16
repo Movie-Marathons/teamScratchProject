@@ -1,6 +1,6 @@
 // server/services/cinemaShowTimes.service.js
 // Service for fetching MovieGlu cinema showtimes and persisting into DB.
-
+const { buildCacheKey, getCached, setCached } = require("../utils/cache");
 const {
   upsertFilmsFromShowtimesResponse,
   upsertShowingsFromShowtimesResponse,
@@ -14,6 +14,10 @@ const {
 } = require('../repos/cinemaShowTimesRepo');
 
 const { getCinemaShowTimes } = require('../api/cinemaShowTimesApi'); // keep API layer consistent with getCinemas
+
+
+
+
 
 const cinemaRepo = require('../repos/cinemaRepo'); // to ensure cinema exists if needed
 

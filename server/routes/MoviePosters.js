@@ -1,7 +1,10 @@
+const { buildCacheKey, getCached, setCached, invalidateByPattern } = require('../utils/cache');
 const db = require('../db'); // Assumes db connection is exported from ../db
 const { Router } = require('express');
 const ctrl = require('../controllers/MoviePostersController.js');
 
+
+const POSTERS_TTL = Number(process.env.POSTERS_TTL_SECONDS || 86400);
 const router = Router();
 
 // GET /api/moviePosters?limit=...
@@ -16,8 +19,15 @@ router.get('/',
       const raw = String(req.query.ids || "");
       const ids = raw.split(',').map(s => s.trim()).filter(Boolean);
       if (!ids.length) return res.json([]);
+      // Normalize ids for a stable cache key (sort for order-insensitive hits)
+      const normIds = [...ids].sort();
+      const key = buildCacheKey('posters', req.path, { imdbIds: normIds });
+      const cached = await getCached(key);
+      if (cached) {
+        return res.json(cached);
+      }
       try {
-        console.log('[moviePosters:byImdbIds] ids', ids);
+        // console.log('[moviePosters:byImdbIds] ids', ids);
         const q = `
           WITH wanted AS (
             SELECT unnest($1::text[]) AS imdb_id
@@ -41,6 +51,9 @@ router.get('/',
         }
         // Also return a stable list shape for clients that expect arrays
         const posters = ids.map((id) => ({ imdb_title_id: id, poster_url: map[id] }));
+        // Invalidate other variants for this route and cache for configured TTL
+        await invalidateByPattern(`posters:${req.path}:*`);
+        await setCached(key, { posters, map }, POSTERS_TTL);
         return res.json({ posters, map });
       } catch (err) {
         console.error('[moviePosters:byImdbIds] query failed', err);
@@ -50,12 +63,19 @@ router.get('/',
     // Otherwise, handle 'latest posters' logic
     let limit = parseInt(req.query.limit, 10);
     if (isNaN(limit) || limit < 1) limit = 5;
+    const keyLatest = buildCacheKey('posters:latest', req.path, { limit });
+    const cachedLatest = await getCached(keyLatest);
+    if (cachedLatest) {
+      return res.json(cachedLatest);
+    }
     try {
       console.log('[moviePosters:list] query', { limit, query: req.query });
       const result = await db.query(
         `SELECT film_id, image_base64, alt_text FROM images ORDER BY random() LIMIT $1`,
         [limit]
       );
+      // Cache the latest-random selection briefly (5 minutes)
+      await setCached(keyLatest, result.rows, 300);
       res.json(result.rows);
     } catch (err) {
       console.error('[moviePosters:list] error', err);

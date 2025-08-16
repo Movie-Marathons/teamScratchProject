@@ -2,10 +2,14 @@
 const cinemaRepo = require('../repos/cinemaRepo');
 const { getCinemas } = require('../api/cinemaAPI');
 const { zipToGeo } = require('../api/zipConverterAPI');
+const { buildCacheKey, getCached, setCached } = require("../utils/cache");
 
 const ALLOW_EXTERNAL = process.env.ALLOW_EXTERNAL !== '0' && process.env.ALLOW_EXTERNAL !== 'false';
 
 const DB_HIT_THRESHOLD = 1;
+
+
+
 
 /**
  * Convert DB rows to a plain array (no GeoJSON).

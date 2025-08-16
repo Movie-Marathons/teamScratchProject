@@ -128,8 +128,8 @@ const SelectedTheater: React.FC<SelectedTheaterProps> = ({ theaterName, films, c
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white w-full max-w-3xl h-[80vh] overflow-y-auto rounded-lg shadow-lg p-6 space-y-6">
-        <h3 className="text-lg font-semibold text-center">{theaterName} - Movies</h3>
+      <div className="w-full max-w-3xl h-[80vh] overflow-y-auto rounded-lg shadow-lg p-6 space-y-6 bg-gradient-to-b from-red-950 to-red-900 text-red-50 border border-red-800">
+        <h3 className="text-lg font-semibold text-center text-red-200">{theaterName} - Movies</h3>
         <div className="flex flex-col space-y-4">
           {films.map((film) => {
           // Normalize across legacy and grouped shapes
@@ -160,7 +160,7 @@ const SelectedTheater: React.FC<SelectedTheaterProps> = ({ theaterName, films, c
           return (
             <div
               key={movieId || filmName}
-              className="flex flex-col sm:flex-row bg-white border rounded-lg shadow overflow-hidden"
+              className="flex flex-col sm:flex-row bg-red-900/60 border border-red-800 rounded-lg shadow overflow-hidden text-red-50"
             >
               {/* Poster */}
               {posterSrc ? (
@@ -176,12 +176,12 @@ const SelectedTheater: React.FC<SelectedTheaterProps> = ({ theaterName, films, c
 
               {/* Details */}
               <div className="p-4 flex-1 space-y-2">
-                <h4 className="text-md font-bold">{filmName}</h4>
+                <h4 className="text-md font-bold text-red-100">{filmName}</h4>
                 {durationText && (
-                  <p className="text-sm text-gray-500">{durationText}</p>
+                  <p className="text-sm text-red-300">{durationText}</p>
                 )}
                 <div>
-                  <p className="font-medium text-sm">Showtimes:</p>
+                  <p className="font-medium text-sm text-red-200">Showtimes:</p>
                   <div className="flex flex-wrap gap-2 mt-1">
                     {times.length > 0 ? (
                       times.map((time, idx) => {
@@ -191,14 +191,14 @@ const SelectedTheater: React.FC<SelectedTheaterProps> = ({ theaterName, films, c
                           <Link
                             to={`/planner?movieId=${encodeURIComponent(movieId)}&showtime=${encodeURIComponent(display)}&theater=${encodeURIComponent(theaterName)}${cinemaId ? `&cinemaId=${encodeURIComponent(String(cinemaId))}` : ''}${dateISO ? `&date=${encodeURIComponent(dateISO)}` : ''}${city ? `&city=${encodeURIComponent(city)}` : ''}${zip ? `&zip=${encodeURIComponent(String(zip))}` : ''}`}
                             key={`${movieId}-${raw || idx}`}
-                            className="px-2 py-1 bg-slate-100 rounded text-xs hover:bg-slate-200 transition"
+                            className="px-2 py-1 bg-red-700 hover:bg-red-600 text-white rounded text-xs border border-red-500 transition"
                           >
                             {display}
                           </Link>
                         );
                       })
                     ) : (
-                      <span className="text-xs text-gray-400">No times</span>
+                      <span className="text-xs text-red-300">No times</span>
                     )}
                   </div>
                 </div>

@@ -1,13 +1,13 @@
 async function zipToGeo(zip) {
   try {
     const res = await fetch(`https://api.zippopotam.us/us/${zip}`);
-    console.log('Response Status:', res.status, res.statusText);
+    // console.log('Response Status:', res.status, res.statusText);
     if (!res.ok) throw new Error(`Invalid ZIP: ${zip}`);
 
     const data = await res.json();
-    console.log('Data:', data);
-    console.log('Places Array:', data.places);
-    console.log('First Place Object:', data.places[0]);
+    // console.log('Data:', data);
+    // console.log('Places Array:', data.places);
+    // console.log('First Place Object:', data.places[0]);
 
     const place = data?.places?.[0];
     if (!place) throw new Error(`No places found for ZIP: ${zip}`);

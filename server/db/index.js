@@ -30,7 +30,7 @@ async function query(text, params) {
   const res = await pool.query(text, params);
   const duration = Date.now() - start;
   if (process.env.NODE_ENV !== 'production') {
-    console.log('PG query', { text: text.split('\n')[0], rows: res.rowCount, ms: duration });
+    // console.log('PG query', { text: text.split('\n')[0], rows: res.rowCount, ms: duration });
   }
   return res;
 }

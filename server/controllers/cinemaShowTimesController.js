@@ -1,5 +1,8 @@
 const { ingestForCinema } = require('../services/cinemaShowTimes.service.js');
 
+// example
+const { buildCacheKey, getCached, setCached, invalidateByPattern } = require("../utils/cache");
+
 // GET /api/cinemaShowTimes
 // Query parameters: cinema_id (number), date (YYYY-MM-DD), show_date_id (uuid, optional)
 async function getCinemasShowTimes(req, res, next) {
@@ -25,8 +28,20 @@ async function getCinemasShowTimes(req, res, next) {
     }
   }
 
+  // Cache: attempt read-through for cinema showtimes
+  const key = buildCacheKey("showtimes", req.path, { cinemaExternalId, dateISO, showDateId });
+  const cached = await getCached(key);
+  if (cached) {
+    return res.json(cached);
+  }
+
   try {
+    // Invalidate any other cached variants for this path (e.g., different show_date_id queries)
+    // This ensures clients see the freshest showtimes after an ingest/update.
+    await invalidateByPattern(`showtimes:${req.path}:*`);
     const result = await ingestForCinema({ cinemaExternalId, dateISO, showDateId });
+    // Store in cache for short TTL (90 seconds)
+    await setCached(key, { ok: true, ...result }, 90);
     // Ensure a stable shape with ok: true
     return res.status(200).json({ ok: true, ...result });
   } catch (err) {

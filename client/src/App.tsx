@@ -10,7 +10,6 @@ import PlannerPage from './components/layout/PlannerPage';
 import LandmarksPage from './components/layout/LandmarksPage';
 
 function App() {
-  console.log("App mounted");
   const [searchParams, setSearchParams] = useState<{
     zip: string;
     date: Date | undefined;
@@ -30,49 +29,40 @@ function App() {
       <Route
         path="/"
         element={
-          <>
-            {console.log("Routing to /")}
-            <AppShell>
-              <Toaster richColors position="top-right" />
-              <div className="flex flex-col gap-8">
-                <LocationSearch onSearch={handleSearch} />
-                <Link
-                  to="/landmarks"
-                  className="rounded-x1 px4 py-2 border shadow hover:shadow-md transition text-sm"
-                >
-                  Take a break and explore the area?
-                </Link>
-                <TheaterGrid
-                  searchParams={searchParams}
-                  filters={{ genres: [], timeOfDay: '', languages: [] }}
-                />
-              </div>
-            </AppShell>
-          </>
+          <AppShell>
+            <Toaster richColors position="top-right" />
+            <div className="flex flex-col gap-8">
+              <LocationSearch onSearch={handleSearch} />
+              <Link
+                to="/landmarks"
+                className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-gray-900 text-white hover:bg-gray-800 shadow transition text-sm"
+              >
+                Take a break and explore the area?
+              </Link>
+              <TheaterGrid
+                searchParams={searchParams}
+                filters={{ genres: [], timeOfDay: '', languages: [] }}
+              />
+            </div>
+          </AppShell>
         }
       />
       <Route
         path="/planner"
         element={
-          <>
-            {console.log("Routing to /planner")}
-            <AppShell>
-              <Toaster richColors position="top-right" />
-              <PlannerPage />
-            </AppShell>
-          </>
+          <AppShell>
+            <Toaster richColors position="top-right" />
+            <PlannerPage />
+          </AppShell>
         }
       />
       <Route
         path="/landmarks"
         element={
-          <>
-            {console.log("Routing to /landmarks")}
-            <AppShell>
-              <Toaster richColors position="top-right" />
-              <LandmarksPage />
-            </AppShell>
-          </>
+          <AppShell>
+            <Toaster richColors position="top-right" />
+            <LandmarksPage />
+          </AppShell>
         }
       />
     </Routes>

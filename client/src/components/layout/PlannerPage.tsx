@@ -452,15 +452,15 @@ const PlannerPage: React.FC = () => {
     <div className="grid grid-cols-12 gap-6 p-6">
       {/* LEFT: Available Movies (primary) */}
       <section className="col-span-12 lg:col-span-8">
-        <div className="bg-white shadow rounded p-4 h-[calc(100vh-8rem)] flex flex-col">
-          <h3 className="text-md font-semibold mb-2">🍿 Available Movies</h3>
+        <div className="shadow rounded p-4 h-[calc(100vh-8rem)] flex flex-col bg-gradient-to-b from-red-950 to-red-900 text-red-50 border border-red-800">
+          <h3 className="text-md font-semibold mb-2 text-red-200">🍿 Available Movies</h3>
           <div className="flex-1 overflow-y-auto pr-2">
             {normalizedFilms?.length ? (
               <ul className="space-y-2">
                 {normalizedFilms.map((film: any) => (
-                  <li key={film.id} className="border rounded p-3">
-                    <div className="font-semibold">{film.title}</div>
-                    <div className="text-xs text-gray-500 mt-1">
+                  <li key={film.id} className="border border-red-800 rounded p-3 bg-red-900/50">
+                    <div className="font-semibold text-red-100">{film.title}</div>
+                    <div className="text-xs text-red-300 mt-1">
                       Showtimes{' '}
                       {film.times.length > 0 ? (
                         film.times.map((label: string, idx: number) => {
@@ -468,7 +468,7 @@ const PlannerPage: React.FC = () => {
                           return (
                             <button
                               key={`${film.id}-${label}-${idx}`}
-                              className="inline-block px-2 py-1 m-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200"
+                              className="inline-block px-2 py-1 m-1 bg-red-700 text-white rounded hover:bg-red-600 border border-red-500"
                               onClick={() => handleAddToQueue(film.title, display)}
                             >
                               {display}
@@ -476,7 +476,7 @@ const PlannerPage: React.FC = () => {
                           );
                         })
                       ) : (
-                        <span className="italic text-gray-400">No times</span>
+                        <span className="italic text-red-300">No times</span>
                       )}
                     </div>
                   </li>
@@ -494,35 +494,35 @@ const PlannerPage: React.FC = () => {
       {/* RIGHT: Sticky sidebar with Selected + Queue */}
       <aside className="col-span-12 lg:col-span-4">
         <div className="sticky top-4 flex flex-col gap-4">
-          <div className="bg-white shadow rounded p-4">
+          <div className="shadow rounded p-4 bg-gradient-to-b from-red-950 to-red-900 text-red-50 border border-red-800">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold">🎬 Movie Marathon</h2>
+              <h2 className="text-lg font-semibold text-red-200">🎬 Movie Marathon</h2>
               <button
-                className="text-sm px-2 py-1 border rounded hover:bg-gray-50"
+                className="text-sm px-2 py-1 border border-red-500 rounded hover:bg-red-800/40"
                 onClick={() => setShowShare(true)}
               >
                 Share
               </button>
             </div>
             <div className="space-y-2 text-sm">
-              <p><span className="font-medium">Theater:</span> {theaterName || '—'}</p>
-              <p><span className="font-medium">City:</span> {city || '—'}</p>
-              <p><span className="font-medium">Start time:</span> {marathonStart || '—'}</p>
-              <p><span className="font-medium">Total time:</span> {totalSpan || '—'}</p>
+              <p><span className="font-medium text-red-200">Theater:</span> {theaterName || '—'}</p>
+              <p><span className="font-medium text-red-200">City:</span> {city || '—'}</p>
+              <p><span className="font-medium text-red-200">Start time:</span> {marathonStart || '—'}</p>
+              <p><span className="font-medium text-red-200">Total time:</span> {totalSpan || '—'}</p>
             </div>
             <button
-              className="mt-4 px-3 py-2 text-sm border rounded hover:bg-gray-50"
+              className="mt-4 px-3 py-2 text-sm border border-red-500 rounded hover:bg-red-800/40"
               onClick={() => setShowLandmarks(true)}
             >
               See landmarks
             </button>
           </div>
 
-          <div className="bg-white shadow rounded p-4">
+          <div className="shadow rounded p-4 bg-gradient-to-b from-red-950 to-red-900 text-red-50 border border-red-800">
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-md font-medium">🎞️ Your Queue</h3>
+              <h3 className="text-md font-medium text-red-200">🎞️ Your Queue</h3>
               <button
-                className="text-sm px-2 py-1 border rounded hover:bg-gray-50 disabled:opacity-50"
+                className="text-sm px-2 py-1 border border-red-500 rounded hover:bg-red-800/40 disabled:opacity-50"
                 onClick={handleClearQueue}
                 disabled={sortedQueue.length === 0}
               >
@@ -534,12 +534,12 @@ const PlannerPage: React.FC = () => {
                 <li key={item.id} className="py-2 flex items-center justify-between">
                   <div className="flex flex-col">
                     <span className="font-medium">{item.title}</span>
-                    <span className="text-xs text-gray-500">
+                    <span className="text-xs text-red-300">
                       {item.startTime} → {item.endTime} • {item.duration}
                     </span>
                   </div>
                   <button
-                    className="px-2 py-1 text-sm border rounded hover:bg-gray-50"
+                    className="px-2 py-1 text-sm border border-red-500 rounded hover:bg-red-800/40"
                     onClick={() => handleRemove(String(item.id))}
                   >
                     Remove
@@ -555,10 +555,10 @@ const PlannerPage: React.FC = () => {
       </aside>
       {showShare && (
         <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
-          <div className="bg-white w-full max-w-lg rounded-lg shadow-lg overflow-hidden">
-            <div className="flex items-center justify-between px-4 py-2 border-b">
+          <div className="w-full max-w-lg rounded-lg shadow-lg overflow-hidden bg-gradient-to-b from-red-950 to-red-900 text-red-50 border border-red-800">
+            <div className="flex items-center justify-between px-4 py-2 border-b border-red-800">
               <h3 className="font-semibold">Share Your Day</h3>
-              <button className="text-sm px-2 py-1 border rounded hover:bg-gray-50" onClick={() => setShowShare(false)}>Close</button>
+              <button className="text-sm px-2 py-1 border border-red-500 rounded hover:bg-red-800/40" onClick={() => setShowShare(false)}>Close</button>
             </div>
             <div className="p-4 space-y-3 text-sm">
               <div><span className="font-medium">Start Time:</span> {marathonStart || '—'}</div>
@@ -577,20 +577,20 @@ const PlannerPage: React.FC = () => {
               <div><span className="font-medium">End Time:</span> {marathonEnd || '—'}</div>
               <div><span className="font-medium">Total Time:</span> {totalSpan || '—'}</div>
             </div>
-            <div className="flex items-center justify-end gap-2 px-4 py-3 border-t">
-              <button className="px-3 py-2 text-sm border rounded hover:bg-gray-50" onClick={openPrintPdf}>Download PDF</button>
-              <button className="px-3 py-2 text-sm border rounded hover:bg-gray-50" onClick={emailSummary}>Email PDF</button>
-              <button className="px-3 py-2 text-sm border rounded hover:bg-gray-50" onClick={textSummary}>Text PDF</button>
+            <div className="flex items-center justify-end gap-2 px-4 py-3 border-t border-red-800">
+              <button className="px-3 py-2 text-sm border border-red-500 rounded hover:bg-red-800/40" onClick={openPrintPdf}>Download PDF</button>
+              <button className="px-3 py-2 text-sm border border-red-500 rounded hover:bg-red-800/40" onClick={emailSummary}>Email PDF</button>
+              <button className="px-3 py-2 text-sm border border-red-500 rounded hover:bg-red-800/40" onClick={textSummary}>Text PDF</button>
             </div>
           </div>
         </div>
       )}
       {showLandmarks && (
         <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
-          <div className="bg-white w-full max-w-4xl h-[85vh] rounded-lg shadow-lg overflow-hidden">
-            <div className="flex items-center justify-between px-4 py-2 border-b">
+          <div className="w-full max-w-4xl h-[85vh] rounded-lg shadow-lg overflow-hidden bg-gradient-to-b from-red-950 to-red-900 text-red-50 border border-red-800">
+            <div className="flex items-center justify-between px-4 py-2 border-b border-red-800">
               <h3 className="font-semibold">Nearby Landmarks</h3>
-              <button className="text-sm px-2 py-1 border rounded hover:bg-gray-50" onClick={() => setShowLandmarks(false)}>Close</button>
+              <button className="text-sm px-2 py-1 border border-red-500 rounded hover:bg-red-800/40" onClick={() => setShowLandmarks(false)}>Close</button>
             </div>
             <div className="h-[calc(85vh-3rem)] overflow-auto p-2">
               {/* Pass zip (and city) so Landmarks can auto-load context */}
