@@ -79,6 +79,7 @@ type ScheduleState = {
   addToQueue: (title: string, startLabel: string, helpers: Helpers) => void;
   removeFromQueue: (id: string | number) => void;
   clearQueue: () => void;
+  reset: () => void;
 };
 
 export const useScheduleStore = create<ScheduleState>()(
@@ -142,6 +143,28 @@ export const useScheduleStore = create<ScheduleState>()(
       },
 
       clearQueue: () => set({ watchQueue: [] }),
+
+      // Strong reset: clear state and remove persisted keys so stale queues don't rehydrate
+      reset: () =>
+        set((s) => {
+          try {
+            if (typeof window !== 'undefined' && window.localStorage) {
+              const keys = Object.keys(window.localStorage);
+              keys.forEach((k) => {
+                if (
+                  k === 'mm:schedule' ||
+                  k === 'mm:schedule:v1' ||
+                  k === 'mm:schema' ||
+                  k.endsWith(':schedule') ||
+                  k.includes('watchQueue')
+                ) {
+                  try { window.localStorage.removeItem(k); } catch {}
+                }
+              });
+            }
+          } catch {}
+          return { ...s, watchQueue: [] };
+        }),
     }),
     {
       name: "mm:schedule:v1",

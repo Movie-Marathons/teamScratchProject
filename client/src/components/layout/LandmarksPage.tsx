@@ -22,27 +22,28 @@ type SimpleLandmark = {
   lon?: number;
 };
 
-export default function LandmarksPage() {
+export default function LandmarksPage({ zip: initialZip, city }: { zip?: string; city?: string }) {
   const INITIAL_PAGE_SIZE = 10;
   const [pageSize, setPageSize] = useState(INITIAL_PAGE_SIZE);
   const [visibleCount, setVisibleCount] = useState(INITIAL_PAGE_SIZE);
   const [features, setFeatures] = useState<LandmarkFeature[]>([]);
   const [q, setQ] = useState('');
-  const [zip, setZip] = useState('10001');
+  const [zip, setZip] = useState(initialZip || '10001');
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
 
-  const loadByZip = async () => {
+  const loadByZip = async (z?: string) => {
     try {
       setErr(null);
       setLoading(true);
 
-      if (!/^\d{5}(-\d{4})?$/.test(zip)) {
+      const activeZip = (z ?? zip)?.trim();
+      if (!/^\d{5}(-\d{4})?$/.test(activeZip)) {
         throw new Error('Enter a valid US ZIP');
       }
 
-      const params = new URLSearchParams({ zip });
+      const params = new URLSearchParams({ zip: activeZip });
       const res = await fetch(
         `${API_BASE}/landmarks/by-zip?${params.toString()}`
       );
@@ -77,9 +78,20 @@ export default function LandmarksPage() {
     }
   };
 
+  // Keep local ZIP in sync with parent-provided ZIP
   useEffect(() => {
-    loadByZip();
-  }, []);
+    if (initialZip && initialZip !== zip) {
+      setZip(initialZip);
+    }
+  }, [initialZip]);
+
+  // Whenever local ZIP changes (including after sync), (re)load
+  useEffect(() => {
+    if (zip) {
+      loadByZip(zip);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [zip]);
 
   useEffect(() => {
     setVisibleCount(pageSize);
@@ -147,9 +159,14 @@ export default function LandmarksPage() {
     <div className="p-6 space-y-4">
       <div className="flex items-end justify-between">
         <h2 className="text-2xl font-semibold">Historic Landmarks</h2>
-        <small className="text-gray-500">
-          Showing {displayed.length} of {features.length}
-        </small>
+        <div className="flex flex-col items-end">
+          {city && (
+            <small className="text-gray-500">City: {city}</small>
+          )}
+          <small className="text-gray-500">
+            Showing {displayed.length} of {features.length}
+          </small>
+        </div>
       </div>
 
       <div className="flex flex-wrap gap-2 items-center">
@@ -158,10 +175,13 @@ export default function LandmarksPage() {
           placeholder="ZIP (e.g. 10001)"
           value={zip}
           onChange={(e) => setZip(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') loadByZip(zip);
+          }}
         />
         <button
           className="px-3 py-2 rounded bg-black text-white"
-          onClick={loadByZip}
+          onClick={() => loadByZip(zip)}
         >
           Search by ZIP
         </button>

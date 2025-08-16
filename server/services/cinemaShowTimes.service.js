@@ -17,6 +17,8 @@ const { getCinemaShowTimes } = require('../api/cinemaShowTimesApi'); // keep API
 
 const cinemaRepo = require('../repos/cinemaRepo'); // to ensure cinema exists if needed
 
+const ALLOW_EXTERNAL = process.env.ALLOW_EXTERNAL !== '0' && process.env.ALLOW_EXTERNAL !== 'false';
+
 // Build grouped films (title + times[]) directly from a MovieGlu cinemaShowTimes payload
 function groupFilmsFromPayload(payload) {
   if (!payload || !Array.isArray(payload.films)) return [];
@@ -92,61 +94,19 @@ async function ingestForCinema(opts) {
   // Resolve or create a show_date row for this cinema/date when not provided
   let showDateId = incomingShowDateId || '';
   if (!showDateId) {
-    // Try to resolve via repo helper if available
     if (cinemaId && typeof getShowDateIdForCinemaDate === 'function') {
       showDateId = await getShowDateIdForCinemaDate(cinemaId, dateISO);
     }
-    // If still not found, try to ensure/create it
     if (!showDateId && cinemaId && typeof ensureShowDateForCinemaDate === 'function') {
       showDateId = await ensureShowDateForCinemaDate(cinemaId, dateISO);
     }
   }
 
-  // Call MovieGlu API
-  const payload = await getCinemaShowTimes(cinemaExternalId, dateISO);
-
-  if (!payload || !Array.isArray(payload?.films)) {
-    return {
-      ok: false,
-      reason: 'EMPTY_OR_INVALID_PAYLOAD',
-      cinemaExternalId,
-      dateISO,
-      counts: { films: 0, showingsPrepared: 0, showingsInserted: 0 },
-      sample: [],
-    };
-  }
-
-  // Ensure cinema and show_date_id post-fetch if not resolved earlier
-  if (!cinemaId) {
-    const extFromPayload = Number(payload?.cinema?.cinema_id) || cinemaExternalId;
-    cinemaId = await ensureLocalCinemaByExternalId(extFromPayload);
-  }
-  if (!showDateId && cinemaId) {
-    if (typeof getShowDateIdForCinemaDate === 'function') {
-      showDateId = await getShowDateIdForCinemaDate(cinemaId, dateISO);
-    }
-    if (!showDateId && typeof ensureShowDateForCinemaDate === 'function') {
-      showDateId = await ensureShowDateForCinemaDate(cinemaId, dateISO);
-    }
-  }
-  if (!showDateId) {
-    return {
-      ok: false,
-      reason: 'MISSING_SHOW_DATE_ID',
-      cinemaExternalId,
-      dateISO,
-      show_date_id: null,
-      counts: { films: 0, showingsPrepared: 0, showingsInserted: 0 },
-      sample: [],
-    };
-  }
-
-  // Check cache: if we already have showings for this cinema/date, skip API call
+  // ---- DB-FIRST CACHE CHECK ----
   if (cinemaId && showDateId) {
     const existingCount = await countShowingsForCinemaDate(cinemaId, showDateId);
     if (existingCount > 0) {
       let films = [];
-      // Prefer grouped results for simpler frontend rendering
       if (typeof listShowingsGrouped === 'function') {
         try {
           films = await listShowingsGrouped(showDateId);
@@ -154,7 +114,6 @@ async function ingestForCinema(opts) {
           films = [];
         }
       } else if (typeof listShowingsWithTitles === 'function') {
-        // Fallback to flat rows if grouped helper is unavailable
         const flat = await listShowingsWithTitles(showDateId);
         const map = new Map();
         for (const r of flat) {
@@ -176,14 +135,81 @@ async function ingestForCinema(opts) {
     }
   }
 
+  // If external access disabled, return a safe, empty response
+  if (!ALLOW_EXTERNAL) {
+    return {
+      ok: true,
+      reason: 'EXTERNAL_DISABLED',
+      cinemaExternalId,
+      dateISO,
+      show_date_id: showDateId || null,
+      counts: { films: 0, showingsPrepared: 0, showingsInserted: 0 },
+      films: [],
+    };
+  }
+
+  // ---- EXTERNAL CALL (guarded) ----
+  let payload;
+  try {
+    payload = await getCinemaShowTimes(cinemaExternalId, dateISO);
+  } catch (e) {
+    console.warn('[cinemaShowTimes.service] getCinemaShowTimes failed, falling back:', e?.message || e);
+    return {
+      ok: true,
+      reason: 'EXTERNAL_UNAVAILABLE',
+      cinemaExternalId,
+      dateISO,
+      show_date_id: showDateId || null,
+      counts: { films: 0, showingsPrepared: 0, showingsInserted: 0 },
+      films: [],
+    };
+  }
+
+  if (!payload || !Array.isArray(payload?.films)) {
+    return {
+      ok: true,
+      reason: 'EMPTY_OR_INVALID_PAYLOAD',
+      cinemaExternalId,
+      dateISO,
+      show_date_id: showDateId || null,
+      counts: { films: 0, showingsPrepared: 0, showingsInserted: 0 },
+      films: [],
+    };
+  }
+
+  // Ensure cinema and show_date_id post-fetch if not resolved earlier
+  if (!cinemaId) {
+    const extFromPayload = Number(payload?.cinema?.cinema_id) || cinemaExternalId;
+    cinemaId = await ensureLocalCinemaByExternalId(extFromPayload);
+  }
+  if (!showDateId && cinemaId) {
+    if (typeof getShowDateIdForCinemaDate === 'function') {
+      showDateId = await getShowDateIdForCinemaDate(cinemaId, dateISO);
+    }
+    if (!showDateId && typeof ensureShowDateForCinemaDate === 'function') {
+      showDateId = await ensureShowDateForCinemaDate(cinemaId, dateISO);
+    }
+  }
+  if (!showDateId) {
+    return {
+      ok: true,
+      reason: 'MISSING_SHOW_DATE_ID',
+      cinemaExternalId,
+      dateISO,
+      show_date_id: null,
+      counts: { films: 0, showingsPrepared: 0, showingsInserted: 0 },
+      films: [],
+    };
+  }
+
   // 1) Upsert films so we have film_id UUIDs available
   const filmResult = await upsertFilmsFromShowtimesResponse(payload);
 
   // 2) Upsert showings
   const showingsResult = await upsertShowingsFromShowtimesResponse(payload, {
     showDateId,
-    cinemaId,                // may be null; repo will try to resolve using payload.cinema.cinema_id
-    cinemaExternalId,        // fallback hint if payload doesn't include cinema.cinema_id
+    cinemaId,
+    cinemaExternalId,
   });
 
   // Build grouped films for consistent frontend shape (same as CACHE_HIT)

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { resolvePoster } from "../../utils/media";
 
@@ -38,6 +38,8 @@ type SelectedTheaterProps = {
   films: (Film | GroupedFilm)[];
   cinemaId?: string | number;
   dateISO?: string; // YYYY-MM-DD
+  city?: string;
+  zip?: string;
 };
 
 const toDurationText = (film: Film): string | undefined => {
@@ -53,26 +55,97 @@ const toDurationText = (film: Film): string | undefined => {
   return undefined;
 };
 
-const SelectedTheater: React.FC<SelectedTheaterProps> = ({ theaterName, films, cinemaId, dateISO }) => {
-  return (
-    <div className="mt-4 space-y-6">
-      <h3 className="text-lg font-semibold text-center">{theaterName} - Movies</h3>
+// Display helper: "13:30" -> "1:30 PM"; leaves AM/PM labels unchanged
+const to12HourLabel = (raw?: string | null) => {
+  if (!raw) return '';
+  const s = String(raw).trim();
+  // If it already includes AM/PM, return as-is (ensure single space before AM/PM)
+  if (/am|pm/i.test(s)) return s.replace(/\s*(AM|PM)$/i, ' $1');
+  const m = s.match(/^(\d{1,2}):(\d{2})$/);
+  if (!m) return s; // unknown format; show raw
+  let h = Number(m[1]);
+  const mm = m[2];
+  const mer = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12; // 0 -> 12, 13 -> 1
+  return `${h}:${mm} ${mer}`;
+};
 
-      <div className="flex flex-col space-y-4">
-        {films.map((film) => {
+const SelectedTheater: React.FC<SelectedTheaterProps> = ({ theaterName, films, cinemaId, dateISO, city, zip }) => {
+  // Collect IMDB ids so we can fetch server-side poster fallbacks
+  const imdbIds = useMemo(
+    () =>
+      films
+        .map((f: any) => f?.imdb_title_id)
+        .filter((id: any): id is string => typeof id === "string" && id.startsWith("tt")),
+    [films]
+  );
+
+  // Map of imdb_title_id -> poster url from backend
+  const [posterByImdb, setPosterByImdb] = useState<Record<string, string>>({});
+
+  // Try to fetch posters for these imdb ids (backend batches allowed)
+  useEffect(() => {
+    if (!imdbIds.length) return;
+    const controller = new AbortController();
+
+    const load = async () => {
+      try {
+        const qs = encodeURIComponent(imdbIds.join(","));
+        // Endpoint expected to return either an array of { imdb_title_id, poster_url }
+        // or an object map { [imdb_id]: url }
+        const res = await fetch(`/api/moviePosters?ids=${qs}`, { signal: controller.signal });
+        if (!res.ok) return;
+        const data = await res.json();
+        // Fast path: backend returns { map: { tt123: url, ... }, posters: [...] }
+        if (data && typeof (data as any).map === 'object' && (data as any).map !== null) {
+          setPosterByImdb((data as any).map as Record<string, string>);
+          return;
+        }
+        const map: Record<string, string> = {};
+        if (Array.isArray(data)) {
+          data.forEach((p: any) => {
+            if (p && p.imdb_title_id && p.poster_url) map[p.imdb_title_id] = p.poster_url as string;
+          });
+        } else if (data && Array.isArray((data as any).posters)) {
+          (data as any).posters.forEach((p: any) => {
+            if (p && p.imdb_title_id && p.poster_url) map[p.imdb_title_id] = p.poster_url as string;
+          });
+        } else if (data && typeof data === "object") {
+          Object.keys(data).forEach((k) => {
+            const v = (data as any)[k];
+            if (typeof v === "string") map[k] = v;
+          });
+        }
+        if (Object.keys(map).length) setPosterByImdb(map);
+      } catch (_) {
+        // ignore network errors; UI will rely on local resolvePoster
+      }
+    };
+
+    load();
+    return () => controller.abort();
+  }, [imdbIds]);
+
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div className="bg-white w-full max-w-3xl h-[80vh] overflow-y-auto rounded-lg shadow-lg p-6 space-y-6">
+        <h3 className="text-lg font-semibold text-center">{theaterName} - Movies</h3>
+        <div className="flex flex-col space-y-4">
+          {films.map((film) => {
           // Normalize across legacy and grouped shapes
           const legacy = film as Film;
           const grouped = film as GroupedFilm;
 
-          const movieId = grouped.imdb_title_id ?? legacy.imdb_title_id ?? String(legacy.film_id ?? '');
+          const imdbKey = (grouped.imdb_title_id || legacy.imdb_title_id || '').trim();
+          const movieId = imdbKey || String(legacy.film_id ?? '');
           const filmName = legacy.film_name || grouped.title || 'Untitled';
 
+          // Only use a real backend image (data URI). No fallbacks on the client.
+          const backendPoster = imdbKey ? posterByImdb[imdbKey] : undefined;
           const posterSrc =
-            resolvePoster({
-              name: filmName,
-              images: (legacy as any).images ?? grouped.images,
-              poster_url: (legacy as any).poster_url ?? grouped.poster_url,
-            } as any) || undefined;
+            typeof backendPoster === 'string' && backendPoster.startsWith('data:image')
+              ? backendPoster
+              : undefined;
 
           // Times: prefer grouped.times; else legacy.showings.Standard.times (display only)
           let times: ShowingTime[] = Array.isArray((grouped as any).times)
@@ -90,15 +163,16 @@ const SelectedTheater: React.FC<SelectedTheaterProps> = ({ theaterName, films, c
               className="flex flex-col sm:flex-row bg-white border rounded-lg shadow overflow-hidden"
             >
               {/* Poster */}
-              <img
-                src={posterSrc}
-                alt={filmName}
-                className="w-full sm:w-36 h-56 object-cover"
-                onError={(e) => {
-                  // Hide broken images cleanly
-                  (e.currentTarget as HTMLImageElement).style.visibility = "hidden";
-                }}
-              />
+              {posterSrc ? (
+                <img
+                  key={posterSrc}
+                  src={posterSrc}
+                  alt={filmName}
+                  className="w-full sm:w-36 h-56 object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : null}
 
               {/* Details */}
               <div className="p-4 flex-1 space-y-2">
@@ -110,19 +184,19 @@ const SelectedTheater: React.FC<SelectedTheaterProps> = ({ theaterName, films, c
                   <p className="font-medium text-sm">Showtimes:</p>
                   <div className="flex flex-wrap gap-2 mt-1">
                     {times.length > 0 ? (
-                      times.map((time, idx) => (
-                        <Link
-                          to={`/planner?movieId=${encodeURIComponent(movieId)}&showtime=${encodeURIComponent(
-                            (time.start_time || time.display_start_time || '') as string
-                          )}&theater=${encodeURIComponent(theaterName)}${cinemaId ? `&cinemaId=${encodeURIComponent(String(cinemaId))}` : ''}${
-                            dateISO ? `&date=${encodeURIComponent(dateISO)}` : ''
-                          }`}
-                          key={`${movieId}-${time.start_time || time.display_start_time || idx}`}
-                          className="px-2 py-1 bg-slate-100 rounded text-xs hover:bg-slate-200 transition"
-                        >
-                          {time.display_start_time || time.start_time}
-                        </Link>
-                      ))
+                      times.map((time, idx) => {
+                        const raw = (time.start_time || time.display_start_time || '') as string;
+                        const display = to12HourLabel(raw);
+                        return (
+                          <Link
+                            to={`/planner?movieId=${encodeURIComponent(movieId)}&showtime=${encodeURIComponent(display)}&theater=${encodeURIComponent(theaterName)}${cinemaId ? `&cinemaId=${encodeURIComponent(String(cinemaId))}` : ''}${dateISO ? `&date=${encodeURIComponent(dateISO)}` : ''}${city ? `&city=${encodeURIComponent(city)}` : ''}${zip ? `&zip=${encodeURIComponent(String(zip))}` : ''}`}
+                            key={`${movieId}-${raw || idx}`}
+                            className="px-2 py-1 bg-slate-100 rounded text-xs hover:bg-slate-200 transition"
+                          >
+                            {display}
+                          </Link>
+                        );
+                      })
                     ) : (
                       <span className="text-xs text-gray-400">No times</span>
                     )}
@@ -132,6 +206,7 @@ const SelectedTheater: React.FC<SelectedTheaterProps> = ({ theaterName, films, c
             </div>
           );
         })}
+        </div>
       </div>
     </div>
   );

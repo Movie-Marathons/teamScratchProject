@@ -117,8 +117,17 @@ export const useShowtimesStore = create<ShowtimesState>((set, get) => ({
 
       // LIVE
       const base = import.meta.env.VITE_API_BASE_URL ?? ""; // "" -> use Vite proxy
-      const cid = (cinemaId ?? zip ?? '').toString();
-      let url = `${base}/api/cinemaShowTimes?cinema_id=${encodeURIComponent(cid)}&date=${encodeURIComponent(date)}`;
+      const cid = (cinemaId ?? zip ?? "").toString().trim();
+      // Default empty/undefined date to today (YYYY-MM-DD)
+      const d = (date && String(date).trim()) || new Date().toISOString().slice(0, 10);
+
+      // If we still don't have a cinema id, don't send a broken request
+      if (!cid) {
+        set({ loading: false });
+        return;
+      }
+
+      let url = `${base}/api/cinemaShowTimes?cinema_id=${encodeURIComponent(cid)}&date=${encodeURIComponent(d)}`;
       if (showDateId != null && showDateId !== "") {
         url += `&show_date_id=${encodeURIComponent(String(showDateId))}`;
       }
@@ -129,6 +138,7 @@ export const useShowtimesStore = create<ShowtimesState>((set, get) => ({
       const res = await fetch(url, { signal });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const json = await res.json();
+      console.debug('[useShowtimesStore] fetched', { url, cinemaId: cid, date: d, ok: res.ok });
       if (signal?.aborted) { set({ loading: false }); return; }
       const theaters = normalizeTheatersPayload(json);
       const safeTheaters = (Array.isArray(theaters) && theaters.length > 0)

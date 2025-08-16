@@ -331,6 +331,8 @@ export default function TheaterGrid({ searchParams }: Props) {
                       ? new Date(searchParams.date).toISOString().split('T')[0]
                       : undefined))
               }
+              city={selectedTheater.cinema.city}
+              zip={selectedTheater.cinema.postcode}
             />
           )}
         </DialogContent>

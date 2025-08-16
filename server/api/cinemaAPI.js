@@ -1,5 +1,18 @@
 
+
 const { MG_CLIENT, MG_API_KEY, MG_AUTH, MG_TERRITORY, MG_API_VERSION, MG_GEO } = process.env;
+
+const DEFAULT_TIMEOUT_MS = parseInt(process.env.HTTP_TIMEOUT_MS || '8000', 10);
+
+async function fetchWithTimeout(url, options = {}, timeoutMs = DEFAULT_TIMEOUT_MS) {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } finally {
+    clearTimeout(id);
+  }
+}
 
 //Good Headers
 // const baseHeaders = {
@@ -22,6 +35,13 @@ const baseHeaders = {
   Accept: 'application/json',
 };
 
+function redactHeaders(h) {
+  const clone = { ...h };
+  if (clone['x-api-key']) clone['x-api-key'] = `***${String(clone['x-api-key']).slice(-4)}`;
+  if (clone.Authorization) clone.Authorization = '***redacted***';
+  return clone;
+}
+
 //Sandobx Headers
 // const baseHeaders = {
 //   client: 'APPS_0',
@@ -34,36 +54,55 @@ const baseHeaders = {
 // };
 
 export async function getCinemas(geolocation = '-22.0;14.0', count = 5) {
-  const geoString =
-    typeof geolocation === 'string'
-      ? geolocation
-      : `${geolocation.latitude.toFixed(4)};${geolocation.longitude.toFixed(4)}`;
-  const headers = {
-    ...baseHeaders,
-    geolocation: geoString,
-    'device-datetime': new Date().toISOString().split('.')[0] + 'Z',
-  };
+  try {
+    const geoString =
+      typeof geolocation === 'string'
+        ? geolocation
+        : `${geolocation.latitude.toFixed(4)};${geolocation.longitude.toFixed(4)}`;
+    const headers = {
+      ...baseHeaders,
+      geolocation: geoString,
+      'device-datetime': new Date().toISOString().split('.')[0] + 'Z',
+    };
 
-  console.log('Debug: geoString:', geoString);
-  console.log('Debug: headers:', headers);
+    console.log('Debug: geoString:', geoString);
+    console.log('Debug: headers:', redactHeaders(headers));
 
-  const url = `https://api-gate2.movieglu.com/cinemasNearby/?n=${count}`;
-  const res = await fetch(url, { headers });
+    const url = `https://api-gate2.movieglu.com/cinemasNearby/?n=${count}`;
+    const res = await fetchWithTimeout(url, { headers });
 
-  console.log('Debug: Response status:', res.status, res.statusText);
+    console.log('Debug: Response status:', res.status, res.statusText);
 
-  const text = await res.text();
+    const text = await res.text();
 
-  console.log('Debug: Raw response text:', text);
+    console.log('Debug: Raw response text:', text);
 
-  if (!res.ok) {
-    throw new Error(`Cinema API error: ${res.status} - ${text}`);
+    if (!res.ok) {
+      // Return empty on rate limit to avoid noisy stack traces upstream; service layer will handle fallback
+      if (res.status === 429) {
+        console.warn('Cinema API rate-limited (429). Returning empty list.');
+        return [];
+      }
+      throw new Error(`Cinema API error: ${res.status} - ${text}`);
+    }
+
+    if (!text || !text.trim()) {
+      console.warn('Cinema API warning: Empty response body');
+      return [];
+    }
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (e) {
+      console.warn('Cinema API warning: Invalid JSON, returning empty. Raw:', text?.slice(0, 200));
+      return [];
+    }
+    return Array.isArray(data?.cinemas) ? data.cinemas : [];
+  } catch (err) {
+    if (err?.name === 'AbortError') {
+      console.warn('Cinema API request timed out. Returning empty list.');
+      return [];
+    }
+    throw err;
   }
-
-  if (!text) {
-    throw new Error('Cinema API error: Empty response body');
-  }
-
-  const data = JSON.parse(text);
-  return data?.cinemas || [];
 }

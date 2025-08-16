@@ -5,6 +5,9 @@ const db = require('../db');
 /**
  * Normalize films from a MovieGlu cinemaShowTimes payload.
  * Only extracts fields we actually persist to the `films` table.
+ * 
+ * Now also persists:
+ * - movie_glu_film_id: numeric MovieGlu film id for poster lookups.
  *
  * Expected MovieGlu shape excerpt:
  * {
@@ -29,6 +32,7 @@ function normalizeMovieGluFilms(payload) {
   if (!payload || !Array.isArray(payload.films)) return [];
 
   return payload.films.map((f) => ({
+    movie_glu_film_id: f.film_id != null ? Number(f.film_id) : null,
     imdb_id: f.imdb_id != null ? Number(f.imdb_id) : null,
     imdb_title_id: f.imdb_title_id ?? null,
     name: f.film_name ?? null,
@@ -50,12 +54,12 @@ async function upsertFilmsFromShowtimesResponse(payload) {
   const films = normalizeMovieGluFilms(payload);
   if (films.length === 0) return { inserted: 0, updated: 0 };
 
-  const cols = `(imdb_id, imdb_title_id, name, synopsis, duration_mins, version_type, updated_at)`;
+  const cols = `(movie_glu_film_id, imdb_id, imdb_title_id, name, synopsis, duration_mins, version_type, updated_at)`;
   const valuesTuples = films
     .map((_, i) => {
-      const o = i * 6; // 6 bound params per row; updated_at handled via param list
-      // ($1..$6, now())
-      return `($${o + 1}, $${o + 2}, $${o + 3}, $${o + 4}, $${o + 5}, $${o + 6}, now())`;
+      const o = i * 7; // 7 bound params per row; updated_at handled via param list
+      // ($1..$7, now())
+      return `($${o + 1}, $${o + 2}, $${o + 3}, $${o + 4}, $${o + 5}, $${o + 6}, $${o + 7}, now())`;
     })
     .join(',\n');
 
@@ -65,6 +69,7 @@ async function upsertFilmsFromShowtimesResponse(payload) {
     ${valuesTuples}
     ON CONFLICT (imdb_title_id)
     DO UPDATE SET
+      movie_glu_film_id = EXCLUDED.movie_glu_film_id,
       imdb_id       = EXCLUDED.imdb_id,
       name          = EXCLUDED.name,
       synopsis      = EXCLUDED.synopsis,
@@ -75,6 +80,7 @@ async function upsertFilmsFromShowtimesResponse(payload) {
   `;
 
   const values = films.flatMap((f) => [
+    f.movie_glu_film_id,
     f.imdb_id,
     f.imdb_title_id,
     f.name,
@@ -353,13 +359,14 @@ async function ensureShowDateForCinemaDate(cinemaId, dateISO) {
 }
 /**
  * List cached showings (movie title + times) for a given show_date_id (UUID).
- * Returns: Array<{ title: string, imdb_title_id: string | null, start_time: string, display_start_time: string | null }>
+ * Returns: Array<{ title: string, imdb_title_id: string | null, start_time: string, display_start_time: string | null, duration_min: number | null, duration_hrs_mins: string | null }>
  */
 async function listShowingsWithTitles(showDateId) {
   const sql = `
     SELECT
       f.name AS title,
       f.imdb_title_id,
+      f.duration_mins,
       to_char(s.start_time, 'HH24:MI') AS start_time,
       s.display_start_time
     FROM showings s
@@ -368,23 +375,32 @@ async function listShowingsWithTitles(showDateId) {
     ORDER BY f.name ASC, s.start_time ASC;
   `;
   const { rows } = await db.query(sql, [showDateId]);
-  return rows.map((r) => ({
-    title: r.title ?? null,
-    imdb_title_id: r.imdb_title_id ?? null,
-    start_time: r.start_time,
-    display_start_time: r.display_start_time ?? null,
-  }));
+  return rows.map((r) => {
+    const mins = typeof r.duration_mins === 'number' ? r.duration_mins : null;
+    const duration_hrs_mins = mins != null
+      ? `${Math.floor(mins / 60)}h ${mins % 60}m`
+      : null;
+    return {
+      title: r.title ?? null,
+      imdb_title_id: r.imdb_title_id ?? null,
+      start_time: r.start_time,
+      display_start_time: r.display_start_time ?? null,
+      duration_min: mins,
+      duration_hrs_mins,
+    };
+  });
 }
 
 /**
  * Group cached showings by film for a given show_date_id (UUID).
- * Returns: Array<{ title: string, imdb_title_id: string | null, times: { start_time: string, display_start_time: string | null }[] }>
+ * Returns: Array<{ title: string, imdb_title_id: string | null, duration_min: number | null, duration_hrs_mins: string | null, times: { start_time: string, display_start_time: string | null }[] }>
  */
 async function listShowingsGrouped(showDateId) {
   const sql = `
     SELECT
       f.name AS title,
       f.imdb_title_id,
+      f.duration_mins,
       json_agg(
         json_build_object(
           'start_time', to_char(s.start_time, 'HH24:MI'),
@@ -395,15 +411,23 @@ async function listShowingsGrouped(showDateId) {
     FROM showings s
     JOIN films f ON f.id = s.film_id
     WHERE s.show_date_id = $1::uuid
-    GROUP BY f.name, f.imdb_title_id
+    GROUP BY f.name, f.imdb_title_id, f.duration_mins
     ORDER BY f.name ASC;
   `;
   const { rows } = await db.query(sql, [showDateId]);
-  return rows.map((r) => ({
-    title: r.title ?? null,
-    imdb_title_id: r.imdb_title_id ?? null,
-    times: Array.isArray(r.times) ? r.times : [],
-  }));
+  return rows.map((r) => {
+    const mins = typeof r.duration_mins === 'number' ? r.duration_mins : null;
+    const duration_hrs_mins = mins != null
+      ? `${Math.floor(mins / 60)}h ${mins % 60}m`
+      : null;
+    return {
+      title: r.title ?? null,
+      imdb_title_id: r.imdb_title_id ?? null,
+      duration_min: mins,
+      duration_hrs_mins,
+      times: Array.isArray(r.times) ? r.times : [],
+    };
+  });
 }
 
 module.exports = {
